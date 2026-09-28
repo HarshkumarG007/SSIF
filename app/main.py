@@ -8,7 +8,15 @@ Run with:
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
+
+# Ensure project root and app directory are in sys.path regardless of execution directory
+_current_dir = Path(__file__).resolve().parent
+_project_root = _current_dir.parent
+for _p in [str(_project_root), str(_current_dir)]:
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
 
 import numpy as np
 import pandas as pd
@@ -16,20 +24,37 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
-from app.components import (
-    COLOR_BG_DARK,
-    COLOR_BORDER,
-    COLOR_DANGER,
-    COLOR_NEUTRAL,
-    COLOR_PRIMARY,
-    COLOR_SUCCESS,
-    COLOR_SURFACE,
-    COLOR_WARNING,
-    apply_custom_css,
-    apply_plotly_theme,
-    render_limitation_banner,
-    render_research_context,
-)
+try:
+    from app.components import (
+        COLOR_BG_DARK,
+        COLOR_BORDER,
+        COLOR_DANGER,
+        COLOR_NEUTRAL,
+        COLOR_PRIMARY,
+        COLOR_SUCCESS,
+        COLOR_SURFACE,
+        COLOR_WARNING,
+        apply_custom_css,
+        apply_plotly_theme,
+        render_limitation_banner,
+        render_research_context,
+    )
+except ModuleNotFoundError:
+    from components import (
+        COLOR_BG_DARK,
+        COLOR_BORDER,
+        COLOR_DANGER,
+        COLOR_NEUTRAL,
+        COLOR_PRIMARY,
+        COLOR_SUCCESS,
+        COLOR_SURFACE,
+        COLOR_WARNING,
+        apply_custom_css,
+        apply_plotly_theme,
+        render_limitation_banner,
+        render_research_context,
+    )
+
 from src.data_loader import load_dlsm_b, load_placement, load_retention
 from src.retention.features import compute_longitudinal_trajectories
 from src.explainability.recourse import StudentProfile, find_counterfactual_recourse
