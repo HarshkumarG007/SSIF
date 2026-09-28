@@ -59,6 +59,23 @@ from src.data_loader import load_dlsm_b, load_placement, load_retention
 from src.retention.features import compute_longitudinal_trajectories
 from src.explainability.recourse import StudentProfile, find_counterfactual_recourse
 
+
+def show_chart(fig: go.Figure, **kwargs: Any) -> Any:
+    """Render Plotly figure with modern Streamlit width compatibility."""
+    try:
+        return st.plotly_chart(fig, width="stretch", **kwargs)
+    except TypeError:
+        return st.plotly_chart(fig, use_container_width=True, **kwargs)
+
+
+def show_dataframe(data: Any, **kwargs: Any) -> Any:
+    """Render DataFrame with modern Streamlit width compatibility."""
+    try:
+        return st.dataframe(data, width="stretch", **kwargs)
+    except TypeError:
+        return st.dataframe(data, use_container_width=True, **kwargs)
+
+
 # Page Configuration
 st.set_page_config(
     page_title="SSIF Research Observatory",
@@ -173,7 +190,7 @@ if selected_page == "🏛️ Executive Overview & Framework KPIs":
             {"Domain": "Placement", "Model Tier": "Tier 3: Random Forest (N=215)", "AUROC": "0.9099", "PR-AUC": "0.9480", "Brier Score": "0.1037"},
             {"Domain": "Survival", "Model Tier": "Cox Proportional Hazards", "AUROC": "C = 0.7498", "PR-AUC": "p < 0.001", "Brier Score": "LR = 4906"},
         ])
-        st.dataframe(leaderboard_data, use_container_width=True, hide_index=True)
+        show_dataframe(leaderboard_data, hide_index=True)
 
     with col_right:
         st.subheader("Core Empirical Pillars")
@@ -233,7 +250,7 @@ elif selected_page == "🔍 Data Audit & Missingness Observatory":
             labels={"Target_Dropout_Next_Sem": "Dropout Next Sem"},
         )
         fig = apply_plotly_theme(fig, f"Distribution of {metric_col} Stratified by Dropout Status")
-        st.plotly_chart(fig, use_container_width=True)
+        show_chart(fig)
 
     else:
         df = get_placement_data()
@@ -392,7 +409,7 @@ elif selected_page == "📈 Academic Retention & Trajectory Intelligence":
             {"Phenotype": "Chronic Erosion", "Cohort Share": "22.5%", "GPA Slope": "-0.18/sem", "Dropout Rate": "28.4%"},
             {"Phenotype": "Stable Persistence", "Cohort Share": "59.8%", "GPA Slope": "-0.07/sem", "Dropout Rate": "8.1%"},
         ])
-        st.dataframe(pheno_df, use_container_width=True, hide_index=True)
+        show_dataframe(pheno_df, hide_index=True)
         st.caption("K-Means (k=3) validated via B=15 bootstrap iterations. High stability proves persistent underlying structural dynamics.")
 
     with col_resil:
@@ -441,7 +458,7 @@ elif selected_page == "⏱️ Survival Analysis & Hazard Observatory":
 
     fig_km.update_layout(xaxis_title="Semester of Study", yaxis_title="Cumulative Persistence Probability", yaxis_range=[0.2, 1.05])
     fig_km = apply_plotly_theme(fig_km, "Kaplan-Meier Survival Curves Stratified by Generational Status")
-    st.plotly_chart(fig_km, use_container_width=True)
+    show_chart(fig_km)
 
     st.subheader("Cox Proportional Hazards Forest Plot")
     
@@ -466,7 +483,7 @@ elif selected_page == "⏱️ Survival Analysis & Hazard Observatory":
 
     fig_fp.update_layout(xaxis_title="Hazard Ratio (95% Confidence Interval)", showlegend=False)
     fig_fp = apply_plotly_theme(fig_fp, "Cox Proportional Hazards: Forest Plot of Independent Risk Ratios", height=320)
-    st.plotly_chart(fig_fp, use_container_width=True)
+    show_chart(fig_fp)
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -505,7 +522,7 @@ elif selected_page == "💼 Career Placement & Salary Diagnostics":
             range_x=[0, 100],
         )
         fig_sub = apply_plotly_theme(fig_sub, "Employment Selection Rate across Student Subgroups")
-        st.plotly_chart(fig_sub, use_container_width=True)
+        show_chart(fig_sub)
 
     with col_pl_right:
         st.subheader("Starting Salary Offers (N=148 Placed)")
@@ -518,7 +535,7 @@ elif selected_page == "💼 Career Placement & Salary Diagnostics":
             color_discrete_map={"M": COLOR_PRIMARY, "F": "#EC4899"},
         )
         fig_sal = apply_plotly_theme(fig_sal, "Salary Distribution by Specialization and Gender")
-        st.plotly_chart(fig_sal, use_container_width=True)
+        show_chart(fig_sal)
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -564,7 +581,7 @@ elif selected_page == "🔬 Explainable AI & SHAP Risk Drivers":
         labels={"Importance": "Mean |SHAP Value| (Impact on Model Output)"},
     )
     fig_shap = apply_plotly_theme(fig_shap, "Top Predictive Drivers of Student Departure Risk", height=500)
-    st.plotly_chart(fig_shap, use_container_width=True)
+    show_chart(fig_shap)
 
     st.subheader("Key Explainability Insights")
     st.markdown(
@@ -619,7 +636,7 @@ elif selected_page == "🌉 DLSM Compatibility & Construct Bridge":
         fig_age.add_trace(go.Histogram(x=age_b, name="DLSM-B (Digital Health Students)", marker_color="#8B5CF6", opacity=0.7))
         fig_age.update_layout(barmode="overlay", xaxis_title="Student Age")
         fig_age = apply_plotly_theme(fig_age, "Empirical Age Distribution Comparison")
-        st.plotly_chart(fig_age, use_container_width=True)
+        show_chart(fig_age)
 
     with col_br_right:
         st.subheader("The Scientific Representation Bridge")
@@ -656,7 +673,7 @@ elif selected_page == "🌉 DLSM Compatibility & Construct Bridge":
         {"Experiment": "A1: Academic + DLSM Demographics", "Features": "Academic + Age + Gender (17 Vars)", "AUROC": "0.8013 ± 0.0052", "PR-AUC": "0.3642", "Brier": "0.0669"},
         {"Experiment": "Delta (A1 - A0)", "Features": "Incremental DLSM Contribution", "AUROC": "-0.00005 (p=0.93)", "PR-AUC": "-0.00005", "Brier": "+0.00000"},
     ])
-    st.dataframe(ablation_df, use_container_width=True, hide_index=True)
+    show_dataframe(ablation_df, hide_index=True)
 
     st.markdown(
         """
