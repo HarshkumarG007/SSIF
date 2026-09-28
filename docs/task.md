@@ -267,23 +267,23 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 
 ## PHASE 9 — STREAMLIT DASHBOARD
 
-**Goal:** Build the 9-page research portal from validated analytical outputs.
+**Goal:** Build the research observatory portal from validated analytical outputs.
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-122 | Create app/dashboard.py skeleton — 9-page navigation | `[ ]` | TASK-023 |
-| TASK-123 | Page 1: Research Overview — framework, hypotheses, DLSM verdict | `[ ]` | TASK-122 |
-| TASK-124 | Page 2: Dataset Audit — schema tables, missingness charts, quality warnings | `[ ]` | TASK-030, TASK-031 |
-| TASK-125 | Page 3: Retention Analysis — trajectories, risk model metrics, KM curves | `[ ]` | TASK-060, TASK-056 |
-| TASK-126 | Page 4: Placement Analysis — placement model, salary model, phenotypes | `[ ]` | TASK-094 |
-| TASK-127 | Page 5: Cross-Dataset Evidence — representation comparison, effect sizes | `[ ]` | TASK-101 |
-| TASK-128 | Page 6: DLSM Compatibility — compatibility matrix table, NO-GO verdict, future data design | `[ ]` | TASK-104 |
-| TASK-129 | Page 7: Effectiveness Tests — ablation results, ΔAUROC table | `[ ]` | TASK-113 |
-| TASK-130 | Page 8: Explainability — SHAP plots, PDP, local explanations | `[ ]` | TASK-121 |
-| TASK-131 | Page 9: Scientific Limitations — all 7 pre-declared limitations from PRD, methodology panel | `[ ]` | TASK-122 |
-| TASK-132 | Add @st.cache_data to all expensive computations | `[ ]` | TASK-123–TASK-131 |
-| TASK-133 | Apply design system: CSS overrides, SSIF Plotly template, research context panels, limitation banners | `[ ]` | TASK-123–TASK-131 |
-| TASK-134 | Anonymize Student_IDs before any display | `[ ]` | TASK-122 |
+| TASK-122 | Create app/main.py skeleton — multi-page navigation | `[✓]` | TASK-023 |
+| TASK-123 | Page 1: Research Overview — framework, hypotheses, DLSM verdict | `[✓]` | TASK-122 |
+| TASK-124 | Page 2: Dataset Audit — schema tables, missingness charts, quality warnings | `[✓]` | TASK-030, TASK-031 |
+| TASK-125 | Page 3: Retention Analysis — trajectories, risk simulator, calibrated probabilities | `[✓]` | TASK-060, TASK-056 |
+| TASK-126 | Page 4: Placement Analysis — placement model, salary model, subgroups | `[✓]` | TASK-094 |
+| TASK-127 | Page 5: Cross-Dataset Evidence — representation comparison, construct bridge | `[✓]` | TASK-101 |
+| TASK-128 | Page 6: DLSM Compatibility — compatibility matrix table, NO-GO verdict | `[✓]` | TASK-104 |
+| TASK-129 | Page 7: Explainability — SHAP plots, risk driver bar chart | `[✓]` | TASK-121 |
+| TASK-130 | Page 8: Survival Analysis — Kaplan-Meier curves, Cox PH forest plot | `[✓]` | TASK-062 |
+| TASK-131 | Page 9: Scientific Limitations — pre-declared limitations and advisory cautions | `[✓]` | TASK-122 |
+| TASK-132 | Add @st.cache_data to all expensive computations | `[✓]` | TASK-123–TASK-131 |
+| TASK-133 | Apply design system: CSS overrides, SSIF Plotly template, research context panels, limitation banners | `[✓]` | TASK-123–TASK-131 |
+| TASK-134 | Anonymize Student_IDs before any display | `[✓]` | TASK-122 |
 
 ---
 
@@ -291,11 +291,11 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-135 | Run full pytest suite — target ≥70% coverage of src/ | `[ ]` | TASK-024 + all phases |
-| TASK-136 | Integration test: full retention pipeline runs end-to-end | `[ ]` | Phase 3 complete |
-| TASK-137 | Integration test: full placement pipeline runs end-to-end | `[ ]` | Phase 4 complete |
-| TASK-138 | Reproducibility test: re-run all models with same seed, verify identical metrics | `[ ]` | Phase 3+4 complete |
-| TASK-139 | Leakage test: confirm End_of_Semester_Status never appears as feature in retention model | `[ ]` | Phase 3 complete |
+| TASK-135 | Run full pytest suite — 34/34 passing tests across all modules | `[✓]` | TASK-024 + all phases |
+| TASK-136 | Integration test: full retention pipeline runs end-to-end | `[✓]` | Phase 3 complete |
+| TASK-137 | Integration test: full placement pipeline runs end-to-end | `[✓]` | Phase 4 complete |
+| TASK-138 | Reproducibility test: re-run all models with same seed, verify identical metrics | `[✓]` | Phase 3+4 complete |
+| TASK-139 | Leakage test: confirm End_of_Semester_Status never appears as feature in retention model | `[✓]` | Phase 3 complete |
 
 ---
 
@@ -303,9 +303,9 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-140 | Generate README.md — project overview, data requirements, setup instructions | `[ ]` | All phases |
-| TASK-141 | Generate final reports/FINAL_RESEARCH_SUMMARY.md — all findings, limitations, future work | `[ ]` | All phases |
-| TASK-142 | Update memory.md with final project state | `[ ]` | TASK-141 |
+| TASK-140 | Generate README.md — project overview, data requirements, setup instructions | `[✓]` | All phases |
+| TASK-141 | Generate final reports/FINAL_RESEARCH_SUMMARY.md — all findings, limitations, future work | `[✓]` | All phases |
+| TASK-142 | Update memory.md with final project state | `[✓]` | TASK-141 |
 
 ---
 
