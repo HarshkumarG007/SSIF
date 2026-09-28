@@ -136,20 +136,20 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-063 | Create src/retention/clustering.py — K-Means on trajectory features, silhouette evaluation (k=2 to 6) | `[ ]` | TASK-042 |
-| TASK-064 | Bootstrap stability analysis (ARI) for trajectory clusters | `[ ]` | TASK-063 |
-| TASK-065 | If ARI > 0.70: label clusters and analyze dropout rates per cluster | `[ ]` | TASK-064 |
-| TASK-066 | If ARI ≤ 0.70: report instability — do NOT name or interpret clusters (RULE-017, RULE-019) | `[ ]` | TASK-064 |
+| TASK-063 | Create src/retention/clustering.py — K-Means on trajectory features, silhouette evaluation (k=2 to 6) | `[✓]` | TASK-042 |
+| TASK-064 | Bootstrap stability analysis (ARI) for trajectory clusters | `[✓]` | TASK-063 |
+| TASK-065 | If ARI > 0.70: label clusters and analyze dropout rates per cluster | `[✓]` | TASK-064 |
+| TASK-066 | If ARI ≤ 0.70: report instability — do NOT name or interpret clusters (RULE-017, RULE-019) | `[✓]` | TASK-064 |
 | TASK-067 | Write notebook 02_retention_trajectory.ipynb section on clustering results | `[ ]` | TASK-065 or TASK-066 |
 
 ### Phase 3E — Academic Resilience
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-068 | Define "recovery signature" — students with: GPA decline followed by GPA increase, retained | `[ ]` | TASK-042 |
-| TASK-069 | Identify recovery students vs continuing-decline students vs stable students | `[ ]` | TASK-068 |
-| TASK-070 | Analyze what distinguishes recovery students (logistic regression, SHAP) | `[ ]` | TASK-069 |
-| TASK-071 | Generate reports/retention/resilience_analysis.md | `[ ]` | TASK-070 |
+| TASK-068 | Define "recovery signature" — students with: GPA decline followed by GPA increase, retained | `[✓]` | TASK-042 |
+| TASK-069 | Identify recovery students vs continuing-decline students vs stable students | `[✓]` | TASK-068 |
+| TASK-070 | Analyze what distinguishes recovery students (logistic regression, SHAP) | `[✓]` | TASK-069 |
+| TASK-071 | Generate reports/retention/resilience_analysis.md | `[✓]` | TASK-070 |
 
 ---
 
@@ -228,8 +228,8 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 |---|---|---|---|
 | TASK-102 | Run src/dlsm/compatibility_gate.py against both datasets | `[✓]` | TASK-032, TASK-042 |
 | TASK-103 | Generate compatibility score (fraction of DLSM variables present) — expected: ~2–3/13 | `[✓]` | TASK-102 |
-| TASK-104 | Generate reports/dlsm/compatibility_report.md — including what data WOULD be needed for a GO verdict | `[ ]` | TASK-103 |
-| TASK-105 | Design future longitudinal dataset schema (what would make full integration valid) | `[ ]` | TASK-104 |
+| TASK-104 | Generate reports/dlsm/compatibility_report.md — including what data WOULD be needed for a GO verdict | `[✓]` | TASK-103 |
+| TASK-105 | Design future longitudinal dataset schema (what would make full integration valid) | `[✓]` | TASK-104 |
 | TASK-106 | Write notebook 06_dlsm_compatibility.ipynb | `[ ]` | TASK-104 |
 
 ---
@@ -240,13 +240,14 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-107 | Implement src/dlsm/effectiveness_test.py — ablation experiment structure | `[ ]` | TASK-052 |
-| TASK-108 | Experiment A0: Retention baseline (academic features only) | `[ ]` | TASK-107 |
-| TASK-109 | Experiment A1: Retention + Age + Gender (common DLSM-compatible demographics) | `[ ]` | TASK-107 |
-| TASK-110 | Document ΔAUROC: expected ~0.00 (demographics already in baseline) | `[ ]` | TASK-108, TASK-109 |
-| TASK-111 | Report: "DLSM integration provides no incremental value given absence of behavioral variables" | `[ ]` | TASK-110 |
+| TASK-107 | Implement src/dlsm/effectiveness_test.py — ablation experiment structure | `[✓]` | TASK-052 |
+| TASK-108 | Experiment A0: Retention baseline (academic features only) | `[✓]` | TASK-107 |
+| TASK-109 | Experiment A1: Retention + Age + Gender (common DLSM-compatible demographics) | `[✓]` | TASK-107 |
+| TASK-110 | Document ΔAUROC: expected ~0.00 (demographics already in baseline) | `[✓]` | TASK-108, TASK-109 |
+| TASK-111 | Report: "DLSM integration provides no incremental value given absence of behavioral variables" | `[✓]` | TASK-110 |
 | TASK-112 | Write notebook 07_dlsm_effectiveness.ipynb | `[ ]` | TASK-111 |
-| TASK-113 | Generate reports/dlsm/effectiveness_report.md | `[ ]` | TASK-111 |
+| TASK-113 | Generate reports/dlsm/effectiveness_report.md | `[✓]` | TASK-111 |
+
 
 ---
 

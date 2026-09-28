@@ -60,6 +60,10 @@ experiments/mlruns/
 *.swp
 *.swo
 
+# Temporary / Scratch scripts
+scratch/
+
+
 # OS
 .DS_Store
 Thumbs.db
