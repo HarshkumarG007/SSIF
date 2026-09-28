@@ -682,3 +682,12 @@ elif selected_page == "🌉 DLSM Compatibility & Construct Bridge":
         """
     )
 
+    st.info(
+        "⚖️ **Empirical Calibration Anchor (Orben & Przybylski, *Nature Human Behaviour*, 2019, n=355,358):** "
+        "In large-scale specification-curve analyses, digital technology use explains at most **0.4% ($R^2 \\le 0.004$)** of variance "
+        "in adolescent wellbeing—an effect comparable to eating potatoes and smaller than wearing eyeglasses. "
+        "Consequently, any claims of massive, clean direct effects between isolated screen metrics and academic persistence in small observational datasets "
+        "represent synthetic-generator artifacts or target leakage rather than authentic human dynamics."
+    )
+
+

@@ -11,14 +11,16 @@
 
 ## CURRENT STATUS
 
-**All 11 Project Phases + 5 Extension Milestones COMPLETE.**
+**All 11 Project Phases + 6 Extension Milestones COMPLETE.**
 - **GitHub Synced:** `https://github.com/HarshkumarG007/SSIF` with Apache 2.0 license, clean tracking, and full documentation.
-- **Unit Test Suite:** **41/41 unit tests passing** across all modules including schema validators, trajectory engines, survival models, placement classifiers, clustering, resilience, DLSM ablation, and counterfactual recourse.
+- **Unit Test Suite:** **46/46 unit tests passing** across all modules including schema validators, trajectory engines, survival models, placement classifiers, clustering, resilience, DLSM ablation, counterfactual recourse, and the tabular feasibility auditor gates.
 - **Milestone 1 (Jupyter Notebook Suite):** 7 interactive research notebooks (`notebooks/01_retention_audit.ipynb` through `07_dlsm_effectiveness.ipynb`) generated via `scripts/generate_notebooks.py`.
 - **Milestone 2 (Kaggle Publication Package):** Standalone publication notebook (`notebooks/kaggle_ssif_student_success_study.ipynb`) and community article (`reports/KAGGLE_PUBLICATION_ARTICLE.md`).
 - **Milestone 3 (Cloud Deployment Readiness):** Production `requirements.txt`, `.streamlit/config.toml` (dark HSL theme), and comprehensive deployment guide (`docs/DEPLOYMENT_GUIDE.md`). Live at `https://ssif-research.streamlit.app/`.
 - **Milestone 4 (Algorithmic Counterfactual Recourse):** What-If policy engine (`src/explainability/recourse.py`) calculating minimal-effort actionable interventions to flip High-Risk students to Low-Risk (<15%), integrated directly into the Streamlit Early Warning Simulator.
-- **Milestone 5 (Camera-Ready IEEE Paper PDF):** Formatted two-column IEEE Transactions research paper compiled via Tectonic engine into publication-ready PDF (`papers/ssif_academic_retention_study.pdf`) with verified typography, equations, and tables.
+- **Milestone 5 (Camera-Ready IEEE Paper PDF):** Formatted two-column IEEE Transactions research paper compiled via Tectonic engine into publication-ready PDF (`papers/ssif_academic_retention_study.pdf`) citing Orben & Przybylski (2019).
+- **Milestone 6 (Pre-Modeling Tabular Feasibility Auditor):** Automated 7-gate validation auditor (`dataset_feasibility_audit.py`) testing provenance, single-feature leakage, signal vs permutation null, sample adequacy, group/temporal structure drift, fairness screens, and literature benchmark plausibility. Integrated directly into CI with 5 dedicated pytest cases (`tests/unit/test_feasibility_auditor.py`).
+
 
 
 - **Phase 3 (Academic Retention, Phenotypes & Resilience):**

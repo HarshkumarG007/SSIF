@@ -69,7 +69,27 @@ def load_retention(path: Path | str | None = None) -> pd.DataFrame:
     if "Family_Income" in df.columns:
         df["Family_Income"] = pd.to_numeric(df["Family_Income"], errors="coerce")
 
+    # Canonicalize Gender categories to prevent demographic fragmentation
+    # Unifies: {'F', 'female', 'Female'} -> 'Female'; {'M', 'male', 'Male'} -> 'Male'
+    if "Gender" in df.columns:
+        gender_map = {
+            "female": "Female",
+            "f": "Female",
+            "male": "Male",
+            "m": "Male",
+            "other": "Other",
+            "prefer not to say": "Prefer not to say",
+        }
+        df["Gender"] = (
+            df["Gender"]
+            .astype(str)
+            .str.strip()
+            .str.lower()
+            .map(lambda x: gender_map.get(x, x.title()))
+        )
+
     validate_retention(df)
+
     logger.info(
         "[Retention] Loaded: %d rows, %d students, %d cols",
         len(df),

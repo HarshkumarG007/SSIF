@@ -261,8 +261,15 @@ If two documents (e.g., PRD.md and task.md) contradict each other, or if the act
 ### RULE-060: The Vibe Coding Lifecycle Must Not Be Skipped
 We do not jump from "idea" to "code." The lifecycle is: Research → PRD → Architecture → Rules → Design → Tasks → Setup → Develop → Test → Review → QA → Deploy. Each stage must be completed before the next begins.
 
+### RULE-061: Literature Plausibility Calibration (Orben & Przybylski Ceiling)
+Any observational model or feature claiming direct cross-domain impact between digital lifestyle metrics and academic attrition/mental health outcomes exceeding the pre-registered specification-curve ceiling ($R^2 \le 0.004$ / $0.4\%$, Orben & Przybylski 2019, $n=355,358$) must be treated as synthetic generation artifact or data leakage until confirmed via prospective causal tracking.
+
+### RULE-062: Panel Survivorship Bias Guard
+In longitudinal survival panels, total lifetime observation counts or whole-trajectory duration (e.g., total semesters observed) must never enter feature matrices predicting semester-level dropout. All trajectory features must be causally bounded strictly to the historical filtration $\mathcal{F}_{i,t} = \{s \le t\}$.
+
 ---
 
 *This Rules.md is the engineering constitution for SSIF.*  
 *Violations must be documented in memory.md under RULE VIOLATIONS.*  
 *No rule may be silently suspended.*
+

@@ -5,24 +5,24 @@
 
 ## 1. Executive Summary
 - **Scientific Verdict:** `NO INCREMENTAL PREDICTIVE VALUE (NO-GO CONFIRMED)`
-- **Empirical Delta AUROC:** `-0.00015` (Null Effect, p = 0.023)
-- **Empirical Delta PR-AUC:** `-0.00034`
+- **Empirical Delta AUROC:** `-0.00017` (Null Effect, p = 0.0229)
+- **Empirical Delta PR-AUC:** `-0.00038`
 - **Empirical Delta Brier Score:** `+0.00002`
 
 ## 2. Model Performance Comparison
 | Experiment | Feature Set | AUROC (Mean ± Std) | PR-AUC | Brier Score | ECE |
 |:---|:---|:---:|:---:|:---:|:---:|
 | **A0: Academic Baseline** | Pure Academic & Institutional (15 vars) | 0.8010 ± 0.0004 | 0.3636 | 0.0670 | 0.0012 |
-| **A1: DLSM Overlap** | Academic + Age + Gender (17 vars) | 0.8008 ± 0.0004 | 0.3633 | 0.0670 | 0.0014 |
-| **Delta (A1 - A0)** | Incremental DLSM Overlap Contribution | **-0.00015** | **-0.00034** | **+0.00002** | **+0.0002** |
+| **A1: DLSM Overlap** | Academic + Age + Gender (17 vars) | 0.8008 ± 0.0004 | 0.3632 | 0.0670 | 0.0012 |
+| **Delta (A1 - A0)** | Incremental DLSM Overlap Contribution | **-0.00017** | **-0.00038** | **+0.00002** | **+0.0001** |
 
 ## 3. Fold-by-Fold Stability
 - **A0 Fold AUROCs:** `[0.8015, 0.8007]`
-- **A1 Fold AUROCs:** `[0.8014, 0.8005]`
-- **Paired Difference t-statistic:** `t = -27.6883`, `p = 0.0230`
+- **A1 Fold AUROCs:** `[0.8013, 0.8005]`
+- **Paired Difference t-statistic:** `t = -27.7690`, `p = 0.0229`
 
 ## 4. Scientific Interpretation (RULE-004, RULE-005, RULE-019)
-Adding DLSM-compatible demographic features (Age, Gender) produces dAUROC = -0.00015 and dPR-AUC = -0.00034 across 5 GroupKFold folds (p = 0.0230). Demographic features provide zero incremental predictive power over core academic indicators (GPA, attendance, failed courses, financial stress). This empirically proves that direct row-level DLSM integration without actual behavioral telemetry (sleep debt, social media screentime, AI study habits) provides zero analytical value.
+Adding DLSM-compatible demographic features (Age, Gender) produces dAUROC = -0.00017 and dPR-AUC = -0.00038 across 5 GroupKFold folds (p = 0.0229). Demographic features provide zero incremental predictive power over core academic indicators (GPA, attendance, failed courses, financial stress). This empirically proves that direct row-level DLSM integration without actual behavioral telemetry (sleep debt, social media screentime, AI study habits) provides zero analytical value.
 
 ## 5. What Data WOULD Be Required for a Valid GO Integration?
 To achieve a scientifically legitimate GO integration with DLSM, the following conditions must be satisfied:

@@ -48,12 +48,18 @@ jobs:
           "
 
 
-      - name: Run Full Pytest Suite (41 Tests)
+      - name: Run Full Pytest Suite (46 Tests including Feasibility Auditor)
         run: |
           pytest tests/ -v --durations=10
+
+      - name: Run Tabular Feasibility Auditor Gates (CLI Verification)
+        run: |
+          python dataset_feasibility_audit.py Placement_Data_Full_Class.csv --target status --id sl_no --drop salary --sensitive gender
+          python dataset_feasibility_audit.py academic_survival_longitudinal.csv --target Target_Dropout_Next_Sem --group Student_ID --time Semester --sensitive Gender --drop End_of_Semester_Status,Censored --max-rows 5000
 
       - name: Verify Key Pipeline CLI Entrypoints
         run: |
           python -m src.retention.resilience
           python -m src.dlsm.effectiveness_test
           python scripts/generate_notebooks.py
+

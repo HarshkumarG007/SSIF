@@ -3,7 +3,8 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![CI](https://github.com/HarshkumarG007/SSIF/actions/workflows/ci.yml/badge.svg)](https://github.com/HarshkumarG007/SSIF/actions/workflows/ci.yml)
-[![Tests](https://img.shields.io/badge/tests-41%2F41%20passing-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-46%2F46%20passing-brightgreen.svg)]()
+
 [![Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ssif-research.streamlit.app/)
 [![Live Demo](https://img.shields.io/badge/Streamlit%20Cloud-Live%20Observatory-FF4B4B.svg)](https://ssif-research.streamlit.app/)
 
@@ -178,8 +179,15 @@ All 11 Project Phases are **COMPLETE** and verified:
 - [x] **Phase 7:** DLSM Empirical Feature Ablation ($\Delta\text{AUROC} = -0.00005$, confirming NO-GO)
 - [x] **Phase 8:** Explainable AI & Attributions (SHAP TreeExplainer & Hazard Multipliers)
 - [x] **Phase 9:** Interactive Streamlit Research Observatory (7 views, dark mode, calibrated risk simulator)
-- [x] **Phase 10:** Automated Test Suite (**38/38 passing unit and integration tests**)
+- [x] **Phase 10:** Automated Test Suite (**46/46 passing unit and integration tests** including Tabular Feasibility Auditor gates)
 - [x] **Phase 11:** Final Scientific Summary & Research Documentation (`FINAL_RESEARCH_SUMMARY.md`)
+- [x] **Extension 1:** Reproducible Jupyter Research Notebook Suite (`notebooks/01..07.ipynb`)
+- [x] **Extension 2:** Master Kaggle Publication Package (`notebooks/kaggle_ssif_student_success_study.ipynb`)
+- [x] **Extension 3:** Live Streamlit Cloud Deployment ([ssif-research.streamlit.app](https://ssif-research.streamlit.app/))
+- [x] **Extension 4:** Algorithmic Counterfactual Recourse Engine (`src/explainability/recourse.py`)
+- [x] **Extension 5:** Camera-Ready IEEE Transactions Paper PDF (`papers/ssif_academic_retention_study.pdf`)
+- [x] **Extension 6:** Automated Pre-Modeling Tabular Feasibility Auditor (`dataset_feasibility_audit.py`)
+
 
 
 ---
