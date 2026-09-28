@@ -2,6 +2,7 @@
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![CI](https://github.com/HarshkumarG007/SSIF/actions/workflows/ci.yml/badge.svg)](https://github.com/HarshkumarG007/SSIF/actions/workflows/ci.yml)
 [![Tests](https://img.shields.io/badge/tests-41%2F41%20passing-brightgreen.svg)]()
 [![Code Architecture](https://img.shields.io/badge/architecture-modular-orange.svg)]()
 [![Streamlit App](https://img.shields.io/badge/dashboard-Streamlit%20Live-FF4B4B.svg)](http://localhost:8502)
