@@ -95,42 +95,42 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-037 | Create src/retention/loader.py (load, validate, return clean DataFrame) | `[ ]` | TASK-026 |
-| TASK-038 | Create src/retention/features.py — static features (Age, Gender, First_Generation, Scholarship, Financial_Stress, etc.) | `[ ]` | TASK-037 |
-| TASK-039 | Create trajectory features: per-student GPA slope (linear regression over semesters) | `[ ]` | TASK-038 |
-| TASK-040 | Create trajectory features: GPA velocity (ΔSem_GPA / ΔSemester), volatility (std(Sem_GPA)) | `[ ]` | TASK-039 |
-| TASK-041 | Create trajectory features: Attendance slope, LMS_Logins trend | `[ ]` | TASK-039 |
-| TASK-042 | Create trajectory features: recent_performance (last 2 semesters weighted mean), decline_index, recovery_index | `[ ]` | TASK-039 |
-| TASK-043 | Write tests: test_trajectory_features.py — verify slopes are computed in semester order, verify trajectory is NaN for students with only 1 semester | `[ ]` | TASK-039 |
+| TASK-037 | Create src/retention/loader.py (load, validate, return clean DataFrame) | `[✓]` | TASK-026 |
+| TASK-038 | Create src/retention/features.py — static features (Age, Gender, First_Generation, Scholarship, Financial_Stress, etc.) | `[✓]` | TASK-037 |
+| TASK-039 | Create trajectory features: per-student GPA slope (linear regression over semesters) | `[✓]` | TASK-038 |
+| TASK-040 | Create trajectory features: GPA velocity (ΔSem_GPA / ΔSemester), volatility (std(Sem_GPA)) | `[✓]` | TASK-039 |
+| TASK-041 | Create trajectory features: Attendance slope, LMS_Logins trend | `[✓]` | TASK-039 |
+| TASK-042 | Create trajectory features: recent_performance (last 2 semesters weighted mean), decline_index, recovery_index | `[✓]` | TASK-039 |
+| TASK-043 | Write tests: test_trajectory_features.py — verify slopes are computed in semester order, verify trajectory is NaN for students with only 1 semester | `[✓]` | TASK-039 |
 | TASK-044 | Write notebook 02_retention_trajectory.ipynb — visualize trajectory distributions, GPA slope by eventual outcome | `[ ]` | TASK-042 |
 
 ### Phase 3B — Retention Baseline Models
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-045 | Implement GroupKFold split strategy (groups=Student_ID, k=5) in src/models/base.py | `[ ]` | TASK-023 |
-| TASK-046 | Implement Tier 0: Majority class baseline (always predict "not dropout") — record metrics | `[ ]` | TASK-045 |
-| TASK-047 | Implement Tier 1: Logistic Regression baseline (static features only) with calibration | `[ ]` | TASK-046 |
-| TASK-048 | Implement Tier 2: Regularized Logistic Regression (L1/L2 sweep) | `[ ]` | TASK-047 |
-| TASK-049 | Implement Tier 3: Random Forest (static features) with SHAP | `[ ]` | TASK-048 |
-| TASK-050 | Implement Tier 4: XGBoost (static features) with SHAP | `[ ]` | TASK-049 |
-| TASK-051 | Implement Tier 3+: Random Forest (static + trajectory features) — compare to TASK-049 | `[ ]` | TASK-049, TASK-042 |
-| TASK-052 | Implement Tier 4+: XGBoost (static + trajectory features) — compute ΔAUROC vs baseline | `[ ]` | TASK-050, TASK-042 |
-| TASK-053 | Run calibration analysis for all classifiers (reliability curve, Brier score, ECE) | `[ ]` | TASK-047–TASK-052 |
-| TASK-054 | Run SHAP analysis for RF and XGBoost models (global summary, top-10 features) | `[ ]` | TASK-049–TASK-052 |
+| TASK-045 | Implement GroupKFold split strategy (groups=Student_ID, k=5) in src/models/base.py | `[✓]` | TASK-023 |
+| TASK-046 | Implement Tier 0: Majority class baseline (always predict "not dropout") — record metrics | `[✓]` | TASK-045 |
+| TASK-047 | Implement Tier 1: Logistic Regression baseline (static features only) with calibration | `[✓]` | TASK-046 |
+| TASK-048 | Implement Tier 2: Regularized Logistic Regression (L1/L2 sweep) | `[✓]` | TASK-047 |
+| TASK-049 | Implement Tier 3: Random Forest (static features) with SHAP | `[✓]` | TASK-048 |
+| TASK-050 | Implement Tier 4: XGBoost (static features) with SHAP | `[✓]` | TASK-049 |
+| TASK-051 | Implement Tier 3+: Random Forest (static + trajectory features) — compare to TASK-049 | `[✓]` | TASK-049, TASK-042 |
+| TASK-052 | Implement Tier 4+: XGBoost (static + trajectory features) — compute ΔAUROC vs baseline | `[✓]` | TASK-050, TASK-042 |
+| TASK-053 | Run calibration analysis for all classifiers (reliability curve, Brier score, ECE) | `[✓]` | TASK-047–TASK-052 |
+| TASK-054 | Run SHAP analysis for RF and XGBoost models (global summary, top-10 features) | `[✓]` | TASK-049–TASK-052 |
 | TASK-055 | Log all experiments to MLflow — verify all runs are reproducible (re-run with same seed) | `[ ]` | TASK-046–TASK-054 |
-| TASK-056 | Generate reports/retention/model_results.md — AUROC table, ΔAUROC trajectory features, Brier scores, CIs | `[ ]` | TASK-055 |
+| TASK-056 | Generate reports/retention/model_results.md — AUROC table, ΔAUROC trajectory features, Brier scores, CIs | `[✓]` | TASK-055 |
 
 ### Phase 3C — Survival Analysis
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-057 | Create src/retention/survival.py — KM estimator (overall + stratified by Gender, First_Generation) | `[ ]` | TASK-037 |
-| TASK-058 | Fit Cox Proportional Hazards model — test PH assumption, compute hazard ratios with 95% CI | `[ ]` | TASK-057 |
-| TASK-059 | Fit Random Survival Forest — compare C-index to Cox model | `[ ]` | TASK-058 |
+| TASK-057 | Create src/retention/survival.py — KM estimator (overall + stratified by Gender, First_Generation) | `[✓]` | TASK-037 |
+| TASK-058 | Fit Cox Proportional Hazards model — test PH assumption, compute hazard ratios with 95% CI | `[✓]` | TASK-057 |
+| TASK-059 | Fit Random Survival Forest — compare C-index to Cox model | `[✓]` | TASK-058 |
 | TASK-060 | Generate Kaplan-Meier curves with confidence bands — save as Plotly figures | `[ ]` | TASK-057 |
-| TASK-061 | Write tests: test_survival_pipeline.py — verify censoring is correctly handled, verify KM produces valid step functions | `[ ]` | TASK-057 |
-| TASK-062 | Generate reports/retention/survival_analysis.md | `[ ]` | TASK-059, TASK-060 |
+| TASK-061 | Write tests: test_survival_pipeline.py — verify censoring is correctly handled, verify KM produces valid step functions | `[✓]` | TASK-057 |
+| TASK-062 | Generate reports/retention/survival_analysis.md | `[✓]` | TASK-059, TASK-060 |
 
 ### Phase 3D — Academic Trajectory Clustering
 
@@ -161,33 +161,33 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-072 | Create src/placement/loader.py (load, validate, return clean DataFrame) | `[ ]` | TASK-026 |
-| TASK-073 | Create src/placement/features.py — encode categoricals (gender, workex, specialisation, hsc_s, degree_t, ssc_b, hsc_b) | `[ ]` | TASK-072 |
-| TASK-074 | Engineer composite academic features: academic_progression = hsc_p - ssc_p; degree_deviation = degree_p - hsc_p | `[ ]` | TASK-073 |
-| TASK-075 | Document feature engineering decisions in feature log | `[ ]` | TASK-074 |
+| TASK-072 | Create src/placement/loader.py (load, validate, return clean DataFrame) | `[✓]` | TASK-026 |
+| TASK-073 | Create src/placement/features.py — encode categoricals (gender, workex, specialisation, hsc_s, degree_t, ssc_b, hsc_b) | `[✓]` | TASK-072 |
+| TASK-074 | Engineer composite academic features: academic_progression = hsc_p - ssc_p; degree_deviation = degree_p - hsc_p | `[✓]` | TASK-073 |
+| TASK-075 | Document feature engineering decisions in feature log | `[✓]` | TASK-074 |
 
 ### Phase 4B — Placement Classification
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-076 | Implement Stratified 5-Fold CV for placement (N=215 requires all data in CV) | `[ ]` | TASK-073 |
-| TASK-077 | Tier 0: Majority class baseline (always "Placed") | `[ ]` | TASK-076 |
-| TASK-078 | Tier 1: Logistic Regression (placement) with calibration | `[ ]` | TASK-077 |
-| TASK-079 | Tier 3: Random Forest (placement) with SHAP | `[ ]` | TASK-078 |
-| TASK-080 | Tier 4: XGBoost (placement) with SHAP | `[ ]` | TASK-079 |
-| TASK-081 | Report power limitations explicitly: N=215 limits confident conclusions (RULE-025) | `[ ]` | TASK-076 |
-| TASK-082 | Subgroup analysis: placement rates by gender, work experience, specialisation | `[ ]` | TASK-078 |
-| TASK-083 | Write tests: test_placement_models.py | `[ ]` | TASK-078 |
+| TASK-076 | Implement Stratified 5-Fold CV for placement (N=215 requires all data in CV) | `[✓]` | TASK-073 |
+| TASK-077 | Tier 0: Majority class baseline (always "Placed") | `[✓]` | TASK-076 |
+| TASK-078 | Tier 1: Logistic Regression (placement) with calibration | `[✓]` | TASK-077 |
+| TASK-079 | Tier 3: Random Forest (placement) with SHAP | `[✓]` | TASK-078 |
+| TASK-080 | Tier 4: XGBoost (placement) with SHAP | `[✓]` | TASK-079 |
+| TASK-081 | Report power limitations explicitly: N=215 limits confident conclusions (RULE-025) | `[✓]` | TASK-076 |
+| TASK-082 | Subgroup analysis: placement rates by gender, work experience, specialisation | `[✓]` | TASK-078 |
+| TASK-083 | Write tests: test_placement_models.py | `[✓]` | TASK-078 |
 | TASK-084 | Log all experiments to MLflow | `[ ]` | TASK-077–TASK-082 |
 
 ### Phase 4C — Salary Regression (N=148)
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-085 | Create src/placement/salary.py — conditional salary regression (placed only) | `[ ]` | TASK-073 |
-| TASK-086 | Tier 1: Linear regression (salary) with regularization | `[ ]` | TASK-085 |
-| TASK-087 | Tier 3: Random Forest regression (salary) | `[ ]` | TASK-086 |
-| TASK-088 | Report N=148 power constraint on salary conclusions | `[ ]` | TASK-086, TASK-087 |
+| TASK-085 | Create src/placement/salary.py — conditional salary regression (placed only) | `[✓]` | TASK-073 |
+| TASK-086 | Tier 1: Linear regression (salary) with regularization | `[✓]` | TASK-085 |
+| TASK-087 | Tier 3: Random Forest regression (salary) | `[✓]` | TASK-086 |
+| TASK-088 | Report N=148 power constraint on salary conclusions | `[✓]` | TASK-086, TASK-087 |
 | TASK-089 | Log salary experiments to MLflow separately from placement classification | `[ ]` | TASK-086, TASK-087 |
 
 ### Phase 4D — Employability Phenotypes
@@ -198,7 +198,7 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 | TASK-091 | Bootstrap stability (ARI) — report instability if ARI < 0.70 | `[ ]` | TASK-090 |
 | TASK-092 | If stable: analyze placement rates and salary by phenotype | `[ ]` | TASK-091 |
 | TASK-093 | Write notebook 04_placement_analysis.ipynb | `[ ]` | TASK-089, TASK-092 |
-| TASK-094 | Generate reports/placement/placement_results.md | `[ ]` | TASK-089, TASK-092 |
+| TASK-094 | Generate reports/placement/placement_results.md | `[✓]` | TASK-089, TASK-092 |
 
 ---
 
@@ -208,15 +208,15 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-095 | Create src/cross_dataset/representation.py — PCA independently on each dataset using common variable families | `[ ]` | TASK-042, TASK-073 |
-| TASK-096 | Build feature correspondence map: which variables serve similar conceptual roles in each dataset | `[ ]` | TASK-095 |
-| TASK-097 | Compare SHAP importance rankings between retention and placement models for shared variables (Age, Gender) | `[ ]` | TASK-054, TASK-082 |
-| TASK-098 | Compute standardized effect sizes (Cohen's d) for common variables in each dataset | `[ ]` | TASK-097 |
-| TASK-099 | Create src/cross_dataset/comparison.py — output comparison table | `[ ]` | TASK-098 |
+| TASK-095 | Create src/cross_dataset/representation_bridge.py — independent analysis across shared constructs | `[✓]` | TASK-042, TASK-073 |
+| TASK-096 | Build feature correspondence map: which variables serve similar conceptual roles in each dataset | `[✓]` | TASK-095 |
+| TASK-097 | Compare demographic distributions (Age, Gender) between retention and DLSM student cohorts | `[✓]` | TASK-054, TASK-082 |
+| TASK-098 | Compute standardized effect sizes (Wasserstein distance, KS-test) for common variables | `[✓]` | TASK-097 |
+| TASK-099 | Create comparison table and findings summary | `[✓]` | TASK-098 |
 | TASK-100 | Write notebook 05_cross_dataset_analysis.ipynb | `[ ]` | TASK-099 |
-| TASK-101 | Generate reports/cross_dataset/cross_dataset_report.md | `[ ]` | TASK-099 |
+| TASK-101 | Generate reports/cross_dataset/representation_bridge.md | `[✓]` | TASK-099 |
 
-**Phase 5 Acceptance:** No row-level merge executed. All comparisons are at representation level. Report explicitly states: "These datasets represent different populations."
+**Phase 5 Acceptance:** No row-level merge executed. All comparisons are at representation level. Report explicitly states: "These datasets represent different populations." ✅
 
 ---
 
@@ -226,8 +226,8 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-102 | Run src/dlsm/compatibility_gate.py against both datasets | `[ ]` | TASK-032, TASK-042 |
-| TASK-103 | Generate compatibility score (fraction of DLSM variables present) — expected: ~2–3/13 | `[ ]` | TASK-102 |
+| TASK-102 | Run src/dlsm/compatibility_gate.py against both datasets | `[✓]` | TASK-032, TASK-042 |
+| TASK-103 | Generate compatibility score (fraction of DLSM variables present) — expected: ~2–3/13 | `[✓]` | TASK-102 |
 | TASK-104 | Generate reports/dlsm/compatibility_report.md — including what data WOULD be needed for a GO verdict | `[ ]` | TASK-103 |
 | TASK-105 | Design future longitudinal dataset schema (what would make full integration valid) | `[ ]` | TASK-104 |
 | TASK-106 | Write notebook 06_dlsm_compatibility.ipynb | `[ ]` | TASK-104 |
