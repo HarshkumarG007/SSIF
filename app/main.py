@@ -32,6 +32,7 @@ from app.components import (
 )
 from src.data_loader import load_dlsm_b, load_placement, load_retention
 from src.retention.features import compute_longitudinal_trajectories
+from src.explainability.recourse import StudentProfile, find_counterfactual_recourse
 
 # Page Configuration
 st.set_page_config(
@@ -320,6 +321,39 @@ elif selected_page == "📈 Academic Retention & Trajectory Intelligence":
         )
 
         st.caption(f"Estimated 95% Confidence Interval: [{max(0.0, sim_prob-0.06):.2f} — {min(1.0, sim_prob+0.06):.2f}] • Model Brier Score: 0.1768")
+
+        # Algorithmic Counterfactual Recourse
+        if sim_prob >= 0.15:
+            prof = StudentProfile(
+                gpa=sim_gpa,
+                gpa_slope=sim_slope,
+                financial_stress=sim_stress,
+                work_hours=float(sim_work),
+                attendance=float(sim_att),
+                first_gen=(sim_first_gen == "Yes"),
+                scholarship=(sim_scholarship == "Yes"),
+                semester=sim_sem,
+            )
+            recourse = find_counterfactual_recourse(prof, target_risk=0.15)
+
+            st.markdown(
+                f"""
+                <div style="background: rgba(2, 132, 199, 0.08); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 14px; margin-top: 14px;">
+                    <div style="font-size: 0.85rem; font-weight: 700; color: #38BDF8; margin-bottom: 6px;">
+                        🎯 Algorithmic Recourse: Prescribed Intervention Plan
+                    </div>
+                    <div style="font-size: 0.82rem; color: #E2E8F0; margin-bottom: 10px;">
+                        Target Risk: <b>&le; 15.0%</b> • Counterfactual Risk: <b>{recourse.counterfactual_risk*100:.1f}%</b> (-{recourse.risk_reduction_pct:.1f}% reduction)
+                    </div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+            for act in recourse.action_plan:
+                st.markdown(f"• <span style='font-size:0.84rem; color:#F1F5F9;'>{act}</span>", unsafe_allow_html=True)
+        else:
+            st.success("🎯 Algorithmic Recourse: Student is within safe persistence zone (< 15% risk). No emergency recourse required.")
+
 
     st.markdown("---")
     st.subheader("Academic Trajectory Phenotypes & Resilience (Phases 3D & 3E)")

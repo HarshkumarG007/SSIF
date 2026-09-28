@@ -1,0 +1,31 @@
+# SSIF Production & Streamlit Cloud Requirements
+# Python 3.10+ / Linux & Windows compatible wheels
+
+# Core Scientific Computing
+pandas>=2.1.0
+numpy>=1.26.0
+scipy>=1.11.0
+
+# Machine Learning & Survival Analysis
+scikit-learn>=1.4.0
+xgboost>=2.0.0
+lightgbm>=4.1.0
+lifelines>=0.28.0
+statsmodels>=0.14.0
+shap>=0.44.0
+
+# Visual Analytics & Dashboard
+streamlit>=1.30.0
+plotly>=5.18.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Schema, Configuration & Validation
+pydantic>=2.5.0
+pyyaml>=6.0.1
+python-dotenv>=1.0.0
+joblib>=1.3.0
+loguru>=0.7.0
+rich>=13.7.0
+nbformat>=5.9.0
+tabulate>=0.9.0
