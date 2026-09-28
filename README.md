@@ -4,8 +4,8 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![CI](https://github.com/HarshkumarG007/SSIF/actions/workflows/ci.yml/badge.svg)](https://github.com/HarshkumarG007/SSIF/actions/workflows/ci.yml)
 [![Tests](https://img.shields.io/badge/tests-41%2F41%20passing-brightgreen.svg)]()
-[![Code Architecture](https://img.shields.io/badge/architecture-modular-orange.svg)]()
-[![Streamlit App](https://img.shields.io/badge/dashboard-Streamlit%20Live-FF4B4B.svg)](http://localhost:8502)
+[![Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ssif-research.streamlit.app/)
+[![Live Demo](https://img.shields.io/badge/Streamlit%20Cloud-Live%20Observatory-FF4B4B.svg)](https://ssif-research.streamlit.app/)
 
 > **A Multi-Dataset Empirical Framework for Academic Retention, Employment Placement Trajectories, and Digital Lifestyle Spillover Analysis**
 
