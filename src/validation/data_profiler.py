@@ -78,7 +78,7 @@ class DatasetProfile:
                 "Median": f"{c.p50:.3f}" if c.p50 is not None else "—",
                 "Max": f"{c.max_val:.2f}" if c.max_val is not None else "—",
                 "Skew": f"{c.skewness:.2f}" if c.skewness is not None else "—",
-                "Constant?": "⚠️ YES" if c.is_constant else "OK",
+                "Constant?": "[WARNING] YES" if c.is_constant else "OK",
                 "Outliers%": f"{c.outlier_pct:.1f}%" if c.outlier_pct > 0 else "—",
             })
         return pd.DataFrame(rows)
@@ -94,7 +94,7 @@ class DatasetProfile:
         if self.n_unique_ids is not None:
             lines.append(f"  Unique {self.id_col}: {self.n_unique_ids:,}")
         if self.quality_warnings:
-            lines.append("  ⚠️  Quality warnings:")
+            lines.append("  [WARNING] Quality warnings:")
             for w in self.quality_warnings:
                 lines.append(f"    - {w}")
         return "\n".join(lines)
