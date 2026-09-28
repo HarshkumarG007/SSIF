@@ -80,8 +80,8 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 | TASK-032 | Create DLSM compatibility matrix (src/dlsm/compatibility_gate.py) — save to reports/dlsm/compatibility_report.md | `[✓]` | TASK-026, TASK-029 |
 | TASK-033 | Write tests: test_schema_validator.py — verify correct columns/dtypes for both datasets | `[✓]` | TASK-026 |
 | TASK-034 | Write tests: test_validation_tools.py — verify profiler and missingness analyzer | `[✓]` | TASK-027 |
-| TASK-035 | Write notebook 01_retention_audit.ipynb (human-readable exploration) | `[ ]` | TASK-030 |
-| TASK-036 | Write notebook 03_placement_audit.ipynb | `[ ]` | TASK-031 |
+| TASK-035 | Write notebook 01_retention_audit.ipynb (human-readable exploration) | `[✓]` | TASK-030 |
+| TASK-036 | Write notebook 03_placement_audit.ipynb | `[✓]` | TASK-031 |
 
 **Phase 2 Acceptance:** Both audit reports exist, leakage detector flags `End_of_Semester_Status` as a target-contamination risk, compatibility matrix shows NO-GO verdict with evidence. ✅
 
@@ -102,7 +102,7 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 | TASK-041 | Create trajectory features: Attendance slope, LMS_Logins trend | `[✓]` | TASK-039 |
 | TASK-042 | Create trajectory features: recent_performance (last 2 semesters weighted mean), decline_index, recovery_index | `[✓]` | TASK-039 |
 | TASK-043 | Write tests: test_trajectory_features.py — verify slopes are computed in semester order, verify trajectory is NaN for students with only 1 semester | `[✓]` | TASK-039 |
-| TASK-044 | Write notebook 02_retention_trajectory.ipynb — visualize trajectory distributions, GPA slope by eventual outcome | `[ ]` | TASK-042 |
+| TASK-044 | Write notebook 02_retention_trajectory.ipynb — visualize trajectory distributions, GPA slope by eventual outcome | `[✓]` | TASK-042 |
 
 ### Phase 3B — Retention Baseline Models
 
@@ -140,7 +140,7 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 | TASK-064 | Bootstrap stability analysis (ARI) for trajectory clusters | `[✓]` | TASK-063 |
 | TASK-065 | If ARI > 0.70: label clusters and analyze dropout rates per cluster | `[✓]` | TASK-064 |
 | TASK-066 | If ARI ≤ 0.70: report instability — do NOT name or interpret clusters (RULE-017, RULE-019) | `[✓]` | TASK-064 |
-| TASK-067 | Write notebook 02_retention_trajectory.ipynb section on clustering results | `[ ]` | TASK-065 or TASK-066 |
+| TASK-067 | Write notebook 02_retention_trajectory.ipynb section on clustering results | `[✓]` | TASK-065 or TASK-066 |
 
 ### Phase 3E — Academic Resilience
 
@@ -197,7 +197,7 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 | TASK-090 | Clustering analysis for employability profiles (K-Means, k=2–4 given N=215 constraint) | `[ ]` | TASK-073 |
 | TASK-091 | Bootstrap stability (ARI) — report instability if ARI < 0.70 | `[ ]` | TASK-090 |
 | TASK-092 | If stable: analyze placement rates and salary by phenotype | `[ ]` | TASK-091 |
-| TASK-093 | Write notebook 04_placement_analysis.ipynb | `[ ]` | TASK-089, TASK-092 |
+| TASK-093 | Write notebook 04_placement_analysis.ipynb | `[✓]` | TASK-089, TASK-092 |
 | TASK-094 | Generate reports/placement/placement_results.md | `[✓]` | TASK-089, TASK-092 |
 
 ---
@@ -213,7 +213,7 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 | TASK-097 | Compare demographic distributions (Age, Gender) between retention and DLSM student cohorts | `[✓]` | TASK-054, TASK-082 |
 | TASK-098 | Compute standardized effect sizes (Wasserstein distance, KS-test) for common variables | `[✓]` | TASK-097 |
 | TASK-099 | Create comparison table and findings summary | `[✓]` | TASK-098 |
-| TASK-100 | Write notebook 05_cross_dataset_analysis.ipynb | `[ ]` | TASK-099 |
+| TASK-100 | Write notebook 05_cross_dataset_analysis.ipynb | `[✓]` | TASK-099 |
 | TASK-101 | Generate reports/cross_dataset/representation_bridge.md | `[✓]` | TASK-099 |
 
 **Phase 5 Acceptance:** No row-level merge executed. All comparisons are at representation level. Report explicitly states: "These datasets represent different populations." ✅
@@ -230,7 +230,7 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 | TASK-103 | Generate compatibility score (fraction of DLSM variables present) — expected: ~2–3/13 | `[✓]` | TASK-102 |
 | TASK-104 | Generate reports/dlsm/compatibility_report.md — including what data WOULD be needed for a GO verdict | `[✓]` | TASK-103 |
 | TASK-105 | Design future longitudinal dataset schema (what would make full integration valid) | `[✓]` | TASK-104 |
-| TASK-106 | Write notebook 06_dlsm_compatibility.ipynb | `[ ]` | TASK-104 |
+| TASK-106 | Write notebook 06_dlsm_compatibility.ipynb | `[✓]` | TASK-104 |
 
 ---
 
@@ -245,7 +245,7 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 | TASK-109 | Experiment A1: Retention + Age + Gender (common DLSM-compatible demographics) | `[✓]` | TASK-107 |
 | TASK-110 | Document ΔAUROC: expected ~0.00 (demographics already in baseline) | `[✓]` | TASK-108, TASK-109 |
 | TASK-111 | Report: "DLSM integration provides no incremental value given absence of behavioral variables" | `[✓]` | TASK-110 |
-| TASK-112 | Write notebook 07_dlsm_effectiveness.ipynb | `[ ]` | TASK-111 |
+| TASK-112 | Write notebook 07_dlsm_effectiveness.ipynb | `[✓]` | TASK-111 |
 | TASK-113 | Generate reports/dlsm/effectiveness_report.md | `[✓]` | TASK-111 |
 
 
