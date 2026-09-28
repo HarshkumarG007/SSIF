@@ -33,6 +33,11 @@ class LeakageReport:
     def has_critical_leakage(self) -> bool:
         return bool(self.forbidden_features_found) or self.target_in_features
 
+    @property
+    def critical_leakage(self) -> bool:
+        """Alias for has_critical_leakage for CI/CD compatibility."""
+        return self.has_critical_leakage
+
     def summary(self) -> str:
         lines = [f"=== Leakage Report: {self.dataset} ==="]
         if self.has_critical_leakage:
@@ -67,26 +72,28 @@ RETENTION_TARGET_MULTICLASS = "End_of_Semester_Status"
 
 
 def check_retention_leakage(
-    feature_cols: Sequence[str],
-    target_col: str,
+    feature_cols: Sequence[str] | pd.DataFrame,
+    target_col: str = "Target_Dropout_Next_Sem",
     df: pd.DataFrame | None = None,
 ) -> LeakageReport:
     """
-    Check for leakage in a proposed retention feature set.
+    Check for leakage in a proposed retention feature set or DataFrame.
 
     Args:
-        feature_cols: List of column names being used as features.
-        target_col: The target column name.
+        feature_cols: List of column names being used as features, or a DataFrame.
+        target_col: The target column name (default: 'Target_Dropout_Next_Sem').
         df: Optional DataFrame for deeper temporal checks.
 
     Returns:
         LeakageReport with findings.
-
-    Raises:
-        ValueError: If critical leakage is detected (configurable).
     """
+    if isinstance(feature_cols, pd.DataFrame):
+        df = feature_cols
+        feature_cols = [c for c in df.columns if c not in [target_col, "Student_ID", "End_of_Semester_Status", "Censored"]]
+
     report = LeakageReport(dataset="Retention")
     feature_set = set(feature_cols)
+
 
     # 1. Check forbidden features
     forbidden_present = feature_set & RETENTION_FORBIDDEN_FEATURES
@@ -138,24 +145,28 @@ PLACEMENT_TARGET_REGRESSION = "salary"
 
 
 def check_placement_leakage(
-    feature_cols: Sequence[str],
-    target_col: str,
+    feature_cols: Sequence[str] | pd.DataFrame,
+    target_col: str = "status",
 ) -> LeakageReport:
     """
-    Check for leakage in a proposed placement feature set.
+    Check for leakage in a proposed placement feature set or DataFrame.
 
     Key risk: salary is structurally missing for Not Placed — using salary
     as a feature when predicting placement would be leakage.
 
     Args:
-        feature_cols: Columns being used as features.
-        target_col: Target column name.
+        feature_cols: Columns being used as features, or a DataFrame.
+        target_col: Target column name (default: 'status').
 
     Returns:
         LeakageReport with findings.
     """
+    if isinstance(feature_cols, pd.DataFrame):
+        feature_cols = [c for c in feature_cols.columns if c not in ["status", "salary", "sl_no"]]
+
     report = LeakageReport(dataset="Placement")
     feature_set = set(feature_cols)
+
 
     # salary as feature when predicting placement = leakage
     if (

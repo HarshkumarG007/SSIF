@@ -78,18 +78,21 @@ Retention models are validated using 5-Fold GroupKFold partitioning grouped on $
 \caption{Cross-Validated Model Performance (5-Fold GroupKFold)}
 \label{tab:models}
 \centering
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lcccc}
 \toprule
 \textbf{Model Tier} & \textbf{AUROC} & \textbf{PR-AUC} & \textbf{Brier} & \textbf{ECE} \\
 \midrule
 Tier 0: Majority Baseline & 0.4945 & 0.0860 & 0.0797 & 0.0000 \\
 Tier 1: Logistic Regression & 0.8013 & 0.3642 & 0.0669 & 0.1768 \\
-Tier 1+: LogReg + Trajectories & \textbf{0.8014} & \textbf{0.3643} & 0.0669 & 0.1768 \\
+Tier 1+: LogReg + Traj. & \textbf{0.8014} & \textbf{0.3643} & 0.0669 & 0.1768 \\
 Tier 3: Random Forest & 0.7874 & 0.3223 & 0.1177 & 0.2002 \\
-Tier 4+: HistGBM + Trajectories & 0.7975 & 0.3521 & 0.1692 & 0.2857 \\
+Tier 4+: HistGBM + Traj. & 0.7975 & 0.3521 & 0.1692 & 0.2857 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
+
 
 \subsection{Cox Proportional Hazards Analysis}
 Survival modeling treats graduated or currently enrolled students as right-censored. The semi-parametric hazard rate is formalized as:
@@ -114,10 +117,11 @@ Applying K-Means ($k=3$) to trajectory dynamics yields exceptional bootstrap sta
 \end{enumerate}
 
 \subsection{Resilience Analysis ($N=5,563$)}
-Among students experiencing severe grade decline ($\Delta\text{GPA} \le -0.3$), $N = 5,563$ achieved academic recovery. The recovery cohort achieved a **22.6\% dropout rate** vs. **41.9\%** for unrecovered peers ($p < 10^{-50}$).
+Among students experiencing severe grade decline ($\Delta\text{GPA} \le -0.3$), $N = 5,563$ achieved academic recovery. The recovery cohort achieved a \textbf{22.6\% dropout rate} vs. \textbf{41.9\%} for unrecovered peers ($p < 10^{-50}$).
 Multivariate logistic regression reveals that academic advising is the most powerful institutional intervention ($\text{OR} = 1.731$, $p < 0.001$), while financial stress forms the dominant impediment ($\text{OR} = 0.666$, $p < 0.001$).
 
-\section{Cross-Study DLSM Governance & Feature Ablation}
+\section{Cross-Study DLSM Governance \& Feature Ablation}
+
 We empirically evaluated integration feasibility with the Digital Lifestyle Spillover Modeling (DLSM) dataset.
 \begin{itemize}
     \item \textbf{Variable Overlap Score:} $0.154$ (only Age and Gender compatible; core sleep and screen variables absent).

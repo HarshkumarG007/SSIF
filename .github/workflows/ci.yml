@@ -37,12 +37,16 @@ jobs:
         run: |
           python -c "
           from src.data_loader import load_retention, load_placement
-          from src.validation.leakage_detector import check_retention_leakage
+          from src.validation.leakage_detector import check_retention_leakage, check_placement_leakage
           df_ret = load_retention()
-          leakage = check_retention_leakage(df_ret)
-          assert not leakage.critical_leakage, 'Critical data leakage detected in retention panel!'
+          leakage_ret = check_retention_leakage(df_ret)
+          assert not leakage_ret.has_critical_leakage, 'Critical data leakage detected in retention panel!'
+          df_plc = load_placement()
+          leakage_plc = check_placement_leakage(df_plc)
+          assert not leakage_plc.has_critical_leakage, 'Critical data leakage detected in placement dataset!'
           print('Schema & Leakage Verification Passed!')
           "
+
 
       - name: Run Full Pytest Suite (41 Tests)
         run: |

@@ -62,8 +62,16 @@ experiments/mlruns/
 
 # Temporary / Scratch scripts
 scratch/
+tools/
 
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.out
+*.synctex*
 
 # OS
 .DS_Store
 Thumbs.db
+
