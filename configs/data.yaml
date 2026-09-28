@@ -1,0 +1,60 @@
+# Data paths
+data:
+  retention_path: "academic_survival_longitudinal.csv"
+  placement_path: "Placement_Data_Full_Class.csv"
+  dlsm_a_path: "C:/Users/Lenovo/Downloads/DLSM/data/raw/dataset_a/bedtime_screentime_sleep_debt.csv"
+  dlsm_b_path: "C:/Users/Lenovo/Downloads/DLSM/data/raw/dataset_b/AI_SocialMedia_Student_Dataset.csv"
+  dlsm_root: "C:/Users/Lenovo/Downloads/DLSM"
+  processed_dir: "data/processed"
+  interim_dir: "data/interim"
+  reports_dir: "reports"
+
+# Validation settings
+validation:
+  random_state: 42
+  test_size: 0.20
+  n_splits: 5
+
+# Column definitions (verified empirically 2026-09-29)
+columns:
+  retention:
+    id: "Student_ID"
+    target_binary: "Target_Dropout_Next_Sem"
+    target_multiclass: "End_of_Semester_Status"
+    censored: "Censored"
+    time: "Semester"
+    gpa: "Sem_GPA"
+    forbidden_as_features:
+      - "End_of_Semester_Status"
+      - "Censored"
+      - "Target_Dropout_Next_Sem"
+    missing_cols:
+      - "Family_Income"
+      - "LMS_Logins"
+
+  placement:
+    id: "sl_no"
+    target_classification: "status"
+    target_regression: "salary"
+    positive_class: "Placed"
+
+  dlsm_a:
+    id: "user_id"
+    target_regression: "next_day_fatigue_score"
+    target_classification: "sleep_debt_category"
+
+  dlsm_b:
+    id: "Student_ID"
+    target_regression: "Mental_Health_Score"
+    education_col: "Education_Level"
+
+# DLSM Compatibility verdict
+dlsm_compatibility:
+  retention_verdict: "NO-GO"
+  placement_verdict: "NO-GO"
+  reason: "Core DLSM behavioral variables (sleep, digital hours, screen time, physical activity) absent from SSIF datasets"
+  shared_demographics:
+    - "Age"
+    - "Gender"
+  representation_bridge_allowed: true
+  row_merge_forbidden: true

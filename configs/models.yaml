@@ -1,0 +1,111 @@
+# Model Configuration
+# Student Success Intelligence Framework
+
+global:
+  random_state: 42
+  n_jobs: -1
+  verbose: 0
+  class_weight: "balanced"   # Retention imbalance: 8.73% dropout rate
+
+retention:
+  validation:
+    strategy: GroupKFold
+    n_splits: 5
+    group_col: Student_ID
+    stratify: false   # GroupKFold handles this internally
+
+  models:
+    tier_0_naive:
+      type: DummyClassifier
+      strategy: most_frequent
+
+    tier_1_logistic:
+      type: LogisticRegression
+      C: 1.0
+      max_iter: 1000
+      class_weight: balanced
+      solver: lbfgs
+
+    tier_2_regularized:
+      type: LogisticRegression
+      C_grid: [0.001, 0.01, 0.1, 1.0, 10.0]
+      penalty: [l1, l2]
+      class_weight: balanced
+
+    tier_3_rf:
+      type: RandomForestClassifier
+      n_estimators: 300
+      max_depth: null
+      min_samples_leaf: 5
+      class_weight: balanced
+      random_state: 42
+
+    tier_4_xgb:
+      type: XGBClassifier
+      n_estimators: 300
+      learning_rate: 0.05
+      max_depth: 6
+      subsample: 0.8
+      colsample_bytree: 0.8
+      scale_pos_weight: 10.4  # ~91.27/8.73 approx for imbalance
+      random_state: 42
+      eval_metric: aucpr
+
+  primary_metric: roc_auc_pr   # PR-AUC primary due to imbalance
+  secondary_metrics:
+    - roc_auc
+    - f1
+    - recall
+    - brier_score
+    - calibration_ece
+
+placement:
+  validation:
+    strategy: StratifiedKFold
+    n_splits: 5
+    stratify_col: status
+    power_warning: "N=215 — all results exploratory, not generalizable"
+
+  models:
+    classification:
+      tier_0_naive:
+        type: DummyClassifier
+        strategy: most_frequent
+
+      tier_1_logistic:
+        type: LogisticRegression
+        C: 1.0
+        class_weight: balanced
+
+      tier_3_rf:
+        type: RandomForestClassifier
+        n_estimators: 200
+        class_weight: balanced
+        random_state: 42
+
+      tier_4_xgb:
+        type: XGBClassifier
+        n_estimators: 200
+        scale_pos_weight: 2.2
+        random_state: 42
+
+    salary_regression:    # N=148 placed only
+      tier_1_ridge:
+        type: Ridge
+        alpha_grid: [0.01, 0.1, 1.0, 10.0, 100.0]
+
+      tier_3_rf:
+        type: RandomForestRegressor
+        n_estimators: 200
+        random_state: 42
+
+  primary_metric: roc_auc
+  salary_primary_metric: r2
+
+survival:
+  model: CoxPHFitter
+  alternative: RandomSurvivalForest
+  duration_col: Semester
+  event_col_inverted: Censored   # Censored=1 means right-censored (no event observed)
+  event_col_actual: End_of_Semester_Status  # Dropped_Out = event
+  concordance_index: true

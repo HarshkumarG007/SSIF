@@ -1,0 +1,108 @@
+# Feature Engineering Configuration
+# Student Success Intelligence Framework
+
+retention:
+  static_features:
+    numeric:
+      - Age
+      - Family_Income          # 4.55% missing — impute with median
+      - Household_Size
+      - Tuition_Base
+      - Course_Load
+      - Work_Hours
+      - Emergency_Expense
+      - LMS_Logins             # 1.09% missing — impute with median
+      - Advising_Visits
+      - Failed_Courses
+      - Financial_Stress
+      - Attendance
+    categorical:
+      - Gender
+      - First_Generation
+      - Housing_Status
+      - Scholarship
+
+  trajectory_features:
+    enabled: true
+    min_semesters_required: 2   # Students with only 1 semester get NaN trajectories
+    features:
+      - name: gpa_slope
+        formula: "LinearRegression(Sem_GPA ~ Semester).coef"
+        description: "Linear rate of GPA change per semester"
+      - name: gpa_velocity
+        formula: "delta(Sem_GPA) / delta(Semester)"
+        description: "Semester-to-semester GPA change"
+      - name: gpa_volatility
+        formula: "std(Sem_GPA)"
+        description: "Standard deviation of GPA — consistency measure"
+      - name: gpa_recent_mean
+        formula: "mean(Sem_GPA[-2:])"
+        description: "Average GPA in last 2 semesters"
+      - name: gpa_trajectory_type
+        formula: "classify(gpa_slope)"
+        description: "Improving / Declining / Stable trajectory label"
+      - name: attendance_slope
+        formula: "LinearRegression(Attendance ~ Semester).coef"
+        description: "Attendance trend"
+      - name: lms_slope
+        formula: "LinearRegression(LMS_Logins ~ Semester).coef"
+        description: "LMS engagement trend"
+      - name: decline_index
+        formula: "count(consecutive_decreases in Sem_GPA)"
+        description: "Number of consecutive semesters with GPA decline"
+      - name: recovery_index
+        formula: "count(GPA_increase after GPA_decrease)"
+        description: "Evidence of academic resilience"
+
+  imputation:
+    Family_Income: median
+    LMS_Logins: median
+    strategy_log: "Median imputation chosen for MCAR/MAR assumption — sensitivity analysis required"
+
+placement:
+  features:
+    numeric:
+      - ssc_p      # Secondary school percentage
+      - hsc_p      # Higher secondary percentage
+      - degree_p   # Degree percentage
+      - etest_p    # Employability test percentage
+      - mba_p      # MBA percentage
+    categorical:
+      - gender
+      - workex         # Work experience Yes/No
+      - specialisation # Mkt&HR / Mkt&Fin
+      - hsc_s          # HS stream: Commerce/Science/Arts
+      - degree_t       # Degree type
+      - ssc_b          # Secondary board
+      - hsc_b          # HS board
+    engineered:
+      - name: academic_progression
+        formula: "hsc_p - ssc_p"
+        description: "Academic improvement from secondary to higher secondary"
+      - name: degree_deviation
+        formula: "degree_p - hsc_p"
+        description: "University degree vs HS performance gap"
+      - name: composite_academic_score
+        formula: "0.25*ssc_p + 0.25*hsc_p + 0.25*degree_p + 0.25*mba_p"
+        description: "Weighted average of all academic scores"
+
+dlsm_bridge:
+  # Variables that DLSM-B and SSIF-A share (representation-level comparison only)
+  common_demographics:
+    - name: age
+      ssif_a_col: Age
+      dlsm_b_col: Age
+    - name: gender
+      ssif_a_col: Gender
+      dlsm_b_col: Gender
+  education_proxy:
+    ssif_a: Semester         # Proxy for education stage
+    dlsm_b: Education_Level  # College / High School / University
+
+  # Variables DLSM-B has that SSIF-A lacks (what's needed for full integration)
+  missing_from_ssif:
+    - Daily_Social_Media_Hours
+    - Daily_AI_Tool_Usage_Hours
+    - Sleep_Hours
+    - Physical_Activity_Hours
+    - Mental_Health_Score
