@@ -554,6 +554,9 @@ flowchart TD
 ![DLSM Compatibility Gate & Construct Bridge](docs/screenshots/07_dlsm_construct_bridge.png)
 *Figure 7: DLSM Compatibility Gate & Scientific Construct Bridge. Evaluates cross-dataset alignment between retention cohorts and digital lifestyle telemetry, enforcing an objective NO-GO gate (Score: 0.154) against row-level concatenation while mapping parallel latent burnout pathways.*
 
+![Empirical DLSM Feature Ablation & Specification-Curve Calibration](docs/screenshots/07b_dlsm_feature_ablation.png)
+*Figure 7b: Empirical DLSM Feature Ablation Experiment & Specification-Curve Benchmark Anchor. Displays the rigorous 5-fold GroupKFold cross-validation results demonstrating that adding digital demographics (`Age`, `Gender`) produces $\Delta\text{AUROC} = -0.00005$ ($p = 0.932$), mathematically verifying that external lifestyle variables add zero predictive power without paired biometric sleep telemetry. Grounded in Orben & Przybylski (2019, $n=355,358$) and featuring the Open Educational Data Mining Hall of Fame.*
+
 ---
 
 ### Phase 8: Explainable AI (SHAP) & Algorithmic Counterfactual Recourse
@@ -683,6 +686,9 @@ flowchart TD
 
 ![Model Performance Leaderboard & Core Empirical Pillars](docs/screenshots/01b_leaderboard_pillars.png)
 *Figure 10: Model Performance Leaderboard & Core Empirical Pillars view. Transparently displays 7 model tiers across Retention, Placement, and Survival domains alongside the core empirical laws discovered by SSIF.*
+
+![Deep Empirical Pattern Lab & Non-Linear Tipping Points](docs/screenshots/08_deep_empirical_pattern_lab.png)
+*Figure 11: Deep Empirical Pattern Lab & Non-Linear Tipping Points Observatory (Page 8). Uncovers sharp non-linear departure thresholds: falling below a 2.0 GPA surges departure risk from 8.2% to 20.5% (jumping to 44.8% below 1.5 GPA), while taking 18+ credits surges dropout hazard by +80.4% (13.6%–15.1%). Displays equity buffers proving institutional scholarships yield a -9.7% dropout drop for Q1 low-income students (4x higher utility than high-income peers) and early advising visits (Semesters 1–2) drive a -6.3% hazard reduction.*
 
 ---
 
@@ -849,6 +855,15 @@ flowchart TD
 | **EXP-003** | **Socio-Economic Fairness Audit**<br/>*Algorithmic Fairness & Equity* | Demographic parity analysis, Fisher's exact test, and trajectory-anchored Qualified-But-Excluded profiling | The 65% degree-GPA hiring threshold disproportionately excludes Q1 low-income and first-generation students. Discovered **N=992 "Qualified-But-Excluded"** students who maintain positive GPA velocity (`gpa_slope > 0`) despite initial adversity. | `reports/experiments/EXP-003/`<br/>• `threshold_achievability_by_demographics.csv`<br/>• `qualified_excluded_profiles.csv`<br/>• `workex_rescue_differential.json` |
 | **EXP-004** | **Career Trajectory Forecasting**<br/>*Predictive Analytics* | GroupKFold cross-validation across expanding observation windows (S1 through S1-4) with SHAP attribution | Semesters 1–2 academic signals predict 4-year success with **AUC = 0.7469** (XGBoost). As observation widens, predictive discrimination expands monotonically to **AUC = 0.8387** by Semester 4. Computes normalized Career Readiness Scores (CRS 0–100). | `reports/experiments/EXP-004/`<br/>• `early_window_model_performance.csv`<br/>• `early_warning_window_auc_curve.csv`<br/>• `career_readiness_score_distribution.csv` |
 | **EXP-005** | **Intervention ROI Optimizer**<br/>*Operations Research & Budgeting* | HiGHS Linear Programming (LP) optimization over multi-tiered institutional budgets ($10K–$500K) | **Advising Boost delivers the highest entry ROI** (0.0533 reductions/dollar) up to $100K budgets; larger budgets optimally blend Advising with Emergency Micro-Scholarships and Work-Study conversions. | `reports/experiments/EXP-005/`<br/>• `optimal_allocation_by_budget.csv`<br/>• `subgroup_prioritization.csv`<br/>• `sensitivity_analysis.csv` |
+
+![Research Experiments Lab Master Suite & Labor Policy Simulation](docs/screenshots/09a_research_experiments_lab.png)
+*Figure 12: Research Experiments Lab Master Suite (Page 9). Features the multi-disciplinary experiment orchestrator displaying 5/5 passed experiments, zero runtime failures (60.9s execution), and EXP-001 Labor Economics policy simulation evaluating the institutional ROI of replacing off-campus survival labor (>15 hrs/wk) with structured on-campus work-study.*
+
+![EXP-002 Lifecycle Sensitivity Heatmap & EXP-003 Demographic Fairness Disparity](docs/screenshots/09b_intervention_sensitivity_heatmap.png)
+*Figure 13: EXP-002 Lifecycle Intervention Sensitivity Heatmap & EXP-003 Socio-Economic Hiring Equity Audit. Top: 2D simulation grid mapping intervention timing (Early S1-2 vs Mid S3-4 vs Late S5-8) across policy efficacies (0.0 to 1.0), proving that early intervention compounds into +81.6 graduates per 1,000 students. Bottom: Disparity audit illustrating how the 65% degree-GPA recruitment gate disproportionately excludes Q1 low-income students despite positive academic momentum. Sidebar confirms regulatory governance under EU AI Act Art. 14, FERPA, and India DPDPA.*
+
+![EXP-004 Early Warning Window AUC Stabilization & Empirical Provenance Governance](docs/screenshots/09c_early_warning_auc_curve.png)
+*Figure 14: EXP-004 Early Warning Window AUC Stabilization Curve & Data Provenance Hall. Plots the monotonic expansion of predictive power from Freshman Semester 1 (AUC = 0.684) to Sophomore Semester 4 (AUC = 0.8387), demonstrating that early-warning models achieve strong discriminative power within the first year of college. Accompanied by mandatory scientific limitation callouts and full provenance citations honoring original dataset curators.*
 
 ---
 
