@@ -1,0 +1,29 @@
+# SSIF Deterministic Dependency Lockfile (SEC-07 / CWE-1104)
+# Generated for Python 3.11+ / Windows & Linux x86_64
+# Pinned to exact validated versions to prevent upstream supply-chain poisoning
+
+pandas==2.3.3
+numpy==2.2.4
+scipy==1.15.2
+pyarrow==21.0.0
+scikit-learn==1.6.1
+xgboost==3.0.5
+lightgbm==4.6.0
+lifelines==0.30.3
+statsmodels==0.14.5
+shap==0.52.0
+streamlit==1.64.0
+plotly==6.3.1
+matplotlib==3.10.6
+seaborn==0.13.2
+pydantic==2.12.0
+PyYAML==6.0.3
+python-dotenv==1.1.1
+joblib==1.4.2
+loguru==0.7.3
+rich==14.1.0
+nbformat==5.10.4
+tabulate==0.10.0
+pytest==9.1.1
+pytest-cov==7.1.0
+anyio==4.11.0

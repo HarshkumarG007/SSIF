@@ -7,6 +7,10 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+# Principle of Least Privilege (CWE-732 / SEC-06)
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Test Suite (Python ${{ matrix.python-version }})
@@ -18,10 +22,12 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        # Pinning to immutable commit SHA (CWE-829 / SEC-06)
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        # Pinning to immutable commit SHA (CWE-829 / SEC-06)
+        uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f # v5.1.1
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
@@ -48,7 +54,7 @@ jobs:
           "
 
 
-      - name: Run Full Pytest Suite (46 Tests including Feasibility Auditor)
+      - name: Run Full Pytest Suite (55+ Tests including Feasibility Auditor & Security Regressions)
         run: |
           pytest tests/ -v --durations=10
 

@@ -104,6 +104,29 @@ class TestTrajectoryFeatures:
         # Semester 4 slope should differ
         assert not np.isclose(res1["gpa_slope"].iloc[3], res2["gpa_slope"].iloc[3])
 
+    def test_lms_logins_temporal_causality_zero_future_leakage(self, mock_longitudinal_student):
+        """
+        CRITICAL TEST (RULE-009 / SEC-09):
+        Modifying semester 4 LMS logins when semester 1 is missing must NOT leak to past semesters.
+        """
+        df1 = mock_longitudinal_student.copy()
+        df2 = mock_longitudinal_student.copy()
+        # Set semester 1 LMS logins to NaN
+        df1.loc[df1["Semester"] == 1, "LMS_Logins"] = np.nan
+        df2.loc[df2["Semester"] == 1, "LMS_Logins"] = np.nan
+
+        # Change semester 4 LMS logins dramatically in df2
+        df1.loc[df1["Semester"] == 4, "LMS_Logins"] = 10.0
+        df2.loc[df2["Semester"] == 4, "LMS_Logins"] = 1000.0
+
+        res1 = compute_longitudinal_trajectories(df1)
+        res2 = compute_longitudinal_trajectories(df2)
+
+        # Semesters 1 and 2 must be identical in both despite differing future values
+        for sem_idx in [0, 1]:
+            if not pd.isna(res1["lms_slope"].iloc[sem_idx]):
+                assert np.isclose(res1["lms_slope"].iloc[sem_idx], res2["lms_slope"].iloc[sem_idx])
+
     def test_decline_and_recovery_indices(self):
         """Test decline counter and recovery detection."""
         df = pd.DataFrame({

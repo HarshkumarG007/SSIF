@@ -255,14 +255,14 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 
 | ID | Title | Status | Dependencies |
 |---|---|---|---|
-| TASK-114 | SHAP global summary plots for retention best model — save as Plotly figures | `[ ]` | TASK-054 |
-| TASK-115 | SHAP local waterfall plots — 3 dropout + 3 retained students | `[ ]` | TASK-054 |
-| TASK-116 | SHAP dependence plots — top 3 features | `[ ]` | TASK-054 |
-| TASK-117 | SHAP global summary plots for placement best model | `[ ]` | TASK-082 |
-| TASK-118 | PDP/ICE curves for top 3 placement features | `[ ]` | TASK-082 |
-| TASK-119 | Subgroup analysis: retention AUC/recall by Gender, First_Generation, Financial_Stress quartile | `[ ]` | TASK-054 |
-| TASK-120 | Subgroup analysis: placement AUC/recall by gender, workex | `[ ]` | TASK-082 |
-| TASK-121 | Generate all explainability figures to reports/ directories | `[ ]` | TASK-114–TASK-120 |
+| TASK-114 | SHAP global summary plots for retention best model — save as Plotly figures | `[✓]` | TASK-054 |
+| TASK-115 | SHAP local waterfall plots — 3 dropout + 3 retained students | `[✓]` | TASK-054 |
+| TASK-116 | SHAP dependence plots — top 3 features | `[✓]` | TASK-054 |
+| TASK-117 | SHAP global summary plots for placement best model | `[✓]` | TASK-082 |
+| TASK-118 | PDP/ICE curves for top 3 placement features | `[✓]` | TASK-082 |
+| TASK-119 | Subgroup analysis: retention AUC/recall by Gender, First_Generation, Financial_Stress quartile | `[✓]` | TASK-054 |
+| TASK-120 | Subgroup analysis: placement AUC/recall by gender, workex | `[✓]` | TASK-082 |
+| TASK-121 | Generate all explainability figures to reports/ directories | `[✓]` | TASK-114–TASK-120 |
 
 ---
 
@@ -307,6 +307,37 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 | TASK-140 | Generate README.md — project overview, data requirements, setup instructions | `[✓]` | All phases |
 | TASK-141 | Generate final reports/FINAL_RESEARCH_SUMMARY.md — all findings, limitations, future work | `[✓]` | All phases |
 | TASK-142 | Update memory.md with final project state | `[✓]` | TASK-141 |
+| TASK-143 | Build multi-disciplinary experiments suite (EXP-001 through EXP-005) | `[✓]` | All phases |
+| TASK-144 | Implement automated master orchestrator (experiments/run_all_experiments.py) | `[✓]` | TASK-143 |
+| TASK-145 | Validate experiment outputs with automated pytest suite (tests/unit/test_experiments.py) | `[✓]` | TASK-144 |
+| TASK-146 | Embed interactive Experiment Lab and Pareto Frontier into Streamlit observatory | `[✓]` | TASK-144 |
+| TASK-147 | Update all dataset credits, curators (Razan, Amey, Samar, Sri Syra), Kaggle URLs, and DLSM repo links | `[✓]` | All phases |
+
+---
+
+## PHASE 12 — RESEARCH EXPERIMENTS SUITE (COMPLETED)
+
+| ID | Title | Status | Dependencies |
+|---|---|---|---|
+| EXP-001 | Labor-Policy Intervention Simulation (OLS + Monte Carlo bootstrap N=200) | `[✓]` | Phase 3 |
+| EXP-002 | Pipeline Resilience Stress Test (18-scenario lifecycle attrition cascade) | `[✓]` | Phase 3 |
+| EXP-003 | Socio-Economic Fairness Audit (Hiring threshold equity & Qualified-But-Excluded) | `[✓]` | Phase 3, Phase 4 |
+---
+
+## PHASE 13 — RED-TEAM SECURITY, PRIVACY & REGULATORY HARDENING (COMPLETED)
+
+| ID | Title | Status | Dependencies |
+|---|---|---|---|
+| TASK-148 | Streamlit CORS Hardening (`.streamlit/config.toml` `enableCORS = true`) | `[✓]` | All phases |
+| TASK-149 | FERPA Small-Cell Metric Suppression (`exp_003_fairness_audit.py` $0 < n < 5$ suppression) | `[✓]` | EXP-003 |
+| TASK-150 | Supply Chain Cryptographic Verification (`scripts/compile_paper.py` SHA-256 integrity check) | `[✓]` | Phase 11 |
+| TASK-151 | CI/CD DevSecOps Hardening (`.github/workflows/ci.yml` least privilege & SHA pinning) | `[✓]` | Phase 1 |
+| TASK-152 | Deterministic Dependency Lockfile (`requirements.lock` pinning 25 direct dependencies) | `[✓]` | Phase 1 |
+| TASK-153 | Counterfactual Recourse Predictor Alignment & Human-in-the-Loop Advisory (`src/explainability/recourse.py`) | `[✓]` | Phase 8 |
+| TASK-154 | Quasi-Identifier Anonymization & EPV <= 6 DoF Constraint (`src/placement/features.py`) | `[✓]` | Phase 4 |
+| TASK-155 | Longitudinal LMS Imputation Temporal Causality (`src/retention/features.py` forward-fill) | `[✓]` | Phase 3 |
+| TASK-156 | Legal Notice, Apache-2.0 Copyright & Dataset Attribution (`LICENSE`, `NOTICE`, `PRD.md`) | `[✓]` | Phase 0, 11 |
+| TASK-157 | Automated Security, Privacy & Regulatory Test Suite (`tests/unit/test_security_privacy.py`, 70 total passing tests) | `[✓]` | TASK-148–156 |
 
 ---
 

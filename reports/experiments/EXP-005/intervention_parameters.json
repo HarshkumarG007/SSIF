@@ -1,0 +1,29 @@
+{
+  "Advising_Boost": {
+    "cost_usd": 150,
+    "dropout_reduction_pp": 8.0,
+    "efficacy_ci_lo": 5.0,
+    "efficacy_ci_hi": 11.0,
+    "eligible_segment": "High-Risk Students",
+    "description": "2 additional advising sessions per semester for high-risk students",
+    "evidence": "Klepfer & Hull (2012), Complete College America"
+  },
+  "Emergency_Scholarship": {
+    "cost_usd": 500,
+    "dropout_reduction_pp": 12.0,
+    "efficacy_ci_lo": 8.0,
+    "efficacy_ci_hi": 16.0,
+    "eligible_segment": "Q1 Income Students",
+    "description": "Emergency micro-grant ($500) targeting Q1-income students in financial crisis",
+    "evidence": "Goldrick-Rab et al. (2016), HOPE Lab Emergency Aid"
+  },
+  "WorkStudy_Conversion": {
+    "cost_usd": 3200,
+    "dropout_reduction_pp": 15.0,
+    "efficacy_ci_lo": 9.0,
+    "efficacy_ci_hi": 21.0,
+    "eligible_segment": "High Work-Hours Students (>15 hrs/week)",
+    "description": "Convert survival labor to institutional work-study (on-campus, <=10hrs/week)",
+    "evidence": "EXP-001 Monte Carlo Bootstrap CI; Darolia (2014) JLE"
+  }
+}

@@ -1,0 +1,10 @@
+stage,risk_tier,n_observations,n_students,dropout_probability
+Stage_1_Early,High,1367,1101,0.3438
+Stage_1_Early,Low,12837,8392,0.0248
+Stage_1_Early,Medium,22392,13924,0.0901
+Stage_2_Mid,High,1664,1253,0.3684
+Stage_2_Mid,Low,3037,2216,0.028
+Stage_2_Mid,Medium,18769,11236,0.0821
+Stage_3_Late,High,1491,946,0.3119
+Stage_3_Late,Low,436,333,0.0298
+Stage_3_Late,Medium,17246,7099,0.0809

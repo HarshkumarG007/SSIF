@@ -310,6 +310,9 @@ We extend our deep gratitude, thanksgiving, and respect to the original dataset 
 
 * **Razan Ihab Abdellatif** — Curator of the [Student Retention and Academic Performance Panel](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data) (79,239 rows, 20,000 students). Heartfelt thanks for open-sourcing this rich longitudinal dataset.
 * **Amey Thakur** ([@ameythakur20](https://www.kaggle.com/ameythakur20)) — Curator of the [Campus Recruitment (Placement Data Full Class)](https://www.kaggle.com/datasets/ameythakur20/placement-data) (215 candidates). Sincere thanks for assembling this benchmark employability cohort.
+* **Samar Talwar** — Curator of the [Sleep Debt and Screen Time / Late Night Phone Habits](https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits) (8,500 telemetry records). Heartfelt appreciation for this foundational sleep habits dataset.
+* **Sri Syra** ([@srisyra02](https://www.kaggle.com/srisyra02)) — Curator of the [AI and Social Media Impact: Student Health & Grades](https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades) (16,000 student records). Sincere thanks for curating this landmark digital health cohort.
+* **Sister Research Framework:** [HarshkumarG007/DLSM](https://github.com/HarshkumarG007/DLSM) (Digital Lifestyle Spillover Modeling).
 
 > **📢 Ethical Data Citation & Download Call-to-Action:**  
 > Please visit the original Kaggle dataset pages linked above to **upvote the creators' work** and **download the raw datasets directly from their Kaggle repositories** for your own research and replications.

@@ -1,0 +1,33 @@
+Gender,First_Generation,income_quartile,n_qualified_excluded,mean_gpa_slope,mean_max_gpa
+Female,0,Q1,85,0.045,2.441
+Female,0,Q2,77,0.0567,2.482
+Female,0,Q3,95,0.0532,2.542
+Female,0,Q4,83,0.0506,2.539
+Female,1,Q1,44,0.0495,2.469
+Female,1,Q2,54,0.062,2.494
+Female,1,Q3,34,0.0544,2.552
+Female,1,Q4,41,0.0593,2.562
+Male,0,Q1,83,0.052,2.474
+Male,0,Q2,83,0.0467,2.496
+Male,0,Q3,68,0.0535,2.528
+Male,0,Q4,80,0.0558,2.531
+Male,1,Q1,32,0.0526,2.51
+Male,1,Q2,40,0.0532,2.51
+Male,1,Q3,41,0.0593,2.565
+Male,1,Q4,32,0.0645,2.553
+Other,0,Q1,1,,
+Other,0,Q2,1,,
+Other,0,Q3,1,,
+Other,0,Q4,2,,
+Other,1,Q1,3,,
+Other,1,Q2,0,,
+Other,1,Q3,0,,
+Other,1,Q4,3,,
+Prefer not to say,0,Q1,0,,
+Prefer not to say,0,Q2,0,,
+Prefer not to say,0,Q3,4,,
+Prefer not to say,0,Q4,2,,
+Prefer not to say,1,Q1,0,,
+Prefer not to say,1,Q2,0,,
+Prefer not to say,1,Q3,1,,
+Prefer not to say,1,Q4,0,,

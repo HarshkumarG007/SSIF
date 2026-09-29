@@ -7,6 +7,7 @@ import pandas as pd
 import pytest
 
 from src.placement.features import (
+    anonymize_placement_quasi_identifiers,
     engineer_placement_features,
     prepare_placement_classification_data,
     prepare_salary_regression_data,
@@ -57,3 +58,18 @@ class TestPlacementPipeline:
         assert len(y) == 3
         assert not y.isna().any()
         assert "status" not in X.columns
+
+    def test_quasi_identifier_anonymization(self, mock_placement_df):
+        anon_df = anonymize_placement_quasi_identifiers(mock_placement_df, bin_width=5.0)
+        assert "ssc_p_binned" in anon_df.columns
+        assert "mba_p_binned" in anon_df.columns
+        # Row 0 ssc_p is 67.0 -> bin should be [65, 70)
+        assert anon_df["ssc_p_binned"].iloc[0] == "[65, 70)"
+
+    def test_constrained_dof_respects_epv_limits(self, mock_placement_df):
+        X, y, feats = prepare_placement_classification_data(
+            mock_placement_df, constrained_dof=True
+        )
+        assert X.shape[1] <= 6
+        assert "degree_p" in X.columns
+

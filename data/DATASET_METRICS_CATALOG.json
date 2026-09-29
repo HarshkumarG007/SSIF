@@ -24,12 +24,22 @@
         "curator": "Amey Thakur (@ameythakur20)",
         "url": "https://www.kaggle.com/datasets/ameythakur20/placement-data"
       },
+      "dlsm_a": {
+        "dataset_name": "Sleep Debt and Screen Time / Late Night Phone Habits",
+        "rows": 8500,
+        "columns": 11,
+        "curator": "Samar Talwar",
+        "url": "https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits",
+        "sister_repo": "https://github.com/HarshkumarG007/DLSM"
+      },
       "dlsm_b": {
+        "dataset_name": "AI and Social Media Impact: Student Health & Grades",
         "path": "data/raw/dlsm_b/AI_SocialMedia_Student_Dataset.csv",
         "rows": 16000,
         "columns": 10,
-        "curator": "DLSM Research Group",
-        "url": "https://github.com/HarshkumarG007/DLSM"
+        "curator": "Sri Syra (@srisyra02)",
+        "url": "https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades",
+        "sister_repo": "https://github.com/HarshkumarG007/DLSM"
       }
     },
     "interim": {
@@ -109,6 +119,40 @@
         "columns": 4,
         "purpose": "Cross-pipeline student risk tiers from college entry to post-degree corporate placement"
       }
+    }
+  },
+  "credits_and_provenance": {
+    "notice": "All primary dataset rights, citations, and open-source credits belong to the original curators. Users are encouraged to star and download datasets directly from Kaggle.",
+    "curators": [
+      {
+        "name": "Razan Ihab Abdellatif",
+        "role": "Curator & Author, Student Retention and Academic Performance Panel",
+        "platform": "Kaggle",
+        "url": "https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data"
+      },
+      {
+        "name": "Amey Thakur",
+        "role": "Curator & Author, Campus Recruitment (Placement Data Full Class)",
+        "platform": "Kaggle (@ameythakur20)",
+        "url": "https://www.kaggle.com/datasets/ameythakur20/placement-data"
+      },
+      {
+        "name": "Samar Talwar",
+        "role": "Curator & Author, Sleep Debt and Screen Time / Late Night Phone Habits",
+        "platform": "Kaggle",
+        "url": "https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits"
+      },
+      {
+        "name": "Sri Syra",
+        "role": "Curator & Author, AI and Social Media Impact: Student Health & Grades",
+        "platform": "Kaggle (@srisyra02)",
+        "url": "https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades"
+      }
+    ],
+    "sister_framework": {
+      "name": "Digital Lifestyle Spillover Modeling (DLSM)",
+      "repo": "https://github.com/HarshkumarG007/DLSM",
+      "author": "Harshkumar G."
     }
   }
 }

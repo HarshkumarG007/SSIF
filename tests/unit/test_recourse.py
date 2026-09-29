@@ -70,3 +70,46 @@ def test_acute_crisis_student_triggers_emergency_review():
     rec = find_counterfactual_recourse(crisis_student, target_risk=0.15)
     assert rec.is_feasible is False
     assert any("emergency" in act.lower() for act in rec.action_plan)
+
+
+def test_recourse_carries_human_in_the_loop_disclaimer():
+    prof = StudentProfile(
+        gpa=2.8,
+        gpa_slope=-0.10,
+        financial_stress=3,
+        work_hours=20.0,
+        attendance=80.0,
+        first_gen=False,
+        scholarship=False,
+    )
+    rec = find_counterfactual_recourse(prof, target_risk=0.20)
+    assert hasattr(rec, "disclaimer")
+    assert "EU AI Act" in rec.disclaimer
+    assert "human" in rec.disclaimer.lower()
+
+
+def test_recourse_supports_custom_predictor_callable():
+    prof = StudentProfile(
+        gpa=2.8,
+        gpa_slope=-0.10,
+        financial_stress=3,
+        work_hours=20.0,
+        attendance=80.0,
+        first_gen=False,
+        scholarship=False,
+    )
+    # Define custom non-proxy predictor (e.g., simulating LightGBM/GBM endpoint)
+    def mock_fitted_predictor(p: StudentProfile) -> float:
+        # Mock risk where attendance + scholarship is highly rewarded
+        risk = 0.50
+        if p.scholarship:
+            risk -= 0.35
+        if p.attendance > 90.0:
+            risk -= 0.10
+        return max(0.01, risk)
+
+    rec = find_counterfactual_recourse(prof, target_risk=0.15, predictor=mock_fitted_predictor)
+    assert rec.is_feasible is True
+    assert rec.counterfactual_risk <= 0.15
+    assert any("scholarship" in act.lower() for act in rec.action_plan)
+

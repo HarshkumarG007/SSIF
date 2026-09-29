@@ -1,0 +1,10 @@
+{
+  "n_high_hours_students_eligible": 13776,
+  "expected_dropouts_prevented": 408.8,
+  "total_program_cost_usd": 44083200,
+  "cost_per_retained_student_usd": 107847.05,
+  "tuition_revenue_saved_usd": 1839404.89,
+  "net_roi_usd": -42243795.11,
+  "roi_ratio": 0.042,
+  "note": "NCES 2023 avg. work-study cost: $3,200/yr per slot. Tuition-at-risk: $4,500/semester. This is a representation-level projection; individual student outcomes vary."
+}

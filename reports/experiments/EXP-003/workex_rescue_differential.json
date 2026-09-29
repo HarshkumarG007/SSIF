@@ -1,0 +1,21 @@
+{
+  "threshold_used_pct": 65.0,
+  "by_gender": {
+    "M": {
+      "n_sub_threshold": 60,
+      "rescue_rate_with_workex_pct": 81.25,
+      "rescue_rate_no_workex_pct": 31.82,
+      "rescue_differential_pp": 49.43
+    },
+    "F": {
+      "n_sub_threshold": 23,
+      "rescue_rate_with_workex_pct": 50.0,
+      "rescue_rate_no_workex_pct": 29.41,
+      "rescue_differential_pp": 20.59
+    }
+  },
+  "fisher_exact_odds_ratio": 1.0303,
+  "fisher_exact_pval": 1.0,
+  "interpretation": "Fisher's exact test on [gender x workex] for sub-threshold students. OR=1.030, p=1.0000. No significant differential (p>=0.05): work experience rescue appears gender-neutral.",
+  "power_caveat": "N=83 sub-threshold students in Dataset B (N=215 total); Fisher's test preferred for small samples."
+}

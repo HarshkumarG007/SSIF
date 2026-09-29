@@ -1,9 +1,9 @@
 # PRD.md — Product Requirements Document
 # Student Success Intelligence Framework (SSIF)
 
-**Version:** 1.0-DRAFT  
+**Version:** 2.0  
 **Date:** 2026-09-29  
-**Status:** Active — governing document
+**Status:** Complete — Research Platform & Experimental Policy Lab Production Release
 
 ---
 
@@ -37,6 +37,8 @@ Core principle: **Let the data decide whether the connection exists. Never manuf
 | Property | Empirical Value |
 |---|---|
 | File | `academic_survival_longitudinal.csv` |
+| Curator & Author | **Razan Ihab Abdellatif** |
+| Primary Kaggle Source | [Student Retention and Academic Performance Data](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data) |
 | Total rows | **79,239** |
 | Unique students | **20,000** |
 | Columns | 22 |
@@ -69,6 +71,8 @@ Core principle: **Let the data decide whether the connection exists. Never manuf
 | Property | Empirical Value |
 |---|---|
 | File | `Placement_Data_Full_Class.csv` |
+| Curator & Author | **Amey Thakur** ([@ameythakur20](https://www.kaggle.com/ameythakur20)) |
+| Primary Kaggle Source | [Campus Recruitment (Placement Data Full Class)](https://www.kaggle.com/datasets/ameythakur20/placement-data) |
 | Total rows | **215** |
 | Columns | 15 |
 | Temporal structure | **Cross-sectional** — single observation per student |
@@ -84,7 +88,11 @@ Core principle: **Let the data decide whether the connection exists. Never manuf
 
 ---
 
-### DLSM Compatibility Matrix (Empirical)
+### DLSM Behavioral Datasets & Compatibility Matrix (Empirical)
+
+- **Sister Framework Repository:** [HarshkumarG007/DLSM](https://github.com/HarshkumarG007/DLSM)
+- **DLSM-A Curator:** **Samar Talwar** — [Sleep Debt and Screen Time / Late Night Phone Habits](https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits) (N=8,500)
+- **DLSM-B Curator:** **Sri Syra** ([@srisyra02](https://www.kaggle.com/srisyra02)) — [AI and Social Media Impact: Student Health & Grades](https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades) (N=16,000)
 
 | DLSM Variable | Retention Dataset | Placement Dataset | Verdict |
 |---|---|---|---|
@@ -104,6 +112,8 @@ Core principle: **Let the data decide whether the connection exists. Never manuf
 - **Retention → DLSM Direct: NO-GO** (core behavioral variables absent)
 - **Placement → DLSM Direct: NO-GO** (core behavioral variables absent)
 - **Architecture:** DLSM remains an independent evidence layer. Cross-dataset synthesis uses representation-level comparison only — not row merging.
+
+> 📢 **Ethical Data Access Notice:** Replicators and researchers must download raw datasets directly from the original Kaggle curator pages linked above. All primary credit belongs to Razan Ihab Abdellatif, Amey Thakur, Samar Talwar, and Sri Syra.
 
 ---
 
@@ -239,5 +249,47 @@ These must appear in dashboard Page 9 and in every research report:
 
 ---
 
+## 10. Multi-Disciplinary Policy Simulation Requirements (Phase 12)
+
+| FR-ID | Title | Description | Priority |
+|---|---|---|---|
+| FR-20 | Labor-Policy Intervention Simulator | OLS regression + 200-sample parametric Monte Carlo bootstrap simulating work-study conversion (EXP-001) | P0 |
+| FR-21 | Pipeline Attrition Resilience Test | 18-scenario stage-attrition perturbation matrix identifying points of diminishing returns (EXP-002) | P0 |
+| FR-22 | Socio-Economic Fairness Audit | Group-stratified demographic parity & Qualified-But-Excluded resilient student extraction (EXP-003) | P0 |
+| FR-23 | Trajectory Early-Warning Forecaster | Retrospective expanding window GroupKFold models & normalized Career Readiness Scoring (EXP-004) | P0 |
+| FR-24 | Intervention ROI Portfolio Optimizer | HiGHS Linear Programming budget optimization over $10K–$500K resource envelopes (EXP-005) | P0 |
+| FR-25 | Master Experiment Orchestration | Automated serial runner generating consolidated master JSON & markdown report in < 90s | P0 |
+
+---
+
+## 11. Data Lakehouse & Ingestion Topology Requirements
+
+| REQ-ID | Layer | Specification |
+|---|---|---|
+| DL-01 | Bronze (Raw) | Immutable original CSVs (`academic_survival_longitudinal.csv`, `Placement_Data_Full_Class.csv`) |
+| DL-02 | Silver (Interim) | Schema-validated, type-casted, demographic string canonicalized Parquet + CSV representations |
+| DL-03 | Gold (Processed) | Feature-engineered analytical matrices (37 features in `ssif_retention_enriched.parquet`, 20k student profiles, composite scores) |
+| DL-04 | Dual Format | All interim and processed tables must be saved in dual CSV and Apache Parquet formats |
+
+---
+
+## 12. Regulatory Governance, Privacy, & Adversarial ML Safeguards (RED-Team Hardening)
+
+| SEC-ID | Domain | Regulatory Standard | Technical Implementation |
+|---|---|---|---|
+| SEC-01 | Privacy | FERPA (20 U.S.C. § 1232g) | Small-cell metric suppression ($n < 5$) across demographic and fairness audit reporting (`exp_003_fairness_audit.py`). |
+| SEC-02 | Privacy | FERPA / DPDP Act (2023) | Discretization and coarsening utility (`anonymize_placement_quasi_identifiers`) for Dataset B academic percentages. |
+| SEC-03 | Supply Chain | NIST SP 800-161 | Cryptographic SHA-256 verification of remote compilation binaries (`compile_paper.py`) prior to decompression. |
+| SEC-04 | AppSec | OWASP ASVS 4.0 | Enforce Cross-Origin Resource Sharing (`enableCORS = true`) in Streamlit runtime configuration. |
+| SEC-05 | Adversarial ML | EU AI Act Art. 14 | Model-agnostic predictor interface in recourse optimizer to avoid linear proxy divergence, accompanied by mandatory human-in-the-loop counseling disclaimer. |
+| SEC-06 | DevSecOps | SLSA Level 3 | Pinned full commit SHAs for all CI/CD GitHub Actions with least-privilege `permissions: contents: read`. |
+| SEC-07 | Supply Chain | PEP 508 / SBOM | Deterministic `requirements.lock` pinning all direct production and testing dependencies. |
+| SEC-08 | Compliance | EU AI Act Annex III | Formal High-Risk AI System decision-support disclosure across UI sidebar, PRD, and root `NOTICE`. |
+| SEC-09 | Scientific | Leakage Audit (RULE-009) | Causal forward-fill (`ffill().fillna(0.0)`) imputation for `LMS_Logins` preventing temporal lookahead leakage. |
+| SEC-10 | Statistical | EPV Guidance (RULE-025) | Constrained $\le 6$ degrees-of-freedom feature selection and L2 regularization for Dataset B ($N=215$, 67 unplaced events). |
+| SEC-11 | Legal | Apache-2.0 / CC Licensing | Complete attribution in root `NOTICE` detailing third-party dataset origins (Abdellatif, Thakur, Talwar, Syra). |
+
+---
+
 *Document owner: Lead Researcher*  
-*Update triggers: After each phase completion; after any schema change discovery*
+*Update triggers: After each phase completion; after any schema change discovery; after adversarial security audits*

@@ -1,0 +1,4 @@
+model,auc,f1,brier,n_students,n_successes,window_sems
+LogisticRegression,0.7329,0.1309,0.1548,20000,4452,"[1, 2]"
+RandomForest,0.7413,0.0,0.152,20000,4452,"[1, 2]"
+XGBoost,0.7469,0.0523,0.1506,20000,4452,"[1, 2]"

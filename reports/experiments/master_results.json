@@ -1,0 +1,218 @@
+[
+  {
+    "id": "EXP-001",
+    "name": "Labor-Policy Intervention Simulation",
+    "status": "SUCCESS",
+    "elapsed_s": 26.5,
+    "result_summary": {
+      "ols_work_hours_coef": -0.0027427107961212607,
+      "ols_work_hours_pval": 7.879877106396388e-29,
+      "gpa_lift_point_estimate": 0.0767,
+      "dropout_reduction_pp_point": 3.547,
+      "mc_results": {
+        "work_hour_gpa_coef_mean": -0.002738348474704404,
+        "work_hour_gpa_coef_ci_lo": -0.003005519782295654,
+        "work_hour_gpa_coef_ci_hi": -0.002462378393114159,
+        "gpa_lift_mean": 0.07669541104951992,
+        "gpa_lift_ci_lo": 0.0728136840252966,
+        "gpa_lift_ci_hi": 0.08030618488824924,
+        "dropout_reduction_pp_mean": 2.9671649411259566,
+        "dropout_reduction_pp_ci_lo": 2.6410549905700895,
+        "dropout_reduction_pp_ci_hi": 3.2900610146061506,
+        "n_valid_iterations": 200,
+        "bootstrap_method": "row-level resample (fast, O(N)), seed-reproducible"
+      },
+      "policy_roi": {
+        "n_high_hours_students_eligible": 13776,
+        "expected_dropouts_prevented": 408.8,
+        "total_program_cost_usd": 44083200,
+        "cost_per_retained_student_usd": 107847.05,
+        "tuition_revenue_saved_usd": 1839404.89,
+        "net_roi_usd": -42243795.11,
+        "roi_ratio": 0.042,
+        "note": "NCES 2023 avg. work-study cost: $3,200/yr per slot. Tuition-at-risk: $4,500/semester. This is a representation-level projection; individual student outcomes vary."
+      }
+    },
+    "error": null
+  },
+  {
+    "id": "EXP-002",
+    "name": "Pipeline Resilience Stress Test",
+    "status": "SUCCESS",
+    "elapsed_s": 0.2,
+    "result_summary": {
+      "placement_rate": 0.6883720930232559,
+      "attrition_baseline": [
+        {
+          "stage": "Stage_1_Early",
+          "risk_tier": "High",
+          "n_observations": 1367,
+          "n_students": 1101,
+          "dropout_probability": 0.3438
+        },
+        {
+          "stage": "Stage_1_Early",
+          "risk_tier": "Low",
+          "n_observations": 12837,
+          "n_students": 8392,
+          "dropout_probability": 0.0248
+        },
+        {
+          "stage": "Stage_1_Early",
+          "risk_tier": "Medium",
+          "n_observations": 22392,
+          "n_students": 13924,
+          "dropout_probability": 0.0901
+        },
+        {
+          "stage": "Stage_2_Mid",
+          "risk_tier": "High",
+          "n_observations": 1664,
+          "n_students": 1253,
+          "dropout_probability": 0.3684
+        },
+        {
+          "stage": "Stage_2_Mid",
+          "risk_tier": "Low",
+          "n_observations": 3037,
+          "n_students": 2216,
+          "dropout_probability": 0.028
+        },
+        {
+          "stage": "Stage_2_Mid",
+          "risk_tier": "Medium",
+          "n_observations": 18769,
+          "n_students": 11236,
+          "dropout_probability": 0.0821
+        },
+        {
+          "stage": "Stage_3_Late",
+          "risk_tier": "High",
+          "n_observations": 1491,
+          "n_students": 946,
+          "dropout_probability": 0.3119
+        },
+        {
+          "stage": "Stage_3_Late",
+          "risk_tier": "Low",
+          "n_observations": 436,
+          "n_students": 333,
+          "dropout_probability": 0.0298
+        },
+        {
+          "stage": "Stage_3_Late",
+          "risk_tier": "Medium",
+          "n_observations": 17246,
+          "n_students": 7099,
+          "dropout_probability": 0.0809
+        }
+      ],
+      "point_of_no_return": {
+        "marginal_graduates_by_stage": {
+          "Stage_1_Early": 62.6,
+          "Stage_2_Mid": 79.5,
+          "Stage_3_Late": 81.6
+        },
+        "highest_impact_stage": "Stage_3_Late",
+        "highest_impact_gain": 81.6,
+        "lowest_impact_stage": "Stage_1_Early",
+        "lowest_impact_gain": 62.6,
+        "point_of_no_return": "Stage_1_Early",
+        "interpretation": "Intervening in 'Stage_3_Late' yields the highest return (+81.6 additional graduates per 1,000 students). Intervening in 'Stage_1_Early' yields the lowest return (+62.6 graduates), indicating it may be the 'point of diminishing returns' for institutional investment."
+      }
+    },
+    "error": null
+  },
+  {
+    "id": "EXP-003",
+    "name": "Socio-Economic Fairness Audit",
+    "status": "SUCCESS",
+    "elapsed_s": 1.5,
+    "result_summary": {
+      "gpa_threshold_used": 2.84,
+      "n_subgroups_analyzed": 14,
+      "rescue_differential": {
+        "threshold_used_pct": 65.0,
+        "by_gender": {
+          "M": {
+            "n_sub_threshold": 60,
+            "rescue_rate_with_workex_pct": 81.25,
+            "rescue_rate_no_workex_pct": 31.82,
+            "rescue_differential_pp": 49.43
+          },
+          "F": {
+            "n_sub_threshold": 23,
+            "rescue_rate_with_workex_pct": 50.0,
+            "rescue_rate_no_workex_pct": 29.41,
+            "rescue_differential_pp": 20.59
+          }
+        },
+        "fisher_exact_odds_ratio": 1.0303,
+        "fisher_exact_pval": 1.0,
+        "interpretation": "Fisher's exact test on [gender x workex] for sub-threshold students. OR=1.030, p=1.0000. No significant differential (p>=0.05): work experience rescue appears gender-neutral.",
+        "power_caveat": "N=83 sub-threshold students in Dataset B (N=215 total); Fisher's test preferred for small samples."
+      }
+    },
+    "error": null
+  },
+  {
+    "id": "EXP-004",
+    "name": "Career Trajectory Forecasting",
+    "status": "SUCCESS",
+    "elapsed_s": 32.5,
+    "result_summary": {
+      "best_auc": 0.7469,
+      "early_warning_window": [
+        {
+          "window": "S1\u2013S1",
+          "max_semester": 1,
+          "n_students": 20000,
+          "auc": 0.684,
+          "delta_auc": NaN,
+          "stabilized": false
+        },
+        {
+          "window": "S1\u2013S2",
+          "max_semester": 2,
+          "n_students": 20000,
+          "auc": 0.7329,
+          "delta_auc": 0.0489,
+          "stabilized": false
+        },
+        {
+          "window": "S1\u2013S3",
+          "max_semester": 3,
+          "n_students": 20000,
+          "auc": 0.7868,
+          "delta_auc": 0.0539,
+          "stabilized": false
+        },
+        {
+          "window": "S1\u2013S4",
+          "max_semester": 4,
+          "n_students": 20000,
+          "auc": 0.8387,
+          "delta_auc": 0.0519,
+          "stabilized": false
+        }
+      ]
+    },
+    "error": null
+  },
+  {
+    "id": "EXP-005",
+    "name": "Intervention ROI Optimizer",
+    "status": "SUCCESS",
+    "elapsed_s": 0.2,
+    "result_summary": {
+      "eligible_pools": {
+        "Advising_Boost": 2516,
+        "Emergency_Scholarship": 5826,
+        "WorkStudy_Conversion": 13776
+      },
+      "pareto_frontier_points": 10,
+      "subgroups_analyzed": 3
+    },
+    "error": null
+  }
+]

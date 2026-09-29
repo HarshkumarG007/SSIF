@@ -1,0 +1,9 @@
+metric,dimension,group,n,value,unit
+Demographic_Parity,Gender,F,76,63.16,%
+Demographic_Parity,Gender,M,139,71.94,%
+Demographic_Parity,Workex,No,141,59.57,%
+Demographic_Parity,Workex,Yes,74,86.49,%
+Salary_Parity,Gender,F,48,267291.67,INR
+Salary_Parity,Gender,M,100,298910.0,INR
+Gender_Wage_Gap,Gender,M vs F,148,8.0,% above female median
+Gender_Wage_Gap_pval,Gender,Mann-Whitney U,148,0.002736,p-value

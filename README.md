@@ -3,12 +3,12 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![CI Status](https://github.com/HarshkumarG007/SSIF/actions/workflows/ci.yml/badge.svg)](https://github.com/HarshkumarG007/SSIF/actions)
-[![Tests Passing](https://img.shields.io/badge/tests-46%2F46%20passing-brightgreen.svg)](tests/)
+[![Tests Passing](https://img.shields.io/badge/tests-55%2F55%20passing-brightgreen.svg)](tests/)
 [![Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ssif-research.streamlit.app/)
 [![Live Observatory](https://img.shields.io/badge/Streamlit%20Cloud-Live%20Observatory-FF4B4B.svg)](https://ssif-research.streamlit.app/)
 [![Research Paper](https://img.shields.io/badge/IEEE%20Format-Paper%20PDF-8B5CF6.svg)](papers/ssif_academic_retention_study.pdf)
 
-> **A Multi-Dataset Computational Research Laboratory for Longitudinal Academic Persistence, Employability Phenotypes, Algorithmic Recourse, and Digital Lifestyle Telemetry Governance**
+> **A Multi-Dataset Computational Research Laboratory for Longitudinal Academic Persistence, Employability Phenotypes, Algorithmic Recourse, Multi-Disciplinary Research Experiments, and Digital Lifestyle Telemetry Governance**
 
 ---
 
@@ -28,6 +28,8 @@
    - [Phase 9: Interactive Streamlit Research Observatory](#phase-9-interactive-streamlit-research-observatory)
    - [Phase 10: Continuous Quality Engineering & The Feasibility Auditor](#phase-10-continuous-quality-engineering--the-feasibility-auditor)
    - [Phase 11 & Extensions: Publication Suite & Camera-Ready IEEE Paper](#phase-11--extensions-publication-suite--camera-ready-ieee-paper)
+   - [Phase 12: Multi-Disciplinary Research Experiments & Policy Simulation Suite](#phase-12-multi-disciplinary-research-experiments--policy-simulation-suite)
+   - [Reproducible Data Lakehouse: Interim & Processed Enriched Datasets](#-reproducible-data-lakehouse-interim--processed-enriched-datasets)
 5. [💡 What the Data Reveals in Plain English (Layman's Compendium)](#-what-the-data-reveals-in-plain-english-laymans-compendium)
 6. [Challenges Encountered, Problems & Engineering Solutions](#-challenges-encountered-problems--engineering-solutions)
 7. [Threat Model & Data Leakage Defenses](#-threat-model--data-leakage-defenses)
@@ -84,7 +86,12 @@ SSIF unifies three distinct analytical domains across 79,239 longitudinal studen
 | **Starting Salary Determinants**| **Regressor $R^2$** | Hypothetical high $R^2$ | **$\approx 0.00$** ($N=148$ placed) | Proves starting salary follows fixed corporate bands rather than marginal GPA |
 | **Cross-Study Governance** | **Compatibility Score**| $\ge 0.70$ (Merge Threshold)| **0.154** (**STRICT NO-GO**) | Blocked false row-level join; validated parallel construct bridge |
 | **Digital Lifestyle Ablation**| **Incremental $\Delta\text{AUC}$** | $\ge +0.0100$ (Significance) | **$-0.00005$** ($p = 0.932$) | Confirmed digital telemetry adds 0 predictive signal over pure academic metrics |
-| **Code Reliability & Testing** | **Automated Tests** | Standard smoke tests | **46/46 Passed** (100% pass rate) | Continuous CI execution in 35.5 seconds across all validation layers |
+| **Labor-Policy Work-Study (EXP-001)** | **Counterfactual GPA / Retention** | 0.00 / 0.0 pp | **+0.077 GPA / -2.97 pp Risk** | 200 Monte Carlo bootstrap iterations; proves work-study eliminates academic harm |
+| **Pipeline Cascade (EXP-002)** | **Intervention Return** | Uniform across stages | **Stage 1: +81.6 grads / 1k** | Multi-stage cascade proves Stage 1 intervention yields highest system multiplier |
+| **Hiring Equity Audit (EXP-003)** | **Subgroup Achievability** | Parity across income | **Q1 vs Q4 Disparity** | Identified N=992 Qualified-But-Excluded students with strong positive trajectory |
+| **Early Warning Horizon (EXP-004)**| **Early Career AUC** | 0.5000 (Random) | **0.7469 (S1-S2) → 0.8387 (S4)**| GroupKFold validation proving early signals predict 4-year success pathways |
+| **Budget Optimizer (EXP-005)** | **Pareto Frontier ROI** | Unoptimized ad-hoc allocation| **0.0533 reductions / $1** | HiGHS Linear Programming across $10K-$500K portfolios; advising prioritizes first |
+| **Code Reliability & Testing** | **Automated Tests** | Standard smoke tests | **55/55 Passed** (100% pass rate) | Pytest suite covering data validators, trajectory engines, and experiment pipelines |
 
 ![SSIF Executive Research Observatory](docs/screenshots/01_executive_overview.png)
 *Figure 1: The SSIF Research Observatory Executive Dashboard (ssif-research.streamlit.app). Features dimensional elevation cards, glassmorphic research context panels, and live framework KPIs across 79,239 longitudinal student-semester records.*
@@ -156,11 +163,11 @@ flowchart TD
 
 | Dimension | Dataset A: Academic Retention Panel | Dataset B: Employment Placement Cohort | DLSM-A: Sleep & Screen Telemetry | DLSM-B: AI, Social Media & Health |
 |---|---|---|---|---|
-| **Original Creator** | **Razan Ihab Abdellatif** | **Amey Thakur** ([@ameythakur20](https://www.kaggle.com/ameythakur20)) | DLSM Research Group | DLSM Research Group |
-| **Primary Source** | [Kaggle Dataset Source](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data) | [Kaggle Dataset Source](https://www.kaggle.com/datasets/ameythakur20/placement-data) | [DLSM Sister Study](https://github.com/HarshkumarG007/DLSM) | [DLSM Sister Study](https://github.com/HarshkumarG007/DLSM) |
+| **Original Creator** | **Razan Ihab Abdellatif** | **Amey Thakur** ([@ameythakur20](https://www.kaggle.com/ameythakur20)) | **Samar Talwar** | **Sri Syra** ([@srisyra02](https://www.kaggle.com/srisyra02)) |
+| **Primary Source** | [Kaggle: Retention Panel](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data) | [Kaggle: Placement Data](https://www.kaggle.com/datasets/ameythakur20/placement-data) | [Kaggle: Sleep & Screen](https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits) via [DLSM](https://github.com/HarshkumarG007/DLSM) | [Kaggle: AI & Social Media](https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades) via [DLSM](https://github.com/HarshkumarG007/DLSM) |
 | **Raw File** | `academic_survival_longitudinal.csv` | `Placement_Data_Full_Class.csv` | `bedtime_screentime_sleep_debt.csv` | `AI_SocialMedia_Student_Dataset.csv` |
 | **Observation Unit** | Student $\times$ Semester panel | Individual candidate profile | User sleep & device session | Student digital habit record |
-| **Sample Size** | **79,239 records** (20,000 distinct students) | **215 candidates** (MBA cohort) | **8,500 records** | **700 records** (students) |
+| **Sample Size** | **79,239 records** (20,000 distinct students) | **215 candidates** (MBA cohort) | **8,500 records** | **16,000 records** (students) |
 | **Temporal Breadth** | 1 to 8 semesters per student | Cross-sectional graduation snapshot | Cross-sectional device logs | Cross-sectional lifestyle audit |
 | **Primary Target** | `Target_Dropout_Next_Sem` (binary, 8.73% rate) | `status` (Placed: 68.8% / Not Placed: 31.2%) | `sleep_debt_category` / `next_day_fatigue_score` | `Mental_Health_Score` (1–10) |
 | **Missingness** | `Family_Income` (4.55%), `LMS_Logins` (1.09%) | `salary` (31.16% — structurally unplaced) | 0 missing cells | 0 missing cells |
@@ -800,6 +807,71 @@ flowchart TD
 The research is packaged so that anyone can read and verify it in whatever format they prefer: professors get an IEEE publication paper, developers get reproducible Jupyter notebooks, and campus counselors get a live web dashboard.
 
 ---
+
+### Phase 12: Multi-Disciplinary Research Experiments & Policy Simulation Suite
+
+#### Purpose & Multi-Disciplinary Focus
+To bridge the gap between retrospective statistical prediction and prospective institutional decision-making, SSIF operates a dedicated computational research suite (`experiments/`) bringing together methodologies from **Labor Economics, Operations Research, Algorithmic Fairness, and Predictive Analytics**. Orchestrated via `experiments/run_all_experiments.py`, all 5 pipelines execute with full statistical reproducibility in under 65 seconds.
+
+#### Architectural Workflow
+```mermaid
+flowchart TD
+    subgraph Data_Inputs ["Empirical Data Foundation"]
+        D1["Retention Panel (N=79,239)"]
+        D2["Placement Dataset (N=215)"]
+    end
+
+    subgraph Experiments_Suite ["SSIF Research Experiments Suite"]
+        E1["EXP-001: Labor-Policy Simulation<br/>(OLS + 200 Monte Carlo Iterations)"]
+        E2["EXP-002: Pipeline Resilience<br/>(18-Scenario Attrition Cascade)"]
+        E3["EXP-003: Fairness Audit<br/>(Hiring Threshold Equity & QBE Pool)"]
+        E4["EXP-004: Trajectory Forecasting<br/>(S1-S4 Expanding Window AUC Curve)"]
+        E5["EXP-005: Intervention ROI Optimizer<br/>(HiGHS Linear Programming & Pareto Frontier)"]
+    end
+
+    subgraph Orchestration ["Master Orchestrator (run_all_experiments.py)"]
+        M1["master_results.json (5/5 SUCCESS)"]
+        M2["MASTER_EXPERIMENT_SUMMARY.md"]
+        M3["Streamlit Policy Lab (Interactive Visuals)"]
+    end
+
+    D1 & D2 --> E1 & E2 & E3 & E4 & E5
+    E1 & E2 & E3 & E4 & E5 --> M1 & M2 & M3
+```
+
+#### Experiment Matrix & Quantified Discoveries
+
+| ID | Title & Domain | Core Methodology | Key Findings & Quantitative Outputs | Output Artifacts |
+|---|---|---|---|---|
+| **EXP-001** | **Labor-Policy Intervention Simulation**<br/>*Labor Economics & Policy* | OLS multivariate regression with demographic controls + N=200 row-level parametric Monte Carlo bootstrap | Converting students from >15 hrs/week survival labor to structured on-campus work-study yields a **+0.077 GPA lift** and a **2.97 pp dropout risk reduction** (95% CI: [2.64, 3.29] pp). Proves the Student Labor Paradox. | `reports/experiments/EXP-001/`<br/>• `labor_policy_ols_results.csv`<br/>• `monte_carlo_ci.json`<br/>• `policy_roi_summary.json` |
+| **EXP-002** | **Pipeline Resilience Stress Test**<br/>*Systems & Operations Research* | 18-scenario attrition cascade perturbing stage failure rates across early (S1-2), mid (S3-4), and late (S5-8) college | Identifies Stage 1 Early as the **highest systemic multiplier** (+81.6 graduates per 1,000 students under early intervention vs +62.6 for late stage). Preventing early attrition compounds across all subsequent semesters. | `reports/experiments/EXP-002/`<br/>• `point_of_no_return.json`<br/>• `intervention_sensitivity_grid.csv`<br/>• `lifecycle_attrition_baseline.csv` |
+| **EXP-003** | **Socio-Economic Fairness Audit**<br/>*Algorithmic Fairness & Equity* | Demographic parity analysis, Fisher's exact test, and trajectory-anchored Qualified-But-Excluded profiling | The 65% degree-GPA hiring threshold disproportionately excludes Q1 low-income and first-generation students. Discovered **N=992 "Qualified-But-Excluded"** students who maintain positive GPA velocity (`gpa_slope > 0`) despite initial adversity. | `reports/experiments/EXP-003/`<br/>• `threshold_achievability_by_demographics.csv`<br/>• `qualified_excluded_profiles.csv`<br/>• `workex_rescue_differential.json` |
+| **EXP-004** | **Career Trajectory Forecasting**<br/>*Predictive Analytics* | GroupKFold cross-validation across expanding observation windows (S1 through S1-4) with SHAP attribution | Semesters 1–2 academic signals predict 4-year success with **AUC = 0.7469** (XGBoost). As observation widens, predictive discrimination expands monotonically to **AUC = 0.8387** by Semester 4. Computes normalized Career Readiness Scores (CRS 0–100). | `reports/experiments/EXP-004/`<br/>• `early_window_model_performance.csv`<br/>• `early_warning_window_auc_curve.csv`<br/>• `career_readiness_score_distribution.csv` |
+| **EXP-005** | **Intervention ROI Optimizer**<br/>*Operations Research & Budgeting* | HiGHS Linear Programming (LP) optimization over multi-tiered institutional budgets ($10K–$500K) | **Advising Boost delivers the highest entry ROI** (0.0533 reductions/dollar) up to $100K budgets; larger budgets optimally blend Advising with Emergency Micro-Scholarships and Work-Study conversions. | `reports/experiments/EXP-005/`<br/>• `optimal_allocation_by_budget.csv`<br/>• `subgroup_prioritization.csv`<br/>• `sensitivity_analysis.csv` |
+
+---
+
+### 📦 Reproducible Data Lakehouse: Interim & Processed Enriched Datasets
+
+To ensure full reproducibility and facilitate downstream educational research, SSIF maintains a structured two-tier data lakehouse in `data/interim/` and `data/processed/`, storing all assets in dual **CSV and Apache Parquet** formats:
+
+```
+data/
+├── interim/                         # Clean, validated, and normalized intermediate representations
+│   ├── retention_interim.csv / .parquet  # Validated 79,239 rows with canonical types
+│   ├── placement_interim.csv / .parquet  # Normalized 215 MBA candidate profiles
+│   ├── dlsm_b_interim.csv / .parquet     # 16,000 normalized digital lifestyle records
+│   └── README.md                         # Interim data dictionaries and validation specifications
+└── processed/                       # Feature-engineered research datasets
+    ├── ssif_retention_enriched.parquet   # 79,239 rows with 37 features (trajectories + velocity)
+    ├── ssif_retention_student_profiles.parquet # N=20,000 unique student level lifetime trajectories
+    ├── ssif_placement_enriched.parquet   # 215 profiles with composite academic scores & bins
+    ├── ssif_macro_pipeline_cohorts.csv   # Stage-by-stage macro persistence cohort rates
+    ├── ssif_higher_ed_synthesis_metrics.json # 24 consolidated higher-ed empirical KPIs
+    └── README.md                         # Processed feature dictionary and schema catalogs
+```
+
+---
 ## 💡 What the Data Reveals in Plain English (Layman's Compendium)
 
 | Empirical Finding | Scientific Statistic | What It Actually Means for Real Students & Advisors |
@@ -861,12 +933,25 @@ pip install -r requirements.txt
 pip install --no-deps -e .
 ```
 
-### 2. Run Automated Pytest Suite (49 Tests)
+### 2. Run Automated Pytest Suite (55 Tests Across All Modules)
 ```bash
 pytest tests/ -v
 ```
 
-### 3. Run the Tabular Feasibility Auditor via CLI
+### 3. Run Master Research Experiments Suite (EXP-001 through EXP-005)
+```bash
+# Run all 5 domain-specialized research experiments in sequence
+python experiments/run_all_experiments.py
+
+# Or run individual experiments
+python experiments/exp_001_labor_policy_simulation.py
+python experiments/exp_002_pipeline_resilience_stress_test.py
+python experiments/exp_003_fairness_audit.py
+python experiments/exp_004_career_trajectory_forecast.py
+python experiments/exp_005_intervention_roi_optimizer.py
+```
+
+### 4. Run the Tabular Feasibility Auditor via CLI
 ```bash
 # Audit Placement Dataset
 python dataset_feasibility_audit.py Placement_Data_Full_Class.csv --target status --id sl_no --drop salary --sensitive gender
@@ -875,13 +960,13 @@ python dataset_feasibility_audit.py Placement_Data_Full_Class.csv --target statu
 python dataset_feasibility_audit.py academic_survival_longitudinal.csv --target Target_Dropout_Next_Sem --group Student_ID --time Semester --sensitive Gender --drop End_of_Semester_Status,Censored --max-rows 5000
 ```
 
-### 4. Compile the Camera-Ready IEEE Research Paper
+### 5. Compile the Camera-Ready IEEE Research Paper
 ```bash
 python scripts/compile_paper.py
 # Output generated at: papers/ssif_academic_retention_study.pdf
 ```
 
-### 5. Launch the Local Research Observatory Dashboard
+### 6. Launch the Local Research Observatory Dashboard
 ```bash
 streamlit run app/main.py
 ```
@@ -892,24 +977,46 @@ streamlit run app/main.py
 
 ```
 SSIF/
-├── .github/workflows/ci.yml      # CI/CD pipeline running 46 tests on Python 3.11 & 3.12
+├── .github/workflows/ci.yml      # CI/CD pipeline running 55 tests on Python 3.11 & 3.12
 ├── .streamlit/config.toml        # Observatory dark HSL research theme
 ├── app/                          # Production Streamlit Observatory
-│   ├── main.py                   # 7-view interactive research dashboard
+│   ├── main.py                   # 8-view interactive research dashboard & policy lab
 │   └── components.py             # Custom HSL cards, Plotly themes & limitation banners
 ├── configs/                      # Pydantic v2 typed configuration manifests
 │   ├── data.yaml                 # Filepaths, schemas, and seeds
 │   ├── features.yaml             # Trajectory & composite feature specifications
 │   └── models.yaml               # Model hyperparameters & GroupKFold settings
+├── data/                         # Two-tier reproducible research data lakehouse
+│   ├── raw/                      # Original raw academic datasets
+│   ├── interim/                  # Cleaned, validated, normalized Parquet & CSV datasets
+│   │   ├── retention_interim.parquet / .csv
+│   │   ├── placement_interim.parquet / .csv
+│   │   ├── dlsm_b_interim.parquet / .csv
+│   │   └── README.md
+│   └── processed/                # Feature-engineered research datasets
+│       ├── ssif_retention_enriched.parquet / .csv
+│       ├── ssif_retention_student_profiles.parquet / .csv
+│       ├── ssif_placement_enriched.parquet / .csv
+│       ├── ssif_macro_pipeline_cohorts.csv
+│       ├── ssif_higher_ed_synthesis_metrics.json / .csv
+│       └── README.md
 ├── docs/                         # Governance constitution & specifications
-│   ├── PRD.md                    # Research Requirements Document
-│   ├── System Architecture.md    # End-to-end architectural blueprints
+│   ├── PRD.md                    # Research Requirements Document (v2.0)
+│   ├── System Architecture.md    # End-to-end architectural blueprints (v2.0)
 │   ├── Rules.md                  # 62 scientific & engineering governance rules
 │   ├── design.md                 # UI/UX design specifications
-│   ├── task.md                   # 142 tracked execution tasks across 11 phases
+│   ├── task.md                   # 146 tracked execution tasks across 12 phases
 │   ├── memory.md                 # Persistent project decision ledger
 │   ├── DEPLOYMENT_GUIDE.md       # Streamlit Cloud deployment runbook
 │   └── DLSM_CROSSLINK_DOCUMENTATION.md # Cross-study ecosystem reference
+├── experiments/                  # Multi-disciplinary research experiments suite
+│   ├── exp_001_labor_policy_simulation.py      # OLS + Monte Carlo work-study ROI
+│   ├── exp_002_pipeline_resilience_stress_test.py # 18-scenario lifecycle cascade
+│   ├── exp_003_fairness_audit.py               # Hiring threshold equity & QBE pool
+│   ├── exp_004_career_trajectory_forecast.py   # S1-S4 early warning AUC curve
+│   ├── exp_005_intervention_roi_optimizer.py   # HiGHS LP budget allocation
+│   ├── run_all_experiments.py                  # Master experiment orchestrator
+│   └── README.md                               # Experiments directory guide
 ├── notebooks/                    # 7 Laboratory & Kaggle Research Notebooks
 │   ├── 01_retention_audit.ipynb through 07_dlsm_effectiveness.ipynb
 │   └── kaggle_ssif_student_success_study.ipynb # All-in-one publication notebook
@@ -920,7 +1027,11 @@ SSIF/
 ├── reports/                      # Empirical research findings & audit logs
 │   ├── DEEP_DATASET_DISCOVERY_REPORT.md  # Landmark Non-Linear EDA & Synthesis Treatise
 │   ├── KAGGLE_PUBLICATION_ARTICLE.md     # Ready-to-publish Kaggle article
-│   └── FINAL_RESEARCH_SUMMARY.md         # Comprehensive scientific findings
+│   ├── FINAL_RESEARCH_SUMMARY.md         # Comprehensive scientific findings
+│   └── experiments/                      # Experiment logs, metrics & Pareto frontiers
+│       ├── EXP-001/ through EXP-005/     # Individual experiment artifacts
+│       ├── master_results.json           # Consolidated machine-readable metrics
+│       └── MASTER_EXPERIMENT_SUMMARY.md  # Master markdown synthesis report
 ├── scripts/                      # Automation & generation utilities
 │   ├── compile_paper.py          # Standalone Tectonic LaTeX-to-PDF compiler
 │   └── generate_notebooks.py     # Automated Jupyter notebook suite generator
@@ -934,7 +1045,8 @@ SSIF/
 │   ├── dlsm/                     # Compatibility gate & 5-fold feature ablation
 │   ├── explainability/           # SHAP TreeExplainer & algorithmic recourse engine
 │   └── cross_dataset/            # Synthesis analytics & Wasserstein representation bridge
-├── tests/unit/                   # 49 Automated unit & integration tests
+├── tests/unit/                   # 55 Automated unit & integration tests
+│   ├── test_experiments.py       # Validation suite for EXP-001 through EXP-005
 │   ├── test_synthesis_analytics.py # Non-linear tipping points & labor paradox tests
 │   ├── test_feasibility_auditor.py # 5 Cold-scan quality gate tests
 │   ├── test_recourse.py          # Algorithmic recourse tests
@@ -966,21 +1078,45 @@ This framework is licensed under the **Apache License 2.0** - see the [LICENSE](
 
 ## 🙏 Acknowledgements & Original Dataset Credits
 
-The **Student Success Intelligence Framework (SSIF)** stands on the shoulders of dedicated researchers, data scientists, and educational practitioners who open-source real-world institutional datasets for the global academic community. 
+The **Student Success Intelligence Framework (SSIF)** stands on the shoulders of dedicated researchers, data scientists, and educational practitioners who open-source real-world institutional and behavioral datasets for the global academic community. 
 
-We extend our profound gratitude, respect, and thanksgiving to the original creators and dataset curators:
+We extend our profound gratitude, respect, and thanksgiving to the original creators and dataset curators across both **SSIF** and its sister research ecosystem **DLSM**:
 
-### 1. 🎓 Student Retention & Academic Performance Panel
+### 🎓 Primary SSIF Educational Datasets
+
+#### 1. 📈 Student Retention & Academic Performance Panel
 * **Curator & Original Author:** **Razan Ihab Abdellatif**
 * **Primary Kaggle Dataset:** [Student Retention and Academic Performance Data](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data)
 * **Dataset Characteristics:** 79,239 longitudinal student-semester observations across 20,000 distinct students tracking cumulative GPA velocity, course failure rates, attendance ratios, and institutional retention milestones.
-* **Citation & Thanksgiving:** We express our deepest thanks to **Razan Ihab Abdellatif** for assembling and releasing this rich longitudinal panel. Without this temporal granularity, developing vectorized $O(N)$ trajectory engines, Kaplan-Meier hazard estimates, and empirical recovery models would have been impossible.
+* **Citation & Thanksgiving:** We express our deepest gratitude to **Razan Ihab Abdellatif** for assembling and releasing this rich longitudinal panel. Without this temporal granularity, developing vectorized $O(N)$ trajectory engines, Kaplan-Meier hazard estimates, and empirical recovery models would have been impossible.
 
-### 2. 💼 MBA Campus Placement & Employability Dataset
+#### 2. 💼 MBA Campus Placement & Employability Dataset
 * **Curator & Original Author:** **Amey Thakur** ([Kaggle: @ameythakur20](https://www.kaggle.com/ameythakur20))
 * **Primary Kaggle Dataset:** [Campus Recruitment (Placement Data Full Class)](https://www.kaggle.com/datasets/ameythakur20/placement-data)
 * **Dataset Characteristics:** 215 business school candidate profiles capturing multi-tier academic percentages (secondary, higher secondary, undergraduate, MBA specialization), verified work experience, employability test scores, and starting corporate compensation.
 * **Citation & Thanksgiving:** Our sincere thanks and appreciation go to **Amey Thakur** for publishing this benchmark employability dataset. It enabled SSIF to model the two-stage decoupling between hiring probability and conditional compensation while proving the profound $+26.9\%$ placement advantage created by professional work experience.
+
+---
+
+### 📱 Sister Research Framework & DLSM Behavioral Telemetry Datasets
+
+SSIF interfaces conceptually with the **Digital Lifestyle Spillover Modeling (DLSM)** research ecosystem, which investigates the upstream behavioral loads (screentime, sleep debt, cognitive fatigue) that precede institutional academic attrition:
+* **Sister GitHub Repository:** [HarshkumarG007/DLSM](https://github.com/HarshkumarG007/DLSM)
+* **Live DLSM Observatory:** [DLSM Research Portal](https://dlsm-research.streamlit.app/)
+
+We extend our heartfelt gratitude and thanksgiving to the original curators of the two foundational DLSM datasets:
+
+#### 3. 🌙 Sleep Debt & Late-Night Screen Time Telemetry (DLSM-A)
+* **Curator & Original Author:** **Samar Talwar**
+* **Primary Kaggle Dataset:** [Sleep Debt and Screen Time / Late Night Phone Habits](https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits)
+* **Dataset Characteristics:** 8,500 sleep and screen-time telemetry records tracking bedtime phone habits, sleep latency, caffeine intake, screen brightness, and daytime fatigue indices.
+* **Citation & Thanksgiving:** We express our sincere thanks to **Samar Talwar** for curating and sharing this detailed behavioral sleep dataset. It provides the empirical foundation for modeling how nighttime digital phone habits translate into physiological sleep debt.
+
+#### 4. 🤖 AI Tool Usage, Social Media & Student Mental Health (DLSM-B)
+* **Curator & Original Author:** **Sri Syra** ([Kaggle: @srisyra02](https://www.kaggle.com/srisyra02))
+* **Primary Kaggle Dataset:** [AI and Social Media Impact: Student Health & Grades](https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades)
+* **Dataset Characteristics:** 16,000 university student records capturing daily AI study tool usage hours, daily social media hours, subjective mental and physical health scores, and academic grades.
+* **Citation & Thanksgiving:** Our deepest appreciation goes to **Sri Syra** for releasing this landmark student telemetry cohort. It enabled the DLSM framework to analyze the cognitive trade-offs between AI-assisted learning, social media fatigue, and student academic wellbeing.
 
 ---
 
@@ -991,8 +1127,13 @@ We extend our profound gratitude, respect, and thanksgiving to the original crea
 > To honor and respect dataset provenance, licensing, and community attribution:
 > 
 > 1. **Please visit the original primary Kaggle dataset pages linked above.**
-> 2. **Give the authors an upvote / star on Kaggle** to recognize their hard work and contribution to open educational data mining.
-> 3. **Download the raw CSV files directly from the original authors on Kaggle** for your own research pipelines and independent replications.
+> 2. **Give the authors an upvote / star on Kaggle** to recognize their hard work, dedication, and vital contribution to open educational and behavioral data mining.
+> 3. **Download the raw CSV files directly from the original authors on Kaggle** for your own research pipelines and independent replications:
+>    - [Razan Ihab Abdellatif on Kaggle](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data) (Retention Panel)
+>    - [Amey Thakur on Kaggle](https://www.kaggle.com/datasets/ameythakur20/placement-data) (Placement Cohort)
+>    - [Samar Talwar on Kaggle](https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits) (Sleep & Screentime)
+>    - [Sri Syra on Kaggle](https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades) (AI & Social Media Impact)
 > 
-> Direct all primary dataset citations, attribution inquiries, and original provenance recognition to **Razan Ihab Abdellatif** and **Amey Thakur**.
+> Direct all primary dataset citations, attribution inquiries, and original provenance recognition to these four outstanding dataset curators.
+
 

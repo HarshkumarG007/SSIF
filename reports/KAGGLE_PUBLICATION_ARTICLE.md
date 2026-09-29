@@ -99,7 +99,11 @@ We extend our sincere gratitude and thanksgiving to the original researchers and
 
 1. **Razan Ihab Abdellatif** — Curator of the [Student Retention and Academic Performance Data](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data) (79,239 longitudinal records across 20,000 students). Thank you for assembling this remarkable panel that made zero-leakage trajectory modeling and survival hazard analysis possible.
 2. **Amey Thakur** ([@ameythakur20](https://www.kaggle.com/ameythakur20)) — Curator of the [Campus Recruitment (Placement Data Full Class)](https://www.kaggle.com/datasets/ameythakur20/placement-data) (215 candidate profiles). Heartfelt thanks for providing this benchmark dataset for multi-tier employability modeling.
+3. **Samar Talwar** — Curator of the [Sleep Debt and Screen Time / Late Night Phone Habits](https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits) (8,500 telemetry records). Sincere appreciation for open-sourcing this foundational sleep and digital habits cohort.
+4. **Sri Syra** ([@srisyra02](https://www.kaggle.com/srisyra02)) — Curator of the [AI and Social Media Impact: Student Health & Grades](https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades) (16,000 student profiles). Warm thanks for contributing this pivotal dataset on AI tool usage and student wellbeing.
+5. **DLSM Sister Framework:** [HarshkumarG007/DLSM](https://github.com/HarshkumarG007/DLSM) (Digital Lifestyle Spillover Modeling research repository).
 
 ### 📥 Ethical Data Access Notice
-> **Please visit the original Kaggle dataset sources directly, give the authors an upvote/star, and download the raw datasets directly from their Kaggle pages.** Attribution and primary citations belong to Razan Ihab Abdellatif and Amey Thakur.
+> **Please visit the original Kaggle dataset sources directly, give the authors an upvote/star, and download the raw datasets directly from their Kaggle pages.** Attribution and primary citations belong to Razan Ihab Abdellatif, Amey Thakur, Samar Talwar, and Sri Syra.
+
 

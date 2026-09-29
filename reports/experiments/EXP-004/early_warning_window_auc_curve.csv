@@ -1,0 +1,5 @@
+window,max_semester,n_students,auc,delta_auc,stabilized
+S1–S1,1,20000,0.684,,False
+S1–S2,2,20000,0.7329,0.0489,False
+S1–S3,3,20000,0.7868,0.0539,False
+S1–S4,4,20000,0.8387,0.0519,False

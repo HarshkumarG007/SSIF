@@ -1,0 +1,15 @@
+dimension,group,n_students,achievability_rate,achievability_pct
+Gender,Female,9905,0.5721,57.21
+Gender,Male,9499,0.5813,58.13
+Gender,Other,289,0.5986,59.86
+Gender,Prefer not to say,108,0.537,53.7
+First_Generation,Continuing-Gen,12880,0.5863,58.63
+First_Generation,First-Gen,6921,0.559,55.9
+Income_Quartile,Q1 (Lowest),5134,0.4994,49.94
+Income_Quartile,Q2,4893,0.5412,54.12
+Income_Quartile,Q3,4827,0.6254,62.54
+Income_Quartile,Q4 (Highest),4947,0.6446,64.46
+Scholarship×First_Gen,Scholarship=No | FG=No,10189,0.5761,57.61
+Scholarship×First_Gen,Scholarship=No | FG=Yes,4415,0.5307,53.07
+Scholarship×First_Gen,Scholarship=Yes | FG=No,2691,0.6247,62.47
+Scholarship×First_Gen,Scholarship=Yes | FG=Yes,2506,0.6089,60.89

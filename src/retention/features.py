@@ -135,8 +135,9 @@ def compute_longitudinal_trajectories(df: pd.DataFrame) -> pd.DataFrame:
     res["attendance_delta"] = grp["Attendance"].diff()
 
     # 4. LMS Slope & Delta
-    # For LMS logins, fill missing with cumulative group median or forward fill for trajectory calculation
-    lms_clean = res["LMS_Logins"].fillna(grp["LMS_Logins"].transform("median")).fillna(0)
+    # Strictly causal imputation (RULE-009): forward-fill past observed logins within student (<= t),
+    # ensuring future semester activity (t > current) never leaks backward to impute earlier semesters.
+    lms_clean = grp["LMS_Logins"].ffill().fillna(0.0)
     Sy_lms = lms_clean.groupby(res["Student_ID"]).cumsum()
     Sxy_lms = (X * lms_clean).groupby(res["Student_ID"]).cumsum()
     num_lms = n * Sxy_lms - (Sx * Sy_lms)

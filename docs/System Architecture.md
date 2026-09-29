@@ -1,8 +1,9 @@
 # System Architecture.md
 # Student Success Intelligence Framework (SSIF)
 
-**Version:** 1.0-DRAFT  
+**Version:** 2.0  
 **Date:** 2026-09-29  
+**Status:** Production Release & Research Experiments Architecture  
 **Governed by:** PRD.md Section 8 (Functional Requirements)
 
 ---
@@ -414,6 +415,110 @@ compare:
 - No user-uploaded files in MVP (reduces attack surface)
 - Environment variables via `.env` (never committed)
 - All dependency versions pinned in `requirements.txt`
+
+---
+
+## 12. Reproducible Data Lakehouse Architecture
+
+SSIF enforces a Medallion-style three-tier data lakehouse separating raw ingested CSVs, cleaned intermediate representations, and feature-engineered datasets:
+
+```
+┌──────────────────────────┐     ┌──────────────────────────┐     ┌──────────────────────────┐
+│         BRONZE           │     │          SILVER          │     │           GOLD           │
+│        data/raw/         │────►│       data/interim/      │────►│      data/processed/     │
+│                          │     │                          │     │                          │
+│ - Raw retention CSV      │     │ - Validated dtypes       │     │ - Vectorized Trajectories│
+│ - Raw placement CSV      │     │ - Canonicalized strings  │     │ - Student Profiles (N=20k│
+│ - Raw DLSM-B telemetry   │     │ - Dual CSV + Parquet     │     │ - Synthesis Metrics JSON │
+└──────────────────────────┘     └──────────────────────────┘     └──────────────────────────┘
+```
+
+1. **`data/raw/` (Bronze Tier):** Immutable source files directly reflecting original repository and Kaggle schema distributions.
+2. **`data/interim/` (Silver Tier):** Strict schema-validated datasets with canonicalized demographic strings, sanitized missing values, and zero data leakage. Dual-stored in `.csv` and compressed `.parquet`.
+3. **`data/processed/` (Gold Tier):** Fully enriched analytical matrices containing OLS trajectory slopes, decline run-lengths, career readiness indicators, and macro pipeline stage aggregations ready for downstream modeling.
+
+### Primary Dataset Provenance & Attribution Manifest
+
+| Cohort | Dataset Name & Key Dimensions | Original Curator | Primary Repository URL |
+|---|---|---|---|
+| **SSIF-A** | Student Retention & Academic Performance (79,239 rows, 20k students) | **Razan Ihab Abdellatif** | [Kaggle Dataset](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data) |
+| **SSIF-B** | MBA Campus Recruitment Full Class (215 candidates) | **Amey Thakur** ([@ameythakur20](https://www.kaggle.com/ameythakur20)) | [Kaggle Dataset](https://www.kaggle.com/datasets/ameythakur20/placement-data) |
+| **DLSM-A** | Sleep Debt and Screen Time / Late Night Phone Habits (8,500 records) | **Samar Talwar** | [Kaggle Dataset](https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits) |
+| **DLSM-B** | AI & Social Media Impact: Student Health & Grades (16,000 records) | **Sri Syra** ([@srisyra02](https://www.kaggle.com/srisyra02)) | [Kaggle Dataset](https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades) |
+| **DLSM** | Digital Lifestyle Spillover Modeling Research Framework | Harshkumar G. | [GitHub Repository](https://github.com/HarshkumarG007/DLSM) |
+
+> 📢 *Primary Data Rule:* Researchers and external users must download raw source CSV files directly from the Kaggle curator URLs above to maintain lineage and licensing compliance.
+
+---
+
+## 13. Multi-Disciplinary Research Experiments Suite Architecture
+
+SSIF deploys 5 specialized computational research experiments in `experiments/` orchestrated via `experiments/run_all_experiments.py`:
+
+```mermaid
+flowchart TD
+    subgraph Orchestrator ["Master Orchestration Engine (run_all_experiments.py)"]
+        O1["CLI Runner & Process Supervisor"]
+        O2["master_results.json Serializer"]
+        O3["MASTER_EXPERIMENT_SUMMARY.md Generator"]
+    end
+
+    subgraph Pipelines ["5 Domain-Specialized Pipelines"]
+        P1["EXP-001: Labor-Policy Simulation<br/>(OLS + 200 Monte Carlo Iterations)"]
+        P2["EXP-002: Pipeline Resilience<br/>(18-Scenario Attrition Cascade)"]
+        P3["EXP-003: Socio-Economic Fairness<br/>(Threshold Equity & QBE Discovery)"]
+        P4["EXP-004: Trajectory Forecasting<br/>(S1-S4 Expanding Window GroupKFold)"]
+        P5["EXP-005: Intervention ROI Optimizer<br/>(HiGHS Linear Programming Solver)"]
+    end
+
+    subgraph Outputs ["Reports & Observatories"]
+        R1["reports/experiments/EXP-001/ through EXP-005/"]
+        R2["Streamlit What-If Policy Lab"]
+    end
+
+    O1 --> P1 & P2 & P3 & P4 & P5
+    P1 & P2 & P3 & P4 & P5 --> O2 & O3
+    O2 & O3 --> R1 & R2
+```
+
+### Experiment Specifications:
+- **EXP-001:** OLS regression + 200-sample parametric Monte Carlo bootstrap estimating counterfactual GPA shifts and dropout reductions from work-study conversion.
+- **EXP-002:** Discrete lifecycle stage transition matrices simulating 18 attrition failure scenarios to identify systemic leverage points and diminishing return boundaries.
+- **EXP-003:** Group-stratified fairness evaluation (Demographic Parity, Equalized Odds) testing degree GPA thresholds and isolating Qualified-But-Excluded resilient students.
+- **EXP-004:** Retrospective expanding window GroupKFold models (S1 through S1-4) evaluating predictive horizon stabilization and computing individual Career Readiness Scores.
+- **EXP-005:** Constrained Linear Programming (LP) maximizing retained student yield under discrete institutional budget bounds ($10K–$500K) using the HiGHS simplex/interior-point solver.
+
+---
+
+## 14. Quality Engineering, Feasibility Auditing, & Continuous Testing
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                   SSIF AUTOMATED ASSURANCE TOPOLOGY                    │
+│                                                                        │
+│   [Feasibility Auditor] ──► 7 Cold-Scan Provenance & Leakage Gates     │
+│   [Unit Test Suite]     ──► 55 Automated Pytest Modules (100% Pass)    │
+│   [Governance Monitor]  ──► 62 Immutable Rules (RULE-001 to RULE-062)  │
+│   [CI Pipeline]         ──► Multi-OS GitHub Actions (Python 3.11/3.12) │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+1. **Pre-Modeling Feasibility Auditor (`dataset_feasibility_audit.py`):** Runs 7 automated sanity gates (Provenance, Single-Feature Leakage, Permutation Null Signal, Sample Adequacy, Temporal Drift, Fairness Screening, Literature Benchmark Plausibility) before any machine learning pipeline is permitted to execute.
+2. **Pytest Test Suite (`tests/unit/`):** 55 automated tests verifying data validators, trajectory math, survival likelihoods, placement pipelines, algorithmic recourse, feasibility gates, and experiment artifacts.
+
+---
+
+## 15. Streamlit Research Observatory Production Topology
+
+The interactive web observatory (`app/main.py`) provides an 8-page research interface:
+- **Page 1: Executive Overview & Framework KPIs**
+- **Page 2: Data Audit & Missingness Diagnostics**
+- **Page 3: Academic Retention & Trajectory Intelligence**
+- **Page 4: Survival Analysis & Hazard Observatory**
+- **Page 5: Career Placement & Salary Diagnostics**
+- **Page 6: Explainable AI & SHAP Risk Drivers**
+- **Page 7: DLSM Compatibility & Construct Bridge**
+- **Page 8: Research Experiments & What-If Policy Lab** (Interactive Pareto frontier, multi-stage sensitivity heatmaps, and empirical policy expanders).
 
 ---
 

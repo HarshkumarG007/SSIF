@@ -1,0 +1,13 @@
+{
+  "marginal_graduates_by_stage": {
+    "Stage_1_Early": 62.6,
+    "Stage_2_Mid": 79.5,
+    "Stage_3_Late": 81.6
+  },
+  "highest_impact_stage": "Stage_3_Late",
+  "highest_impact_gain": 81.6,
+  "lowest_impact_stage": "Stage_1_Early",
+  "lowest_impact_gain": 62.6,
+  "point_of_no_return": "Stage_1_Early",
+  "interpretation": "Intervening in 'Stage_3_Late' yields the highest return (+81.6 additional graduates per 1,000 students). Intervening in 'Stage_1_Early' yields the lowest return (+62.6 graduates), indicating it may be the 'point of diminishing returns' for institutional investment."
+}

@@ -7,6 +7,7 @@ papers/ssif_academic_retention_study.tex to camera-ready IEEEtran PDF.
 """
 from __future__ import annotations
 
+import hashlib
 import io
 import os
 import shutil
@@ -24,10 +25,12 @@ TOOLS_DIR = REPO_ROOT / "tools"
 TECTONIC_EXE = TOOLS_DIR / "tectonic.exe"
 
 TECTONIC_URL = "https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic%400.17.0/tectonic-0.17.0-x86_64-pc-windows-msvc.zip"
+# Cryptographic SHA-256 hash of tectonic-0.17.0-x86_64-pc-windows-msvc.zip (SEC-03)
+TECTONIC_ZIP_SHA256 = "f61ce51f0b0ade1015b7de7ef368541c5424e9756ecbd0d7af97d6d48030845f"
 
 
 def ensure_tectonic() -> Path:
-    """Ensure tectonic executable is available, downloading standalone binary if needed."""
+    """Ensure tectonic executable is available, downloading standalone binary with SHA-256 verification."""
     # Check if tectonic is on system PATH
     system_tectonic = shutil.which("tectonic")
     if system_tectonic:
@@ -44,6 +47,16 @@ def ensure_tectonic() -> Path:
     req = urllib.request.Request(TECTONIC_URL, headers=headers)
     with urllib.request.urlopen(req) as resp:
         zip_bytes = resp.read()
+
+    # Cryptographic integrity check (CWE-494)
+    actual_hash = hashlib.sha256(zip_bytes).hexdigest()
+    if actual_hash != TECTONIC_ZIP_SHA256:
+        raise ValueError(
+            f"SECURITY ERROR: Cryptographic hash mismatch on Tectonic archive!\n"
+            f"Expected SHA-256: {TECTONIC_ZIP_SHA256}\n"
+            f"Actual SHA-256:   {actual_hash}"
+        )
+    print(f"[OK] SHA-256 integrity verified: {actual_hash[:16]}...")
 
     print(f"[EXTRACT] Extracting {len(zip_bytes) / 1024 / 1024:.1f} MB archive...")
     with zipfile.ZipFile(io.BytesIO(zip_bytes)) as zf:

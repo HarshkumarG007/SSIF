@@ -1,0 +1,57 @@
+Student Success Intelligence Framework (SSIF)
+Copyright 2026 Harshkumar G. and SSIF Contributors
+
+This product includes software developed under the Apache License, Version 2.0.
+
+================================================================================
+THIRD-PARTY DATASET ACKNOWLEDGMENTS & LICENSES
+================================================================================
+
+1. Student Retention and Academic Performance Dataset (Panel A)
+   - Origin / Author: Razan Ihab Abdellatif
+   - Source: Kaggle (https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data)
+   - Records: 79,239 semester observations (20,000 unique students)
+   - License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+
+2. Placement Data (Campus Recruitment Cohort - Panel B)
+   - Origin / Author: Amey Thakur
+   - Source: Kaggle (https://www.kaggle.com/datasets/ameythakur20/placement-data)
+   - Records: 215 MBA candidate observations
+   - License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+
+3. Sleep Debt and Screen Time Late-Night Phone Habits Dataset (DLSM Reference)
+   - Origin / Author: Samar Talwar
+   - Source: Kaggle (https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits)
+
+4. AI and Social Media Impact on Student Health and Grades Dataset (DLSM Sister Benchmark)
+   - Origin / Author: Sri Syra
+   - Source: Kaggle (https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades)
+   - Reference Repository: https://github.com/HarshkumarG007/DLSM
+
+Users of this framework who conduct further research or downstream analysis are
+requested to visit the respective Kaggle pages, support the creators, and adhere
+to their individual licensing terms.
+
+================================================================================
+REGULATORY & COMPLIANCE STATEMENTS (EU AI ACT / FERPA / INDIA DPDP ACT)
+================================================================================
+
+1. European Union Artificial Intelligence Act (EU AI Act, Regulation (EU) 2024/1689):
+   - SSIF algorithms and risk models fall under Annex III, Paragraph 3 (Education
+     and Vocational Training: systems intended to be used to evaluate learning
+     outcomes, assess student admissions, or predict academic performance/retention).
+   - In accordance with Article 14 (Human Oversight), SSIF predictions and algorithmic
+     recourse recommendations are strictly decision-support advisory instruments.
+     Fully automated negative determinations, student dismissals, or disciplinary actions
+     without human academic counseling review are strictly prohibited.
+
+2. Family Educational Rights and Privacy Act (FERPA, 20 U.S.C. § 1232g):
+   - Re-identification risk mitigation: Small-cell metric suppression is enforced across
+     all experiment and reporting modules. Any subgroup or profile with sample size
+     n < 5 suppresses aggregated continuous statistics to prevent singling out individual
+     student trajectories.
+
+3. India Digital Personal Data Protection Act (DPDP Act, 2023):
+   - All dataset interactions honor purpose specification and data minimization principles.
+   - Cross-cohort merges without cryptographic pseudonym linkage are explicitly rejected
+     by automated architectural compatibility gates (RULE-002).

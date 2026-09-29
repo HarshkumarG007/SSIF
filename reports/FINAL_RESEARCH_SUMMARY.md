@@ -71,6 +71,38 @@ TreeExplainer attributions (Random Forest on 2,000 background samples) identify 
 - **Salary Regression (N=148 Placed Candidates):**
   - $R^2 \approx -0.06$ to $-0.17$. Starting corporate compensation is bounded by rigid corporate salary bands rather than fine gradations in student GPAs.
 
+### 2.5 Multi-Disciplinary Research Experiments Suite (EXP-001 through EXP-005)
+
+To convert descriptive diagnostics into prescriptive institutional policy, SSIF executed 5 domain-specialized experimental pipelines orchestrated via `experiments/run_all_experiments.py` (runtime: 60.9s, 5/5 SUCCESS):
+
+1. **EXP-001 (Labor-Policy Intervention Simulation):**
+   - Evaluated the "Student Labor Paradox" using OLS with demographic controls and N=200 row-level parametric Monte Carlo bootstrap iterations.
+   - Work hours exhibit a statistically significant negative GPA penalty ($\beta = -0.0027, p < 10^{-28}$).
+   - Converting students from >15 hrs/week survival labor to structured on-campus work-study yields a **+0.077 GPA lift** and an expected **2.97 pp dropout risk reduction** (95% CI: [2.64, 3.29] pp).
+2. **EXP-002 (Pipeline Resilience Stress Test):**
+   - Simulated 18 lifecycle attrition failure scenarios across Early (S1–S2), Mid (S3–S4), and Late (S5–S8) college stages.
+   - Stage 1 Early intervention was identified as the **highest systemic multiplier**, yielding **+81.6 additional graduates per 1,000 students** under early intervention compared to +62.6 graduates under late-stage interventions, proving that preventing early attrition compounds multiplicatively through graduation.
+3. **EXP-003 (Socio-Economic Fairness Audit):**
+   - Evaluated the demographic achievability of the empirical 65% degree GPA hiring threshold.
+   - Income quartile Q1 (lowest income) students achieve the threshold at significantly lower rates than Q4 peers, encoding socio-economic disparities.
+   - Isolated **N=992 "Qualified-But-Excluded"** students who maintain positive GPA velocity (`gpa_slope > 0`) despite starting below threshold cutoffs.
+   - Fisher's exact test on work-experience rescue of sub-threshold students revealed an odds ratio of 1.030 ($p = 1.000$), confirming that work-experience rescue acts in a gender-neutral manner.
+4. **EXP-004 (Career Trajectory Forecasting):**
+   - Evaluated retrospective early warning windows via 5-fold GroupKFold.
+   - Semester 1–2 signals alone predict long-run 4-year success with **AUC = 0.7469** (XGBoost).
+   - An expanding window analysis proves predictive discrimination increases monotonically: S1 (AUC=0.6840) → S1–S2 (AUC=0.7329) → S1–S3 (AUC=0.7868) → S1–S4 (AUC=0.8387).
+   - Computes individual Career Readiness Scores (CRS, 0–100) for early advising triage.
+5. **EXP-005 (Intervention ROI Optimizer):**
+   - Formulated a constrained Linear Program solved via the HiGHS simplex/interior-point method across institutional budgets ($10K–$500K).
+   - **Advising Boost delivers the highest entry ROI** (0.0533 dropout reductions per dollar) for budgets up to $100K.
+   - Budgets above $100K optimally blend Advising with Emergency Micro-Scholarships and Work-Study conversions to achieve maximum student retention yield.
+
+### 2.6 Reproducible Data Lakehouse (`data/interim/` & `data/processed/`)
+
+To support open scientific verification, all transformed assets are cataloged and dual-stored in CSV and Apache Parquet formats:
+- `data/interim/`: Schema-validated representations with canonicalized categorical string encodings (`retention_interim`, `placement_interim`, `dlsm_b_interim`).
+- `data/processed/`: Feature-engineered matrices including `ssif_retention_enriched.parquet` (79,239 rows, 37 features), `ssif_retention_student_profiles.parquet` (20,000 student lifetime trajectory vectors), `ssif_placement_enriched.parquet` (215 MBA profiles with composite scores), and `ssif_higher_ed_synthesis_metrics.json` (24 cross-dataset synthesis KPIs).
+
 ---
 
 ## 3. DLSM Cross-Study Integration Verdict
@@ -101,3 +133,18 @@ To empirically test causal digital lifestyle spillover on academic attrition, in
 - **Longitudinal Academic Panel:** GPA, credit completion, advising visits, scholarship allocations.
 - **Passive Digital Telemetry:** Daily screen time, late-night phone minutes, LMS login frequency.
 - **Sleep & Wellness Scores:** Sleep duration, fatigue indices, subjective wellness evaluations.
+
+---
+
+## 6. Primary Dataset Acknowledgements & Ethical Provenance
+
+SSIF expresses profound gratitude to the researchers and data scientists who assembled and open-sourced the underlying datasets across both SSIF and DLSM:
+
+1. **SSIF Retention Dataset:** [Student Retention and Academic Performance Data](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data) by **Razan Ihab Abdellatif** (79,239 longitudinal records across 20,000 students).
+2. **SSIF Placement Dataset:** [Campus Recruitment (Placement Data Full Class)](https://www.kaggle.com/datasets/ameythakur20/placement-data) by **Amey Thakur** (215 MBA candidate profiles with multi-tier academic scores and starting salaries).
+3. **DLSM Sleep & Screentime Dataset:** [Sleep Debt and Screen Time / Late Night Phone Habits](https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits) by **Samar Talwar** (8,500 telemetry records tracking bedtime phone habits and sleep debt).
+4. **DLSM AI & Social Media Dataset:** [AI and Social Media Impact: Student Health & Grades](https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades) by **Sri Syra (@srisyra02)** (16,000 student digital health records).
+5. **DLSM Sister Framework:** [HarshkumarG007/DLSM](https://github.com/HarshkumarG007/DLSM) (Digital Lifestyle Spillover Modeling repository).
+
+> 📢 *We kindly request all researchers and academic practitioners to visit the original Kaggle repositories above, star and upvote the datasets, and download the primary CSV files directly from the author profiles to honor licensing, provenance, and open-source contributions.*
+

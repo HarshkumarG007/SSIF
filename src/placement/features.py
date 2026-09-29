@@ -79,14 +79,43 @@ def engineer_placement_features(df: pd.DataFrame) -> pd.DataFrame:
     return res
 
 
+CONSTRAINED_DOF_FEATURES = [
+    "degree_p",
+    "etest_p",
+    "ssc_p",
+    "workex_Yes",
+    "specialisation_Mkt&HR",
+]  # <= 6 DoF feature constraint ensuring EPV >= 10 on Dataset B (SEC-10)
+
+
+def anonymize_placement_quasi_identifiers(
+    df: pd.DataFrame,
+    bin_width: float = 5.0,
+) -> pd.DataFrame:
+    """
+    Coarsens continuous quasi-identifiers in Dataset B (academic percentages:
+    ssc_p, hsc_p, degree_p, etest_p, mba_p) into discretized 5% intervals (e.g. [60, 65))
+    to mitigate linkage re-identification risks and uphold privacy guarantees (SEC-02).
+    """
+    res = df.copy()
+    for col in NUMERIC_COLUMNS:
+        if col in res.columns:
+            binned = (np.floor(res[col] / bin_width) * bin_width).astype(int)
+            res[f"{col}_binned"] = binned.apply(lambda v: f"[{v}, {int(v + bin_width)})")
+    return res
+
+
 def prepare_placement_classification_data(
     df: pd.DataFrame,
     include_engineered: bool = True,
+    constrained_dof: bool = False,
 ) -> tuple[pd.DataFrame, pd.Series, list[str]]:
     """
     Prepare feature matrix X and binary target y for placement status classification.
 
     Target: y = 1 if status == 'Placed', else 0.
+    If constrained_dof is True, restricts features to <= 6 degrees of freedom to respect
+    the EPV >= 10 guideline for the 67-event minority class (SEC-10).
     """
     df_feats = engineer_placement_features(df) if include_engineered else df.copy()
 
@@ -97,6 +126,10 @@ def prepare_placement_classification_data(
     # Encode categoricals with dummy variables
     cat_df = pd.get_dummies(df_feats[CATEGORICAL_COLUMNS], drop_first=True, dtype=float)
     X = pd.concat([df_feats[feature_cols], cat_df], axis=1)
+
+    if constrained_dof:
+        selected_cols = [c for c in CONSTRAINED_DOF_FEATURES if c in X.columns]
+        X = X[selected_cols]
 
     # Strictly verify zero target leakage
     leak_report = check_placement_leakage(X.columns.tolist(), "status")

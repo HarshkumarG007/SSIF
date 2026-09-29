@@ -61,3 +61,23 @@ are absent from both `academic_survival_longitudinal.csv` and `Placement_Data_Fu
 **Future data required for full integration:**
 Collect `Sleep_Hours`, `Daily_Social_Media_Hours`, `Daily_AI_Tool_Usage_Hours`,
 `Physical_Activity_Hours` alongside all retention variables for the same students.
+
+---
+
+## 🏛️ Dataset Provenance & Curators Thanksgiving
+
+1. **SSIF Retention Dataset (SSIF-A):**
+   - **Curator:** **Razan Ihab Abdellatif**
+   - **Kaggle URL:** [Student Retention and Academic Performance Data](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data)
+2. **SSIF Placement Dataset (SSIF-B):**
+   - **Curator:** **Amey Thakur** ([Kaggle: @ameythakur20](https://www.kaggle.com/ameythakur20))
+   - **Kaggle URL:** [Campus Recruitment (Placement Data Full Class)](https://www.kaggle.com/datasets/ameythakur20/placement-data)
+3. **DLSM Sleep & Screentime (DLSM-A):**
+   - **Curator:** **Samar Talwar**
+   - **Kaggle URL:** [Sleep Debt and Screen Time / Late Night Phone Habits](https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits)
+4. **DLSM AI & Social Media (DLSM-B):**
+   - **Curator:** **Sri Syra** ([Kaggle: @srisyra02](https://www.kaggle.com/srisyra02))
+   - **Kaggle URL:** [AI and Social Media Impact: Student Health & Grades](https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades)
+5. **DLSM Sister Framework:** [HarshkumarG007/DLSM](https://github.com/HarshkumarG007/DLSM)
+
+> 📢 *We gratefully acknowledge the above creators and encourage researchers to star their datasets on Kaggle and download primary CSVs directly from their author profiles.*

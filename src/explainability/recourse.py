@@ -35,6 +35,9 @@ class StudentProfile:
     semester: int = 3
 
 
+from collections.abc import Callable
+
+
 @dataclass
 class RecourseRecommendation:
     """Actionable counterfactual prescription to achieve target risk threshold."""
@@ -46,12 +49,24 @@ class RecourseRecommendation:
     effort_score: float
     is_feasible: bool
     counterfactual_profile: StudentProfile
+    disclaimer: str = (
+        "Decision-support instrument only. Must not be used as an automated decision-maker "
+        "without human counseling review (EU AI Act Art. 14 / FERPA compliant human-in-the-loop)."
+    )
 
 
-def compute_calibrated_dropout_prob(p: StudentProfile) -> float:
+def compute_calibrated_dropout_prob(
+    p: StudentProfile,
+    predictor: Callable[[StudentProfile], float] | None = None,
+) -> float:
     """
-    Computes calibrated logistic departure probability based on empirical SSIF model weights.
+    Computes calibrated logistic departure probability.
+    If a fitted estimator/predictor callable is provided, evaluates it directly to eliminate
+    proxy divergence (SEC-05). Otherwise evaluates the empirical calibrated logistic model.
     """
+    if predictor is not None:
+        return float(predictor(p))
+
     logit = (
         -0.8
         - 1.1 * (p.gpa - 2.8)
@@ -68,10 +83,13 @@ def compute_calibrated_dropout_prob(p: StudentProfile) -> float:
 def find_counterfactual_recourse(
     profile: StudentProfile,
     target_risk: float = 0.15,
+    predictor: Callable[[StudentProfile], float] | None = None,
 ) -> RecourseRecommendation:
     """
     Optimizes actionable policy levers to identify the lowest-effort intervention
     that achieves counterfactual risk <= target_risk.
+
+    Supports custom fitted estimator callable via `predictor` parameter to avoid proxy divergence.
 
     Actionable levers:
       1. Institutional Scholarship: No -> Yes (Cost: 2.0)
@@ -80,7 +98,8 @@ def find_counterfactual_recourse(
       4. Work Hour Reduction: down to 10-15 hrs/wk (Cost: 0.10/hr)
       5. Intensive Advising (Slope recovery): +0.10 to +0.25 (Cost: 2.5/+0.10)
     """
-    orig_risk = compute_calibrated_dropout_prob(profile)
+    predict_fn = (lambda p: compute_calibrated_dropout_prob(p, predictor=predictor))
+    orig_risk = predict_fn(profile)
     if orig_risk <= target_risk:
         return RecourseRecommendation(
             original_risk=orig_risk,
@@ -127,7 +146,7 @@ def find_counterfactual_recourse(
                             semester=profile.semester,
                         )
 
-                        cand_risk = compute_calibrated_dropout_prob(cand_profile)
+                        cand_risk = predict_fn(cand_profile)
 
                         # Compute weighted effort cost
                         cost = 0.0

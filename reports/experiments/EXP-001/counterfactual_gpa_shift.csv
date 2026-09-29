@@ -1,0 +1,2 @@
+cohort,n_student_semesters,original_mean_gpa,counterfactual_mean_gpa,gpa_lift,intervention
+High-Hours Survival Labor (>15 hrs),43268,2.6124,2.6891,0.0767,"Work_Hours→10, Financial_Stress×0.8"

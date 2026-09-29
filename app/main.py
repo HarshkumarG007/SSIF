@@ -157,6 +157,7 @@ pages = [
     "🔬 Explainable AI & SHAP Risk Drivers",
     "🌉 DLSM Compatibility & Construct Bridge",
     "🧬 Deep Empirical Pattern Lab & Synthesis Pipeline",
+    "⚗️ Research Experiments Lab",
 ]
 
 selected_page = st.sidebar.radio("Navigation", pages)
@@ -171,14 +172,22 @@ st.sidebar.markdown(
         • No Fabricated Merges (RULE-002)<br>
         • Apache 2.0 Open Source
     </div>
-    <div style="background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px; padding: 10px; font-size: 0.78rem; color: #CBD5E1; line-height: 1.45;">
+    <div style="background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px; padding: 10px; font-size: 0.76rem; color: #CBD5E1; line-height: 1.45;">
         <b style="color: #38BDF8;">🙏 Dataset Sources & Credits:</b><br>
-        Special thanks to the original dataset authors on Kaggle:<br>
+        <b style="color: #F8FAFC;">SSIF Primary Datasets:</b><br>
         • <b>Razan Ihab Abdellatif</b> (<a href="https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data" target="_blank" style="color: #38BDF8; text-decoration: underline;">Retention Panel</a>)<br>
         • <b>Amey Thakur</b> (<a href="https://www.kaggle.com/datasets/ameythakur20/placement-data" target="_blank" style="color: #38BDF8; text-decoration: underline;">Placement Cohort</a>)<br>
+        <b style="color: #F8FAFC; margin-top: 4px; display: inline-block;">DLSM Sister Datasets:</b><br>
+        • <b>Samar Talwar</b> (<a href="https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits" target="_blank" style="color: #38BDF8; text-decoration: underline;">Sleep & Screentime</a>)<br>
+        • <b>Sri Syra</b> (<a href="https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades" target="_blank" style="color: #38BDF8; text-decoration: underline;">AI & Social Media</a>)<br>
         <span style="display: block; margin-top: 6px; font-size: 0.72rem; color: #94A3B8;">
-            📢 <i>Please visit Kaggle to upvote and download the original datasets directly from their sources!</i>
+            📢 <i>Please visit Kaggle to upvote and download directly from the original creators!</i><br>
+            🔗 <a href="https://github.com/HarshkumarG007/DLSM" target="_blank" style="color: #38BDF8; text-decoration: underline;">DLSM Sister Repository</a>
         </span>
+    </div>
+    <div style="margin-top: 10px; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 10px; font-size: 0.74rem; color: #FDE68A; line-height: 1.4;">
+        <b style="color: #FBBF24;">⚖️ Regulatory & Safety Notice:</b><br>
+        SSIF is a research & decision-support instrument governed by <b>EU AI Act Annex III (High-Risk AI Systems / Art. 14)</b>, <b>FERPA (20 U.S.C. § 1232g)</b>, and <b>India DPDP Act (2023)</b>. Fully automated adverse determinations are strictly prohibited without human counseling review.
     </div>
     """,
     unsafe_allow_html=True,
@@ -258,6 +267,52 @@ if selected_page == "🏛️ Executive Overview & Framework KPIs":
             - **5. Scientific Integrity Gate:** Direct row-merging between SSIF and DLSM is strictly blocked by the compatibility gate (`NO-GO`), while construct-level alignment bridges both domains.
             """
         )
+
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 18px 24px; margin-top: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <div>
+                    <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: #38BDF8; font-weight: 700;">Open Data Mining Provenance & Thanksgiving</span>
+                    <h3 style="margin: 4px 0 6px 0; color: #F8FAFC; font-family: 'Playfair Display', serif;">Honoring Our Primary Dataset Curators</h3>
+                    <p style="margin: 0; color: #94A3B8; font-size: 0.88rem; max-width: 850px; line-height: 1.5;">
+                        SSIF and DLSM are made possible thanks to researchers who open-source foundational educational and behavioral datasets on Kaggle. 
+                        We kindly ask all researchers and students to <b>visit their Kaggle pages, star/upvote their work, and download the raw CSVs directly from the original creators</b>:
+                    </p>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 16px;">
+                <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px; padding: 12px; border-left: 3px solid #38BDF8;">
+                    <b style="color: #F8FAFC; font-size: 0.90rem;">1. Razan Ihab Abdellatif</b><br>
+                    <span style="font-size: 0.80rem; color: #94A3B8;">Student Retention Panel (79,239 rows)</span><br>
+                    <a href="https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data" target="_blank" style="color: #38BDF8; font-size: 0.80rem; text-decoration: underline; font-weight: 600;">↗ Kaggle: Retention Data</a>
+                </div>
+                <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 8px; padding: 12px; border-left: 3px solid #10B981;">
+                    <b style="color: #F8FAFC; font-size: 0.90rem;">2. Amey Thakur (@ameythakur20)</b><br>
+                    <span style="font-size: 0.80rem; color: #94A3B8;">MBA Campus Placement (215 candidates)</span><br>
+                    <a href="https://www.kaggle.com/datasets/ameythakur20/placement-data" target="_blank" style="color: #10B981; font-size: 0.80rem; text-decoration: underline; font-weight: 600;">↗ Kaggle: Placement Data</a>
+                </div>
+                <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 8px; padding: 12px; border-left: 3px solid #8B5CF6;">
+                    <b style="color: #F8FAFC; font-size: 0.90rem;">3. Samar Talwar</b><br>
+                    <span style="font-size: 0.80rem; color: #94A3B8;">Sleep & Screentime (8,500 records)</span><br>
+                    <a href="https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits" target="_blank" style="color: #8B5CF6; font-size: 0.80rem; text-decoration: underline; font-weight: 600;">↗ Kaggle: Sleep & Screen</a>
+                </div>
+                <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 8px; padding: 12px; border-left: 3px solid #F59E0B;">
+                    <b style="color: #F8FAFC; font-size: 0.90rem;">4. Sri Syra (@srisyra02)</b><br>
+                    <span style="font-size: 0.80rem; color: #94A3B8;">AI & Social Media (16,000 records)</span><br>
+                    <a href="https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades" target="_blank" style="color: #F59E0B; font-size: 0.80rem; text-decoration: underline; font-weight: 600;">↗ Kaggle: AI & Social Media</a>
+                </div>
+            </div>
+            <div style="margin-top: 14px; font-size: 0.80rem; color: #CBD5E1; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                <span>🔗 <b>Sister Research Ecosystem:</b> <a href="https://github.com/HarshkumarG007/DLSM" target="_blank" style="color: #38BDF8; text-decoration: underline;">HarshkumarG007/DLSM</a></span>
+                <span style="color: #94A3B8;"><i>Always cite and download from the original Kaggle curators.</i></span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -498,6 +553,7 @@ elif selected_page == "📈 Academic Retention & Trajectory Intelligence":
             )
             for act in recourse.action_plan:
                 st.markdown(f"• <span style='font-size:0.84rem; color:#F1F5F9;'>{act}</span>", unsafe_allow_html=True)
+            st.caption(f"⚖️ **Regulatory Advisory:** {recourse.disclaimer}")
         else:
             st.success("🎯 Algorithmic Recourse: Student is within safe persistence zone (< 15% risk). No emergency recourse required.")
 
@@ -844,6 +900,45 @@ elif selected_page == "🌉 DLSM Compatibility & Construct Bridge":
         "represent synthetic-generator artifacts or target leakage rather than authentic human dynamics."
     )
 
+    st.markdown("---")
+    st.subheader("🙏 Original Dataset Curators, Provenance & Thanksgiving")
+    st.markdown(
+        """
+        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 18px; margin-top: 10px;">
+            <h4 style="color: #38BDF8; margin-top: 0;">Open Educational & Behavioral Data Mining Hall of Fame</h4>
+            <p style="color: #CBD5E1; font-size: 0.90rem;">
+                SSIF and DLSM stand on the shoulders of the original authors who open-sourced real-world educational cohorts for academic exploration:
+            </p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px;">
+                <div style="background: rgba(30, 41, 59, 0.7); border-radius: 8px; padding: 12px; border-left: 3px solid #38BDF8;">
+                    <b style="color: #F8FAFC;">1. Razan Ihab Abdellatif</b><br>
+                    <span style="font-size: 0.85rem; color: #94A3B8;">Student Retention & Academic Performance Panel (N=79,239)</span><br>
+                    <a href="https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data" target="_blank" style="color: #38BDF8; font-size: 0.82rem; text-decoration: underline;">🔗 View & Download on Kaggle</a>
+                </div>
+                <div style="background: rgba(30, 41, 59, 0.7); border-radius: 8px; padding: 12px; border-left: 3px solid #10B981;">
+                    <b style="color: #F8FAFC;">2. Amey Thakur (@ameythakur20)</b><br>
+                    <span style="font-size: 0.85rem; color: #94A3B8;">MBA Campus Placement Full Class (N=215)</span><br>
+                    <a href="https://www.kaggle.com/datasets/ameythakur20/placement-data" target="_blank" style="color: #10B981; font-size: 0.82rem; text-decoration: underline;">🔗 View & Download on Kaggle</a>
+                </div>
+                <div style="background: rgba(30, 41, 59, 0.7); border-radius: 8px; padding: 12px; border-left: 3px solid #8B5CF6;">
+                    <b style="color: #F8FAFC;">3. Samar Talwar</b><br>
+                    <span style="font-size: 0.85rem; color: #94A3B8;">Sleep Debt and Screen Time / Late Night Phone Habits (N=8,500)</span><br>
+                    <a href="https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits" target="_blank" style="color: #8B5CF6; font-size: 0.82rem; text-decoration: underline;">🔗 View & Download on Kaggle</a>
+                </div>
+                <div style="background: rgba(30, 41, 59, 0.7); border-radius: 8px; padding: 12px; border-left: 3px solid #F59E0B;">
+                    <b style="color: #F8FAFC;">4. Sri Syra (@srisyra02)</b><br>
+                    <span style="font-size: 0.85rem; color: #94A3B8;">AI and Social Media Impact: Student Health & Grades (N=16,000)</span><br>
+                    <a href="https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades" target="_blank" style="color: #F59E0B; font-size: 0.82rem; text-decoration: underline;">🔗 View & Download on Kaggle</a>
+                </div>
+            </div>
+            <div style="margin-top: 14px; padding: 10px; background: rgba(56, 189, 248, 0.08); border-radius: 6px; font-size: 0.82rem; color: #E2E8F0;">
+                📢 <b>Community Call-to-Action:</b> Please visit the original Kaggle dataset links above, give their curators an upvote, and download all primary raw CSV files directly from their author profiles to honor licensing and dataset provenance!
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
 
 # ═════════════════════════════════════════════════════════════════════════════
 # PAGE 8: DEEP EMPIRICAL PATTERN LAB & SYNTHESIS PIPELINE
@@ -1094,5 +1189,265 @@ elif selected_page == "🧬 Deep Empirical Pattern Lab & Synthesis Pipeline":
                 """
             )
 
+
+# =============================================================================
+# PAGE 9: RESEARCH EXPERIMENTS LAB
+# =============================================================================
+elif selected_page == "\u2697\ufe0f Research Experiments Lab":
+    st.title("\u2697\ufe0f Research Experiments Lab")
+    st.markdown(
+        "**Multi-disciplinary experiments** that go beyond descriptive statistics to reveal "
+        "causal mechanisms, policy levers, fairness gaps, and forecasting opportunities "
+        "hidden within the SSIF datasets."
+    )
+
+    render_research_context(
+        dataset_info="Dataset A (79,239 rows, 20K students) + Dataset B (215 candidates)",
+        method_info="OLS + Monte Carlo | LP Optimizer | Fairness Audit | Early-Warning ML | Cascade Simulation",
+        limitation_text="All experiments are observational projections. No randomized control group. Results inform policy deliberation, not prescribe individual student actions.",
+    )
+
+    EXPERIMENTS_OUT = ROOT / "reports" / "experiments"
+
+    EXP_META = {
+        "EXP-001": {
+            "icon": "\ud83d\udcbc",
+            "title": "Labor-Policy Intervention Simulation",
+            "tagline": "What is the ROI of converting students from survival labor to institutional work-study?",
+            "files": {
+                "OLS Coefficient Table": "EXP-001/labor_policy_ols_results.csv",
+                "Counterfactual GPA Shift": "EXP-001/counterfactual_gpa_shift.csv",
+                "Policy ROI Summary": "EXP-001/policy_roi_summary.json",
+                "Monte Carlo CIs": "EXP-001/monte_carlo_ci.json",
+            },
+            "summary_file": "EXP-001/EXP001_summary.md",
+        },
+        "EXP-002": {
+            "icon": "\ud83d\udd01",
+            "title": "Pipeline Resilience Stress Test",
+            "tagline": "How do retention failures cascade through the college lifecycle to shrink the placement pool?",
+            "files": {
+                "Attrition Baseline": "EXP-002/lifecycle_attrition_baseline.csv",
+                "Sensitivity Grid": "EXP-002/intervention_sensitivity_grid.csv",
+                "Compounding Failure Matrix": "EXP-002/compounding_failure_matrix.csv",
+                "Point of No Return": "EXP-002/point_of_no_return.json",
+            },
+            "summary_file": "EXP-002/EXP002_summary.md",
+        },
+        "EXP-003": {
+            "icon": "\u2696\ufe0f",
+            "title": "Socio-Economic Fairness Audit",
+            "tagline": "Does the 65% GPA hiring threshold disproportionately exclude low-income and first-gen students?",
+            "files": {
+                "Threshold Achievability": "EXP-003/threshold_achievability_by_demographics.csv",
+                "Placement Fairness Metrics": "EXP-003/placement_fairness_metrics.csv",
+                "Qualified-But-Excluded Profiles": "EXP-003/qualified_excluded_profiles.csv",
+                "WorkEx Rescue Differential": "EXP-003/workex_rescue_differential.json",
+            },
+            "summary_file": "EXP-003/EXP003_summary.md",
+        },
+        "EXP-004": {
+            "icon": "\ud83d\udd2e",
+            "title": "Career Trajectory Forecasting",
+            "tagline": "Can Semester 1-2 signals predict long-run placement eligibility years in advance?",
+            "files": {
+                "Model Performance": "EXP-004/early_window_model_performance.csv",
+                "SHAP Feature Importance": "EXP-004/shap_top10_early_features.csv",
+                "Early Warning Window AUC Curve": "EXP-004/early_warning_window_auc_curve.csv",
+                "Career Readiness Score Distribution": "EXP-004/career_readiness_score_distribution.csv",
+            },
+            "summary_file": "EXP-004/EXP004_summary.md",
+        },
+        "EXP-005": {
+            "icon": "\ud83d\udcca",
+            "title": "Intervention ROI Optimizer",
+            "tagline": "What allocation of advising, scholarships, and work-study maximizes student retention per dollar?",
+            "files": {
+                "Pareto Frontier (Budget vs Retained)": "EXP-005/optimal_allocation_by_budget.csv",
+                "Subgroup Prioritization": "EXP-005/subgroup_prioritization.csv",
+                "Sensitivity Analysis": "EXP-005/sensitivity_analysis.csv",
+                "Intervention Parameters": "EXP-005/intervention_parameters.json",
+            },
+            "summary_file": "EXP-005/EXP005_summary.md",
+        },
+    }
+
+    # Status Banner
+    master_json = EXPERIMENTS_OUT / "master_results.json"
+    has_results = master_json.exists()
+
+    if not has_results:
+        st.warning(
+            "\u26a0\ufe0f Experiment results not yet generated. "
+            "Run `python experiments/run_all_experiments.py` from the project root to generate outputs."
+        )
+        st.code("$env:PYTHONUTF8='1'; python experiments/run_all_experiments.py", language="powershell")
+    else:
+        try:
+            master_results = json.loads(master_json.read_text(encoding="utf-8"))
+            passed = sum(1 for r in master_results if r["status"] == "SUCCESS")
+            failed = sum(1 for r in master_results if r["status"] == "FAILED")
+            col_s, col_f, col_t = st.columns(3)
+            col_s.metric("Experiments Passed", f"{passed}/5")
+            col_f.metric("Failed", str(failed))
+            total_t = sum(r.get("elapsed_s", 0) for r in master_results)
+            col_t.metric("Total Runtime", f"{total_t:.1f}s")
+        except Exception:
+            pass
+
+    st.markdown("---")
+
+    # Experiment Cards
+    for exp_id, meta in EXP_META.items():
+        with st.expander(f"{meta['icon']} {exp_id}: {meta['title']}", expanded=(exp_id == "EXP-001")):
+            st.markdown(f"*{meta['tagline']}*")
+
+            summary_path = EXPERIMENTS_OUT / meta["summary_file"]
+            if summary_path.exists():
+                summary_text = summary_path.read_text(encoding="utf-8")
+                st.markdown(summary_text[:5000] + ("\n\n*[Truncated \u2014 view full report in reports/experiments/]*" if len(summary_text) > 5000 else ""))
+            else:
+                st.info("Summary not yet generated. Run the experiment first.")
+
+            st.markdown("**\ud83d\udcc1 Data Files:**")
+            for file_label, rel_path in meta["files"].items():
+                fp = EXPERIMENTS_OUT / rel_path
+                if fp.exists():
+                    if fp.suffix == ".csv":
+                        try:
+                            df_exp = pd.read_csv(fp)
+                            st.markdown(f"**{file_label}** ({len(df_exp)} rows)")
+                            show_dataframe(df_exp.head(20))
+                        except Exception as e:
+                            st.warning(f"{file_label}: {e}")
+                    elif fp.suffix == ".json":
+                        try:
+                            data = json.loads(fp.read_text(encoding="utf-8"))
+                            st.markdown(f"**{file_label}**")
+                            st.json(data)
+                        except Exception as e:
+                            st.warning(f"{file_label}: {e}")
+                else:
+                    st.caption(f"\u23f3 {file_label}: not yet generated")
+
+    st.markdown("---")
+
+    # EXP-005 Pareto Frontier Visualization
+    st.subheader("\ud83d\udcca EXP-005: Budget Optimization Pareto Frontier")
+    pareto_path = EXPERIMENTS_OUT / "EXP-005/optimal_allocation_by_budget.csv"
+    if pareto_path.exists():
+        pareto_df = pd.read_csv(pareto_path)
+        fig_pareto = px.line(
+            pareto_df,
+            x="budget_kUSD",
+            y="total_dropout_reductions",
+            markers=True,
+            title="Expected Dropout Reductions vs. Institutional Budget ($K)",
+            labels={"budget_kUSD": "Budget ($K USD)", "total_dropout_reductions": "Expected Dropout Reductions (per 1,000 students)"},
+        )
+        fig_pareto.update_traces(line_color="#38BDF8", marker_color="#F59E0B")
+        apply_plotly_theme(fig_pareto)
+        show_chart(fig_pareto)
+
+        fig_roi = px.bar(
+            pareto_df,
+            x="budget_kUSD",
+            y="roi_per_dollar",
+            title="ROI per Dollar (Dropout Reductions / $1) by Budget Level",
+            labels={"budget_kUSD": "Budget ($K USD)", "roi_per_dollar": "ROI (reductions per dollar)"},
+            color="roi_per_dollar",
+            color_continuous_scale="Viridis",
+        )
+        apply_plotly_theme(fig_roi)
+        show_chart(fig_roi)
+    else:
+        st.info("Run EXP-005 to see the Pareto frontier visualization.")
+
+    # EXP-002 Sensitivity Heatmap
+    st.subheader("\ud83d\udd01 EXP-002: Intervention Sensitivity Heatmap")
+    sens_path = EXPERIMENTS_OUT / "EXP-002/intervention_sensitivity_grid.csv"
+    if sens_path.exists():
+        sens_df = pd.read_csv(sens_path)
+        pivot = sens_df.pivot(
+            index="intervention_stage",
+            columns="intervention_efficacy",
+            values="final_graduates",
+        )
+        fig_heat = px.imshow(
+            pivot,
+            title="Graduates per 1,000 by Intervention Stage & Efficacy",
+            labels={"x": "Intervention Efficacy (0=None, 1=Perfect)", "y": "Stage", "color": "Graduates"},
+            color_continuous_scale="RdYlGn",
+            text_auto=".1f",
+        )
+        apply_plotly_theme(fig_heat)
+        show_chart(fig_heat)
+    else:
+        st.info("Run EXP-002 to see the sensitivity heatmap.")
+
+    # EXP-003 Fairness Audit Charts
+    st.subheader("\u2696\ufe0f EXP-003: Threshold Achievability by Demographics")
+    ach_path = EXPERIMENTS_OUT / "EXP-003/threshold_achievability_by_demographics.csv"
+    if ach_path.exists():
+        ach_df = pd.read_csv(ach_path)
+        for dim, dim_df in ach_df.groupby("dimension"):
+            fig_ach = px.bar(
+                dim_df.sort_values("achievability_pct", ascending=True),
+                x="achievability_pct",
+                y="group",
+                orientation="h",
+                title=f"Threshold Achievability by {dim}",
+                labels={"achievability_pct": "% Students Ever Achieving GPA Threshold", "group": dim},
+                color="achievability_pct",
+                color_continuous_scale="RdYlGn",
+            )
+            apply_plotly_theme(fig_ach)
+            show_chart(fig_ach)
+    else:
+        st.info("Run EXP-003 to see the fairness audit charts.")
+
+    # EXP-004 AUC Curve
+    st.subheader("\ud83d\udd2e EXP-004: Early Warning Window AUC Stabilization")
+    auc_path = EXPERIMENTS_OUT / "EXP-004/early_warning_window_auc_curve.csv"
+    if auc_path.exists():
+        auc_df = pd.read_csv(auc_path)
+        fig_auc = px.line(
+            auc_df,
+            x="window",
+            y="auc",
+            markers=True,
+            title="Prediction AUC vs. Expanding Observation Window",
+            labels={"window": "Semesters Observed", "auc": "AUC (Long-Run Success Prediction)"},
+        )
+        fig_auc.update_traces(line_color="#10B981", marker_color="#F59E0B", line_width=3)
+        apply_plotly_theme(fig_auc)
+        show_chart(fig_auc)
+    else:
+        st.info("Run EXP-004 to see the early warning curve.")
+
+    render_limitation_banner(
+        "Experiments are observational simulations using empirical data. "
+        "Causal claims require randomized intervention data. All efficacy estimates "
+        "sourced from published literature with explicit citations. "
+        "Dataset B (N=215) limits statistical power for placement-side findings."
+    )
+
+    st.markdown(
+        """
+        <div style="background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 14px 18px; margin-top: 15px;">
+            <b style="color: #38BDF8; font-size: 0.88rem;">🙏 Empirical Data Provenance & Acknowledgements:</b><br>
+            <span style="font-size: 0.82rem; color: #94A3B8;">
+                All policy simulation models and resilience stress tests are grounded in open datasets published by 
+                <b>Razan Ihab Abdellatif</b> (<a href="https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data" target="_blank" style="color: #38BDF8;">Retention Panel</a>), 
+                <b>Amey Thakur</b> (<a href="https://www.kaggle.com/datasets/ameythakur20/placement-data" target="_blank" style="color: #10B981;">Placement Cohort</a>), 
+                <b>Samar Talwar</b> (<a href="https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits" target="_blank" style="color: #8B5CF6;">Sleep & Screentime</a>), and 
+                <b>Sri Syra</b> (<a href="https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades" target="_blank" style="color: #F59E0B;">AI & Social Media</a>). 
+                Please visit Kaggle to upvote and download raw datasets directly from their profiles. 
+                Explore the sister framework at <a href="https://github.com/HarshkumarG007/DLSM" target="_blank" style="color: #38BDF8;">HarshkumarG007/DLSM</a>.
+            </span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 

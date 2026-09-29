@@ -1,0 +1,4 @@
+subgroup,n_students_in_segment,total_dropout_reductions,roi_per_dollar,primary_lever
+High-Risk Q1-Income,1290,5333.3,0.053333,Advising_Boost
+High-Risk Scholarship Holder,818,5333.3,0.053333,Advising_Boost
+All High-Risk Students,2516,5333.3,0.053333,Advising_Boost

@@ -1,0 +1,13 @@
+{
+  "work_hour_gpa_coef_mean": -0.002738348474704404,
+  "work_hour_gpa_coef_ci_lo": -0.003005519782295654,
+  "work_hour_gpa_coef_ci_hi": -0.002462378393114159,
+  "gpa_lift_mean": 0.07669541104951992,
+  "gpa_lift_ci_lo": 0.0728136840252966,
+  "gpa_lift_ci_hi": 0.08030618488824924,
+  "dropout_reduction_pp_mean": 2.9671649411259566,
+  "dropout_reduction_pp_ci_lo": 2.6410549905700895,
+  "dropout_reduction_pp_ci_hi": 3.2900610146061506,
+  "n_valid_iterations": 200,
+  "bootstrap_method": "row-level resample (fast, O(N)), seed-reproducible"
+}
