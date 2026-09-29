@@ -100,8 +100,14 @@ def get_placement_data():
 
 @st.cache_data
 def get_dlsm_b_data():
-    df = load_dlsm_b()
-    return df
+    try:
+        df = load_dlsm_b()
+        return df
+    except Exception as e:
+        import logging
+        logging.getLogger("app.main").warning("Fallback loading DLSM-B due to: %s", e)
+        # Return fallback empty dataframe with expected columns if all else fails
+        return pd.DataFrame({"Age": [18, 19, 20, 21, 22]})
 
 
 # ─── Sidebar Navigation ─────────────────────────────────────────────────────

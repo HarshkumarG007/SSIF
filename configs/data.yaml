@@ -2,9 +2,9 @@
 data:
   retention_path: "academic_survival_longitudinal.csv"
   placement_path: "Placement_Data_Full_Class.csv"
-  dlsm_a_path: "C:/Users/Lenovo/Downloads/DLSM/data/raw/dataset_a/bedtime_screentime_sleep_debt.csv"
-  dlsm_b_path: "C:/Users/Lenovo/Downloads/DLSM/data/raw/dataset_b/AI_SocialMedia_Student_Dataset.csv"
-  dlsm_root: "C:/Users/Lenovo/Downloads/DLSM"
+  dlsm_a_path: "data/raw/dlsm_a/bedtime_screentime_sleep_debt.csv"
+  dlsm_b_path: "data/raw/dlsm_b/AI_SocialMedia_Student_Dataset.csv"
+  dlsm_root: "data/raw"
   processed_dir: "data/processed"
   interim_dir: "data/interim"
   reports_dir: "reports"
