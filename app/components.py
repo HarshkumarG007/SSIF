@@ -158,14 +158,22 @@ def apply_custom_css():
     )
 
 
-def render_research_context(dataset_info: str, method_info: str, limitation_info: str):
+def render_research_context(
+    dataset_info: str,
+    method_info: str,
+    limitation_info: str = "",
+    limitation_text: str | None = None,
+):
     """Render standardized research context banner."""
+    limitation = limitation_text or limitation_info or (
+        "Observational evidence across independent cohorts — representation bridge without row-merging"
+    )
     st.markdown(
         f"""
         <div class="research-context-box">
             <div>📊 <b>DATASET:</b> {dataset_info}</div>
             <div>🔬 <b>METHODOLOGY:</b> {method_info}</div>
-            <div>⚠️ <b>LIMITATION:</b> {limitation_info}</div>
+            <div>⚠️ <b>LIMITATION:</b> {limitation}</div>
         </div>
         """,
         unsafe_allow_html=True,

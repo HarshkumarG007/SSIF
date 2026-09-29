@@ -1204,7 +1204,7 @@ elif selected_page == "\u2697\ufe0f Research Experiments Lab":
     render_research_context(
         dataset_info="Dataset A (79,239 rows, 20K students) + Dataset B (215 candidates)",
         method_info="OLS + Monte Carlo | LP Optimizer | Fairness Audit | Early-Warning ML | Cascade Simulation",
-        limitation_text="All experiments are observational projections. No randomized control group. Results inform policy deliberation, not prescribe individual student actions.",
+        limitation_info="All experiments are observational projections. No randomized control group. Results inform policy deliberation, not prescribe individual student actions.",
     )
 
     EXPERIMENTS_OUT = ROOT / "reports" / "experiments"
