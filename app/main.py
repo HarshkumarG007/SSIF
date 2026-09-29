@@ -143,12 +143,21 @@ selected_page = st.sidebar.radio("Navigation", pages)
 st.sidebar.markdown("---")
 st.sidebar.markdown(
     """
-    <div style="font-size: 0.80rem; color: #94A3B8; line-height: 1.4;">
-        <b>Scientific Governance:</b><br>
+    <div style="font-size: 0.80rem; color: #94A3B8; line-height: 1.4; margin-bottom: 12px;">
+        <b style="color: #F8FAFC;">Scientific Governance:</b><br>
         • Zero Data Leakage (RULE-009)<br>
         • GroupKFold Validation (RULE-004)<br>
         • No Fabricated Merges (RULE-002)<br>
         • Apache 2.0 Open Source
+    </div>
+    <div style="background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px; padding: 10px; font-size: 0.78rem; color: #CBD5E1; line-height: 1.45;">
+        <b style="color: #38BDF8;">🙏 Dataset Sources & Credits:</b><br>
+        Special thanks to the original dataset authors on Kaggle:<br>
+        • <b>Razan Ihab Abdellatif</b> (<a href="https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data" target="_blank" style="color: #38BDF8; text-decoration: underline;">Retention Panel</a>)<br>
+        • <b>Amey Thakur</b> (<a href="https://www.kaggle.com/datasets/ameythakur20/placement-data" target="_blank" style="color: #38BDF8; text-decoration: underline;">Placement Cohort</a>)<br>
+        <span style="display: block; margin-top: 6px; font-size: 0.72rem; color: #94A3B8;">
+            📢 <i>Please visit Kaggle to upvote and download the original datasets directly from their sources!</i>
+        </span>
     </div>
     """,
     unsafe_allow_html=True,
@@ -250,6 +259,31 @@ elif selected_page == "🔍 Data Audit & Missingness Observatory":
             limitation_info="Family_Income (4.55%) & LMS_Logins (1.09%) missingness is MAR; impute in training folds only.",
         )
 
+        st.markdown(
+            """
+            <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 14px 18px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #38BDF8; font-weight: 700;">Dataset Provenance & Acknowledgement</span>
+                        <h4 style="margin: 2px 0 4px 0; color: #F8FAFC; font-size: 1.05rem;">🎓 Student Retention & Academic Performance Panel</h4>
+                        <p style="margin: 0; font-size: 0.85rem; color: #94A3B8;">
+                            Curated and published by <b>Razan Ihab Abdellatif</b> on Kaggle. We extend our warmest thanksgiving for assembling and open-sourcing this rich 79,239-row longitudinal panel.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data" target="_blank" style="background: #0284C7; color: #FFFFFF; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 0.82rem; font-weight: 600; display: inline-block;">
+                            ↗ Visit & Download on Kaggle
+                        </a>
+                    </div>
+                </div>
+                <div style="margin-top: 8px; font-size: 0.78rem; color: #F59E0B;">
+                    ⭐ <b>Ethical Data Citation:</b> Please visit the original source to upvote the author and download the raw dataset directly from Kaggle.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
         col1, col2, col3, col4 = st.columns(4)
         col1.metric("Total Records", f"{len(df):,}")
         col2.metric("Unique Cohort", f"{df['Student_ID'].nunique():,} students")
@@ -283,6 +317,31 @@ elif selected_page == "🔍 Data Audit & Missingness Observatory":
             dataset_info="Placement_Data_Full_Class.csv • N=215 candidates • 15 variables",
             method_info="Structural Missingness audit • Stratified Cross-Validation",
             limitation_info="Salary is structurally missing for 100% of unplaced candidates (MNAR). N=215 exploratory sample size.",
+        )
+
+        st.markdown(
+            """
+            <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 14px 18px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #38BDF8; font-weight: 700;">Dataset Provenance & Acknowledgement</span>
+                        <h4 style="margin: 2px 0 4px 0; color: #F8FAFC; font-size: 1.05rem;">💼 Campus Recruitment (Placement Data Full Class)</h4>
+                        <p style="margin: 0; font-size: 0.85rem; color: #94A3B8;">
+                            Curated and published by <b>Amey Thakur</b> (<a href="https://www.kaggle.com/ameythakur20" target="_blank" style="color: #38BDF8;">@ameythakur20</a>) on Kaggle. Heartfelt thanks for open-sourcing this multi-tier academic placement benchmark.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="https://www.kaggle.com/datasets/ameythakur20/placement-data" target="_blank" style="background: #0284C7; color: #FFFFFF; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 0.82rem; font-weight: 600; display: inline-block;">
+                            ↗ Visit & Download on Kaggle
+                        </a>
+                    </div>
+                </div>
+                <div style="margin-top: 8px; font-size: 0.78rem; color: #F59E0B;">
+                    ⭐ <b>Ethical Data Citation:</b> Please visit the original source to upvote the author and download the raw dataset directly from Kaggle.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
         )
 
         col1, col2, col3, col4 = st.columns(4)

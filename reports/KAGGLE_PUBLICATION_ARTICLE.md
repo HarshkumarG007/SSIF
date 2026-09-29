@@ -90,3 +90,16 @@ Analyzing the 215 MBA candidate dataset with Stratified 5-Fold Cross-Validation:
 - **GitHub Repository:** [HarshkumarG007/SSIF](https://github.com/HarshkumarG007/SSIF)
 - **Kaggle Master Notebook:** `notebooks/kaggle_ssif_student_success_study.ipynb`
 - **Streamlit Research Observatory:** Run `streamlit run app/main.py`
+
+---
+
+## 🙏 Acknowledgements & Original Dataset Credits
+
+We extend our sincere gratitude and thanksgiving to the original researchers and curators who open-sourced the underlying datasets on Kaggle:
+
+1. **Razan Ihab Abdellatif** — Curator of the [Student Retention and Academic Performance Data](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data) (79,239 longitudinal records across 20,000 students). Thank you for assembling this remarkable panel that made zero-leakage trajectory modeling and survival hazard analysis possible.
+2. **Amey Thakur** ([@ameythakur20](https://www.kaggle.com/ameythakur20)) — Curator of the [Campus Recruitment (Placement Data Full Class)](https://www.kaggle.com/datasets/ameythakur20/placement-data) (215 candidate profiles). Heartfelt thanks for providing this benchmark dataset for multi-tier employability modeling.
+
+### 📥 Ethical Data Access Notice
+> **Please visit the original Kaggle dataset sources directly, give the authors an upvote/star, and download the raw datasets directly from their Kaggle pages.** Attribution and primary citations belong to Razan Ihab Abdellatif and Amey Thakur.
+

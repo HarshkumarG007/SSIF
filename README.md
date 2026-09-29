@@ -34,6 +34,7 @@
 8. [Quickstart & Reproduction Guide](#-quickstart--reproduction-guide)
 9. [Project Directory Blueprint](#-project-directory-blueprint)
 10. [License & Citation](#-license--citation)
+11. [Acknowledgements & Original Dataset Credits](#-acknowledgements--original-dataset-credits)
 
 ---
 
@@ -155,6 +156,8 @@ flowchart TD
 
 | Dimension | Dataset A: Academic Retention Panel | Dataset B: Employment Placement Cohort | DLSM-A: Sleep & Screen Telemetry | DLSM-B: AI, Social Media & Health |
 |---|---|---|---|---|
+| **Original Creator** | **Razan Ihab Abdellatif** | **Amey Thakur** ([@ameythakur20](https://www.kaggle.com/ameythakur20)) | DLSM Research Group | DLSM Research Group |
+| **Primary Source** | [Kaggle Dataset Source](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data) | [Kaggle Dataset Source](https://www.kaggle.com/datasets/ameythakur20/placement-data) | [DLSM Sister Study](https://github.com/HarshkumarG007/DLSM) | [DLSM Sister Study](https://github.com/HarshkumarG007/DLSM) |
 | **Raw File** | `academic_survival_longitudinal.csv` | `Placement_Data_Full_Class.csv` | `bedtime_screentime_sleep_debt.csv` | `AI_SocialMedia_Student_Dataset.csv` |
 | **Observation Unit** | Student $\times$ Semester panel | Individual candidate profile | User sleep & device session | Student digital habit record |
 | **Sample Size** | **79,239 records** (20,000 distinct students) | **215 candidates** (MBA cohort) | **8,500 records** | **700 records** (students) |
@@ -950,3 +953,38 @@ This framework is licensed under the **Apache License 2.0** - see the [LICENSE](
   url     = {https://github.com/HarshkumarG007/SSIF}
 }
 ```
+
+---
+
+## 🙏 Acknowledgements & Original Dataset Credits
+
+The **Student Success Intelligence Framework (SSIF)** stands on the shoulders of dedicated researchers, data scientists, and educational practitioners who open-source real-world institutional datasets for the global academic community. 
+
+We extend our profound gratitude, respect, and thanksgiving to the original creators and dataset curators:
+
+### 1. 🎓 Student Retention & Academic Performance Panel
+* **Curator & Original Author:** **Razan Ihab Abdellatif**
+* **Primary Kaggle Dataset:** [Student Retention and Academic Performance Data](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data)
+* **Dataset Characteristics:** 79,239 longitudinal student-semester observations across 20,000 distinct students tracking cumulative GPA velocity, course failure rates, attendance ratios, and institutional retention milestones.
+* **Citation & Thanksgiving:** We express our deepest thanks to **Razan Ihab Abdellatif** for assembling and releasing this rich longitudinal panel. Without this temporal granularity, developing vectorized $O(N)$ trajectory engines, Kaplan-Meier hazard estimates, and empirical recovery models would have been impossible.
+
+### 2. 💼 MBA Campus Placement & Employability Dataset
+* **Curator & Original Author:** **Amey Thakur** ([Kaggle: @ameythakur20](https://www.kaggle.com/ameythakur20))
+* **Primary Kaggle Dataset:** [Campus Recruitment (Placement Data Full Class)](https://www.kaggle.com/datasets/ameythakur20/placement-data)
+* **Dataset Characteristics:** 215 business school candidate profiles capturing multi-tier academic percentages (secondary, higher secondary, undergraduate, MBA specialization), verified work experience, employability test scores, and starting corporate compensation.
+* **Citation & Thanksgiving:** Our sincere thanks and appreciation go to **Amey Thakur** for publishing this benchmark employability dataset. It enabled SSIF to model the two-stage decoupling between hiring probability and conditional compensation while proving the profound $+26.9\%$ placement advantage created by professional work experience.
+
+---
+
+### 📥 Ethical Data Access & Primary Download Call-to-Action
+
+> ### 📢 A Message to Researchers, Practitioners, and Students
+> 
+> To honor and respect dataset provenance, licensing, and community attribution:
+> 
+> 1. **Please visit the original primary Kaggle dataset pages linked above.**
+> 2. **Give the authors an upvote / star on Kaggle** to recognize their hard work and contribution to open educational data mining.
+> 3. **Download the raw CSV files directly from the original authors on Kaggle** for your own research pipelines and independent replications.
+> 
+> Direct all primary dataset citations, attribution inquiries, and original provenance recognition to **Razan Ihab Abdellatif** and **Amey Thakur**.
+

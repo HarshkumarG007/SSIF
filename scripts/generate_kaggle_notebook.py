@@ -303,6 +303,18 @@ print(f"Scientific Verdict: {ablation.scientific_verdict}")
 4. **DLSM Integration Gate:** Row-level merging of disjoint datasets without shared behavioral telemetry is scientifically invalid. Construct-level bridging reveals parallel mechanisms: digital fatigue and academic fatigue drive common dropout vulnerabilities.
 
 ---
+
+## 10. 🙏 Acknowledgements & Original Dataset Credits
+
+We extend our deep gratitude, thanksgiving, and respect to the original dataset authors and curators on Kaggle:
+
+* **Razan Ihab Abdellatif** — Curator of the [Student Retention and Academic Performance Panel](https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data) (79,239 rows, 20,000 students). Heartfelt thanks for open-sourcing this rich longitudinal dataset.
+* **Amey Thakur** ([@ameythakur20](https://www.kaggle.com/ameythakur20)) — Curator of the [Campus Recruitment (Placement Data Full Class)](https://www.kaggle.com/datasets/ameythakur20/placement-data) (215 candidates). Sincere thanks for assembling this benchmark employability cohort.
+
+> **📢 Ethical Data Citation & Download Call-to-Action:**  
+> Please visit the original Kaggle dataset pages linked above to **upvote the creators' work** and **download the raw datasets directly from their Kaggle repositories** for your own research and replications.
+
+---
 **Repository & Full Source:** [HarshkumarG007/SSIF](https://github.com/HarshkumarG007/SSIF)  
 **Interactive Web Observatory:** Run `streamlit run app/main.py`
         """),
