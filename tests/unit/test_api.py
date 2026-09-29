@@ -1,10 +1,9 @@
-"""
-test_api.py — Unit Tests for SSIF Production FastAPI Microservice
-Student Success Intelligence Framework (SSIF)
-"""
-from fastapi.testclient import TestClient
 import pytest
 
+pytest.importorskip("fastapi")
+pytest.importorskip("httpx")
+
+from fastapi.testclient import TestClient
 from api.main import app
 
 client = TestClient(app)
