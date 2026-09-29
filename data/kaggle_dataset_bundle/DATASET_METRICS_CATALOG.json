@@ -1,0 +1,158 @@
+{
+  "project": "Student Success Intelligence Framework (SSIF)",
+  "version": "1.0.0",
+  "generated_date": "2026-09-29",
+  "provenance_standards": {
+    "rule_001": "Inspect schemas before modeling",
+    "rule_002": "Never fabricate student identifiers",
+    "rule_003": "Never row-merge retention and placement datasets",
+    "rule_009": "Strict temporal and outcome leakage prevention"
+  },
+  "datasets": {
+    "raw": {
+      "retention": {
+        "path": "data/raw/retention/academic_survival_longitudinal.csv",
+        "rows": 79239,
+        "columns": 22,
+        "curator": "Razan Ihab Abdellatif",
+        "url": "https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data"
+      },
+      "placement": {
+        "path": "data/raw/placement/Placement_Data_Full_Class.csv",
+        "rows": 215,
+        "columns": 15,
+        "curator": "Amey Thakur (@ameythakur20)",
+        "url": "https://www.kaggle.com/datasets/ameythakur20/placement-data"
+      },
+      "dlsm_a": {
+        "dataset_name": "Sleep Debt and Screen Time / Late Night Phone Habits",
+        "rows": 8500,
+        "columns": 11,
+        "curator": "Samar Talwar",
+        "url": "https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits",
+        "sister_repo": "https://github.com/HarshkumarG007/DLSM"
+      },
+      "dlsm_b": {
+        "dataset_name": "AI and Social Media Impact: Student Health & Grades",
+        "path": "data/raw/dlsm_b/AI_SocialMedia_Student_Dataset.csv",
+        "rows": 16000,
+        "columns": 10,
+        "curator": "Sri Syra (@srisyra02)",
+        "url": "https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades",
+        "sister_repo": "https://github.com/HarshkumarG007/DLSM"
+      }
+    },
+    "interim": {
+      "retention": {
+        "csv_path": "data/interim/retention_interim.csv",
+        "parquet_path": "data/interim/retention_interim.parquet",
+        "rows": 79239,
+        "columns": 22,
+        "transformations": [
+          "Type casting for 18 numeric columns",
+          "Canonicalization of Gender categories to Female, Male, Other",
+          "Chronological sorting by Student_ID and Semester",
+          "Explicit MAR identification for Family_Income (4.55%) and LMS_Logins (1.09%)"
+        ]
+      },
+      "placement": {
+        "csv_path": "data/interim/placement_interim.csv",
+        "parquet_path": "data/interim/placement_interim.parquet",
+        "rows": 215,
+        "columns": 15,
+        "transformations": [
+          "Type casting for 6 numeric percentage and salary attributes",
+          "Whitespace trimming on 8 text/categorical columns",
+          "Structural missingness labeling for salary (MNAR, 67 unplaced candidates)"
+        ]
+      }
+    },
+    "processed": {
+      "retention_longitudinal": {
+        "csv_path": "data/processed/ssif_retention_longitudinal_enriched.csv",
+        "parquet_path": "data/processed/ssif_retention_longitudinal_enriched.parquet",
+        "rows": 79239,
+        "columns": 45,
+        "added_features": [
+          "gpa_slope", "gpa_velocity", "gpa_volatility", "gpa_recent_mean",
+          "attendance_slope", "attendance_delta", "lms_slope", "lms_delta",
+          "cumulative_failed_courses", "cumulative_advising_visits",
+          "decline_index", "recovery_index",
+          "gpa_tipping_category", "course_overload_flag", "attendance_cliff_flag",
+          "is_q1_income", "q1_scholarship_buffered", "student_labor_burden",
+          "advising_early_intervention", "academic_resilience_cohort"
+        ]
+      },
+      "retention_student_profiles": {
+        "csv_path": "data/processed/ssif_retention_student_profiles.csv",
+        "parquet_path": "data/processed/ssif_retention_student_profiles.parquet",
+        "rows": 20000,
+        "columns": 20,
+        "purpose": "Student-level aggregated profiles capturing lifetime trajectory, final retention status, and resilience cohort"
+      },
+      "placement_enriched": {
+        "csv_path": "data/processed/ssif_placement_enriched.csv",
+        "parquet_path": "data/processed/ssif_placement_enriched.parquet",
+        "rows": 215,
+        "columns": 24,
+        "added_features": [
+          "academic_progression", "degree_deviation", "composite_academic_score", "etest_academic_ratio",
+          "degree_hiring_threshold", "workex_rescued_profile", "specialisation_market_tier",
+          "undergrad_stream_category", "corporate_salary_band"
+        ]
+      },
+      "synthesis_metrics": {
+        "json_path": "data/processed/ssif_higher_ed_synthesis_metrics.json",
+        "csv_path": "data/processed/ssif_higher_ed_synthesis_metrics.csv",
+        "key_findings": {
+          "work_hours_in_college_or": 1.007,
+          "work_experience_post_degree_or": 4.9776,
+          "degree_65_pct_placement_leap": "+31.82%",
+          "workex_rescue_low_gpa_rate": "72.73% vs 31.15%",
+          "course_overload_hazard_surge": "+80.40%",
+          "q1_scholarship_risk_reduction": "-9.73%"
+        }
+      },
+      "macro_cohorts": {
+        "csv_path": "data/processed/ssif_macro_pipeline_cohorts.csv",
+        "rows": 3,
+        "columns": 4,
+        "purpose": "Cross-pipeline student risk tiers from college entry to post-degree corporate placement"
+      }
+    }
+  },
+  "credits_and_provenance": {
+    "notice": "All primary dataset rights, citations, and open-source credits belong to the original curators. Users are encouraged to star and download datasets directly from Kaggle.",
+    "curators": [
+      {
+        "name": "Razan Ihab Abdellatif",
+        "role": "Curator & Author, Student Retention and Academic Performance Panel",
+        "platform": "Kaggle",
+        "url": "https://www.kaggle.com/datasets/razanihababdellatif/student-retention-and-academic-performance-data"
+      },
+      {
+        "name": "Amey Thakur",
+        "role": "Curator & Author, Campus Recruitment (Placement Data Full Class)",
+        "platform": "Kaggle (@ameythakur20)",
+        "url": "https://www.kaggle.com/datasets/ameythakur20/placement-data"
+      },
+      {
+        "name": "Samar Talwar",
+        "role": "Curator & Author, Sleep Debt and Screen Time / Late Night Phone Habits",
+        "platform": "Kaggle",
+        "url": "https://www.kaggle.com/datasets/samartalwar/sleep-debt-and-screen-time-late-night-phone-habits"
+      },
+      {
+        "name": "Sri Syra",
+        "role": "Curator & Author, AI and Social Media Impact: Student Health & Grades",
+        "platform": "Kaggle (@srisyra02)",
+        "url": "https://www.kaggle.com/datasets/srisyra02/ai-and-social-media-impact-student-health-and-grades"
+      }
+    ],
+    "sister_framework": {
+      "name": "Digital Lifestyle Spillover Modeling (DLSM)",
+      "repo": "https://github.com/HarshkumarG007/DLSM",
+      "author": "Harshkumar G."
+    }
+  }
+}

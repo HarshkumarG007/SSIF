@@ -1,19 +1,19 @@
 # memory.md — Persistent Project State & Decision Ledger
 # Student Success Intelligence Framework (SSIF)
 
-**Last Updated:** 2026-09-29  
+**Last Updated:** 2026-09-30  
 **GitHub Repository:** `https://github.com/HarshkumarG007/SSIF` (Connected & Synced)  
 **Live Cloud Observatory:** `https://ssif-research.streamlit.app/` (Active & Deployed)  
-**Current Phase:** ALL PHASES COMPLETE (PHASES 0 THROUGH 11) + EXTENSION MILESTONES LIVE IN PRODUCTION  
-**System Status:** Live Streamlit Cloud deployment operational with 41/41 passing tests, modern `width="stretch"` chart compatibility, zero-warning logs, camera-ready IEEEtran 2-column paper PDF (`papers/ssif_academic_retention_study.pdf`), 7 reproducible notebooks, and CI/CD workflow synced.
+**Current Phase:** ALL PHASES COMPLETE (PHASES 0 THROUGH 14) + EXTENSION MILESTONES LIVE IN PRODUCTION  
+**System Status:** Live Streamlit Cloud deployment operational with 82/82 passing tests, production FastAPI REST microservice, Docker & docker-compose orchestration, Double ML causal inference engine, Kaggle 1-click release automation, and error-free live browser validation across all 9 observatory pages.
 
 ---
 
 ## CURRENT STATUS
 
-**All 11 Project Phases + 7 Extension Milestones COMPLETE.**
+**All 14 Project Phases + 12 Extension Milestones COMPLETE.**
 - **GitHub Synced:** `https://github.com/HarshkumarG007/SSIF` with Apache 2.0 license, clean tracking, and full documentation.
-- **Unit Test Suite:** **70/70 unit tests passing** across all modules including schema validators, trajectory engines, survival models, placement classifiers, clustering, resilience, DLSM ablation, counterfactual recourse, tabular feasibility auditor gates, research experiments suite, and the dedicated security & privacy regression suite (`tests/unit/test_security_privacy.py`).
+- **Unit Test Suite:** **82/82 unit tests passing** across all 16 test modules including schema validators, trajectory engines, survival models, placement classifiers, clustering, resilience, DLSM ablation, counterfactual recourse, tabular feasibility auditor gates, research experiments suite, security & privacy regression suite, causal ML engine (`tests/unit/test_causal_ml.py`), REST API (`tests/unit/test_api.py`), and Kaggle release automation (`tests/unit/test_kaggle_release.py`).
 - **Milestone 1 (Jupyter Notebook Suite):** 7 interactive research notebooks (`notebooks/01_retention_audit.ipynb` through `07_dlsm_effectiveness.ipynb`) generated via `scripts/generate_notebooks.py`.
 - **Milestone 2 (Kaggle Publication Package):** Standalone publication notebook (`notebooks/kaggle_ssif_student_success_study.ipynb`) and community article (`reports/KAGGLE_PUBLICATION_ARTICLE.md`).
 - **Milestone 3 (Cloud Deployment Readiness):** Production `requirements.txt`, `.streamlit/config.toml` (dark HSL theme), and comprehensive deployment guide (`docs/DEPLOYMENT_GUIDE.md`). Live at `https://ssif-research.streamlit.app/`.
@@ -37,6 +37,10 @@
   - **SEC-08 & SEC-11 (Legal Notice & Apache-2.0 Boilerplate):** Created root `NOTICE` acknowledging third-party datasets (Abdellatif, Thakur, Talwar, Syra) and populated Apache-2.0 copyright in `LICENSE`.
   - **SEC-09 (Causal LMS Imputation):** Replaced retrospective median imputation with forward-fill (`grp["LMS_Logins"].ffill().fillna(0.0)`) in `src/retention/features.py`, eliminating future-to-past temporal leakage.
   - **SEC-10 (Dataset B EPV Regularization):** Enforced $\le 6$ degrees of freedom feature selection (`constrained_dof=True`) and strong L2 regularization to respect the EPV $\ge 10$ guideline on Dataset B.
+- **Milestone 9 (Causal ML Engine & Double Machine Learning):** Built `src/causal/double_ml.py` implementing Double Machine Learning (DML) via Partially Linear Regression (`DoubleMLPLR`) and Augmented Inverse Probability Weighting (`DoubleMLAIPW`) with Neyman-orthogonal cross-fitting on GroupKFold splits. Includes `CATEEstimator` for subgroup heterogeneous treatment effect interaction and VanderWeele & Ding E-value sensitivity calculations. Benchmarks confirm scholarship causes a -4.66 percentage point dropout reduction ($p < 10^{-6}$, 95% CI: $[-0.0648, -0.0284]$, E-value: 1.27) and +0.0239 GPA lift ($p = 0.0032$, 95% CI: $[+0.0080, +0.0398]$, E-value: 1.18).
+- **Milestone 10 (Enterprise FastAPI REST Microservice):** Built high-throughput microservice in `api/` (`api/schemas.py`, `api/main.py`) exposing standardized endpoints: `/health`, `/v1/retention/predict`, `/v1/recourse/solve`, `/v1/placement/evaluate`, and `/v1/causal/estimate`. Features CORS configuration, client request tracing (`X-Request-ID`), execution latency metrics (`X-Process-Time`), FERPA compliance notices, and containerization via a multi-stage non-root `Dockerfile` and `docker-compose.yml`.
+- **Milestone 11 (Automated 1-Click Kaggle CLI Release):** Engineered `scripts/publish_to_kaggle.py` for automated dataset and kernel bundling with metadata specifications (`data/kaggle_dataset_bundle/dataset-metadata.json`, `notebooks/kaggle_kernel/kernel-metadata.json`), generating complete Kaggle CLI publishing workflows.
+- **Milestone 12 (Live Browser Walkthrough & Visual Hardening):** Validated live Streamlit application with browser subagent across all 9 observatory pages. Resolved two latent edge-case bugs on Page 9: root project directory reference bug and surrogate-pair unicode encoding crash (`UnicodeEncodeError`) across experiment expander headers. All 5 research experiments run and visualize interactively error-free in the browser.
 
 
 

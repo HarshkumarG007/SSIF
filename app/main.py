@@ -14,6 +14,7 @@ from pathlib import Path
 # Ensure project root and app directory are in sys.path regardless of execution directory
 _current_dir = Path(__file__).resolve().parent
 _project_root = _current_dir.parent
+ROOT = _project_root
 for _p in [str(_project_root), str(_current_dir)]:
     if _p not in sys.path:
         sys.path.insert(0, _p)
@@ -1211,7 +1212,7 @@ elif selected_page == "\u2697\ufe0f Research Experiments Lab":
 
     EXP_META = {
         "EXP-001": {
-            "icon": "\ud83d\udcbc",
+            "icon": "💼",
             "title": "Labor-Policy Intervention Simulation",
             "tagline": "What is the ROI of converting students from survival labor to institutional work-study?",
             "files": {
@@ -1223,7 +1224,7 @@ elif selected_page == "\u2697\ufe0f Research Experiments Lab":
             "summary_file": "EXP-001/EXP001_summary.md",
         },
         "EXP-002": {
-            "icon": "\ud83d\udd01",
+            "icon": "🔁",
             "title": "Pipeline Resilience Stress Test",
             "tagline": "How do retention failures cascade through the college lifecycle to shrink the placement pool?",
             "files": {
@@ -1235,7 +1236,7 @@ elif selected_page == "\u2697\ufe0f Research Experiments Lab":
             "summary_file": "EXP-002/EXP002_summary.md",
         },
         "EXP-003": {
-            "icon": "\u2696\ufe0f",
+            "icon": "⚖️",
             "title": "Socio-Economic Fairness Audit",
             "tagline": "Does the 65% GPA hiring threshold disproportionately exclude low-income and first-gen students?",
             "files": {
@@ -1247,7 +1248,7 @@ elif selected_page == "\u2697\ufe0f Research Experiments Lab":
             "summary_file": "EXP-003/EXP003_summary.md",
         },
         "EXP-004": {
-            "icon": "\ud83d\udd2e",
+            "icon": "🔮",
             "title": "Career Trajectory Forecasting",
             "tagline": "Can Semester 1-2 signals predict long-run placement eligibility years in advance?",
             "files": {
@@ -1259,7 +1260,7 @@ elif selected_page == "\u2697\ufe0f Research Experiments Lab":
             "summary_file": "EXP-004/EXP004_summary.md",
         },
         "EXP-005": {
-            "icon": "\ud83d\udcca",
+            "icon": "📊",
             "title": "Intervention ROI Optimizer",
             "tagline": "What allocation of advising, scholarships, and work-study maximizes student retention per dollar?",
             "files": {
@@ -1309,7 +1310,7 @@ elif selected_page == "\u2697\ufe0f Research Experiments Lab":
             else:
                 st.info("Summary not yet generated. Run the experiment first.")
 
-            st.markdown("**\ud83d\udcc1 Data Files:**")
+            st.markdown("**📁 Data Files:**")
             for file_label, rel_path in meta["files"].items():
                 fp = EXPERIMENTS_OUT / rel_path
                 if fp.exists():
@@ -1328,12 +1329,12 @@ elif selected_page == "\u2697\ufe0f Research Experiments Lab":
                         except Exception as e:
                             st.warning(f"{file_label}: {e}")
                 else:
-                    st.caption(f"\u23f3 {file_label}: not yet generated")
+                    st.caption(f"⏳ {file_label}: not yet generated")
 
     st.markdown("---")
 
     # EXP-005 Pareto Frontier Visualization
-    st.subheader("\ud83d\udcca EXP-005: Budget Optimization Pareto Frontier")
+    st.subheader("📊 EXP-005: Budget Optimization Pareto Frontier")
     pareto_path = EXPERIMENTS_OUT / "EXP-005/optimal_allocation_by_budget.csv"
     if pareto_path.exists():
         pareto_df = pd.read_csv(pareto_path)
@@ -1364,7 +1365,7 @@ elif selected_page == "\u2697\ufe0f Research Experiments Lab":
         st.info("Run EXP-005 to see the Pareto frontier visualization.")
 
     # EXP-002 Sensitivity Heatmap
-    st.subheader("\ud83d\udd01 EXP-002: Intervention Sensitivity Heatmap")
+    st.subheader("🔁 EXP-002: Intervention Sensitivity Heatmap")
     sens_path = EXPERIMENTS_OUT / "EXP-002/intervention_sensitivity_grid.csv"
     if sens_path.exists():
         sens_df = pd.read_csv(sens_path)
@@ -1386,7 +1387,7 @@ elif selected_page == "\u2697\ufe0f Research Experiments Lab":
         st.info("Run EXP-002 to see the sensitivity heatmap.")
 
     # EXP-003 Fairness Audit Charts
-    st.subheader("\u2696\ufe0f EXP-003: Threshold Achievability by Demographics")
+    st.subheader("⚖️ EXP-003: Threshold Achievability by Demographics")
     ach_path = EXPERIMENTS_OUT / "EXP-003/threshold_achievability_by_demographics.csv"
     if ach_path.exists():
         ach_df = pd.read_csv(ach_path)
@@ -1407,7 +1408,7 @@ elif selected_page == "\u2697\ufe0f Research Experiments Lab":
         st.info("Run EXP-003 to see the fairness audit charts.")
 
     # EXP-004 AUC Curve
-    st.subheader("\ud83d\udd2e EXP-004: Early Warning Window AUC Stabilization")
+    st.subheader("🔮 EXP-004: Early Warning Window AUC Stabilization")
     auc_path = EXPERIMENTS_OUT / "EXP-004/early_warning_window_auc_curve.csv"
     if auc_path.exists():
         auc_df = pd.read_csv(auc_path)

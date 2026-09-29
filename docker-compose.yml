@@ -1,0 +1,31 @@
+services:
+  ssif-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ssif-api-service
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  ssif-observatory:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ssif-streamlit-observatory
+    command: ["streamlit", "run", "app/main.py", "--server.port=8501", "--server.address=0.0.0.0"]
+    ports:
+      - "8501:8501"
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+    restart: unless-stopped
+    depends_on:
+      - ssif-api

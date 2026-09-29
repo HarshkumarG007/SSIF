@@ -1,0 +1,19 @@
+{
+  "title": "Student Success Intelligence Framework (SSIF) Datasets",
+  "id": "harshkumarg007/ssif-student-success-intelligence-framework",
+  "licenses": [
+    {
+      "name": "CC-BY-SA-4.0"
+    }
+  ],
+  "keywords": [
+    "education",
+    "higher-education",
+    "machine-learning",
+    "retention",
+    "survival-analysis",
+    "explainable-ai",
+    "causal-inference"
+  ],
+  "description": "A Multi-Dataset Computational Research Laboratory for Longitudinal Academic Persistence, Employability Phenotypes, Survival Hazards, and Algorithmic Counterfactual Recourse.\n\nSSIF Primary Datasets:\n- Academic Retention Panel: 79,239 records across 20,000 students (Curator: Razan Ihab Abdellatif)\n- Campus Placement Cohort: 215 MBA candidates (Curator: Amey Thakur)\n\nFull project documentation & code: https://github.com/HarshkumarG007/SSIF"
+}

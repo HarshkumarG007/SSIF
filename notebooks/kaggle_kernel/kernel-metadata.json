@@ -1,0 +1,20 @@
+{
+  "id": "harshkumarg007/ssif-longitudinal-academic-persistence-study",
+  "title": "SSIF: Longitudinal Academic Persistence & Employability Study",
+  "code_file": "kaggle_ssif_student_success_study.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "harshkumarg007/ssif-student-success-intelligence-framework"
+  ],
+  "keywords": [
+    "education",
+    "data-science",
+    "xgboost",
+    "survival-analysis",
+    "causal-inference"
+  ]
+}

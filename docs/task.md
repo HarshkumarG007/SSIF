@@ -341,6 +341,22 @@ The agent must: read this task entry, check dependencies are complete, execute, 
 
 ---
 
+## PHASE 14 — ADVANCED CAUSAL ML, FASTAPI REST MICROSERVICE, KAGGLE RELEASE & LIVE BROWSER DEMO (COMPLETED)
+
+| ID | Title | Status | Dependencies |
+|---|---|---|---|
+| TASK-158 | Double Machine Learning (DML) Engine (`src/causal/double_ml.py` PLR Neyman-orthogonal cross-fitting with GroupKFold) | `[✓]` | Phase 3 |
+| TASK-159 | Doubly Robust AIPW & CATE Estimator (`src/causal/double_ml.py` heterogeneous treatment effects & E-value sensitivity) | `[✓]` | TASK-158 |
+| TASK-160 | Causal Policy Benchmark Evaluation (`src/causal/benchmarks.py` scholarship to GPA & dropout mitigation reports) | `[✓]` | TASK-159 |
+| TASK-161 | Enterprise REST Microservice Schemas (`api/schemas.py` Pydantic v2 request/response models) | `[✓]` | All phases |
+| TASK-162 | FastAPI REST Ingestion & Inference Server (`api/main.py` CORS, audit headers, `/v1/retention`, `/v1/recourse`, `/v1/placement`, `/v1/causal`) | `[✓]` | TASK-161 |
+| TASK-163 | Production Containerization (`Dockerfile` multi-stage non-root build & `docker-compose.yml` dual service orchestration) | `[✓]` | TASK-162 |
+| TASK-164 | Kaggle CLI Release Automation (`scripts/publish_to_kaggle.py`, `dataset-metadata.json`, `kernel-metadata.json`) | `[✓]` | Phase 11 |
+| TASK-165 | Automated Pytest Expansion (`test_causal_ml.py`, `test_api.py`, `test_kaggle_release.py` -> 82/82 passing tests) | `[✓]` | All phases |
+| TASK-166 | Live Streamlit Browser Verification & Bug Remediation (fixed `ROOT` pathing & surrogate unicode crashes on Page 9) | `[✓]` | Phase 9 |
+
+---
+
 ## STOP CONDITIONS
 
 The project must STOP and surface a conflict if any of the following occur:

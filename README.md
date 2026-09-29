@@ -3,7 +3,7 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![CI Status](https://github.com/HarshkumarG007/SSIF/actions/workflows/ci.yml/badge.svg)](https://github.com/HarshkumarG007/SSIF/actions)
-[![Tests Passing](https://img.shields.io/badge/tests-55%2F55%20passing-brightgreen.svg)](tests/)
+[![Tests Passing](https://img.shields.io/badge/tests-82%2F82%20passing-brightgreen.svg)](tests/)
 [![Streamlit Cloud](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ssif-research.streamlit.app/)
 [![Live Observatory](https://img.shields.io/badge/Streamlit%20Cloud-Live%20Observatory-FF4B4B.svg)](https://ssif-research.streamlit.app/)
 [![Research Paper](https://img.shields.io/badge/IEEE%20Format-Paper%20PDF-8B5CF6.svg)](papers/ssif_academic_retention_study.pdf)
@@ -91,7 +91,8 @@ SSIF unifies three distinct analytical domains across 79,239 longitudinal studen
 | **Hiring Equity Audit (EXP-003)** | **Subgroup Achievability** | Parity across income | **Q1 vs Q4 Disparity** | Identified N=992 Qualified-But-Excluded students with strong positive trajectory |
 | **Early Warning Horizon (EXP-004)**| **Early Career AUC** | 0.5000 (Random) | **0.7469 (S1-S2) → 0.8387 (S4)**| GroupKFold validation proving early signals predict 4-year success pathways |
 | **Budget Optimizer (EXP-005)** | **Pareto Frontier ROI** | Unoptimized ad-hoc allocation| **0.0533 reductions / $1** | HiGHS Linear Programming across $10K-$500K portfolios; advising prioritizes first |
-| **Code Reliability & Testing** | **Automated Tests** | Standard smoke tests | **55/55 Passed** (100% pass rate) | Pytest suite covering data validators, trajectory engines, and experiment pipelines |
+| **Causal Double ML (DML)** | **Average Treatment Effect (ATE)** | Observational association | **-4.66 pp Dropout / +0.024 GPA** | Neyman-orthogonal cross-fitting with GroupKFold ($p < 10^{-6}$, E-value = 1.27) |
+| **Code Reliability & Testing** | **Automated Tests** | Standard smoke tests | **82/82 Passed** (100% pass rate) | Pytest suite covering data validators, trajectory engines, causal DML, REST API, & Kaggle release |
 
 ![SSIF Executive Research Observatory](docs/screenshots/01_executive_overview.png)
 *Figure 1: The SSIF Research Observatory Executive Dashboard (ssif-research.streamlit.app). Features dimensional elevation cards, glassmorphic research context panels, and live framework KPIs across 79,239 longitudinal student-semester records.*
@@ -933,12 +934,36 @@ pip install -r requirements.txt
 pip install --no-deps -e .
 ```
 
-### 2. Run Automated Pytest Suite (55 Tests Across All Modules)
+### 2. Run Automated Pytest Suite (82 Tests Across All 16 Modules)
 ```bash
 pytest tests/ -v
 ```
 
-### 3. Run Master Research Experiments Suite (EXP-001 through EXP-005)
+### 3. Launch Enterprise FastAPI REST Microservice
+```bash
+# Start FastAPI ingestion & inference server with live reload
+uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+
+# Interactive Swagger UI: http://localhost:8000/docs
+# OpenAPI JSON schema: http://localhost:8000/openapi.json
+```
+
+### 4. Run via Docker Compose (Multi-Service Stack)
+```bash
+# Spins up FastAPI microservice (port 8000) and Streamlit Observatory (port 8501)
+docker-compose up --build
+```
+
+### 5. Automated 1-Click Kaggle Release Packaging
+```bash
+# Verify dataset & kernel bundles (dry-run)
+python scripts/publish_to_kaggle.py
+
+# Push live to Kaggle CLI
+python scripts/publish_to_kaggle.py --live
+```
+
+### 6. Run Master Research Experiments Suite (EXP-001 through EXP-005)
 ```bash
 # Run all 5 domain-specialized research experiments in sequence
 python experiments/run_all_experiments.py
@@ -951,7 +976,7 @@ python experiments/exp_004_career_trajectory_forecast.py
 python experiments/exp_005_intervention_roi_optimizer.py
 ```
 
-### 4. Run the Tabular Feasibility Auditor via CLI
+### 7. Run the Tabular Feasibility Auditor via CLI
 ```bash
 # Audit Placement Dataset
 python dataset_feasibility_audit.py Placement_Data_Full_Class.csv --target status --id sl_no --drop salary --sensitive gender
@@ -960,13 +985,13 @@ python dataset_feasibility_audit.py Placement_Data_Full_Class.csv --target statu
 python dataset_feasibility_audit.py academic_survival_longitudinal.csv --target Target_Dropout_Next_Sem --group Student_ID --time Semester --sensitive Gender --drop End_of_Semester_Status,Censored --max-rows 5000
 ```
 
-### 5. Compile the Camera-Ready IEEE Research Paper
+### 8. Compile the Camera-Ready IEEE Research Paper
 ```bash
 python scripts/compile_paper.py
 # Output generated at: papers/ssif_academic_retention_study.pdf
 ```
 
-### 6. Launch the Local Research Observatory Dashboard
+### 9. Launch the Local Research Observatory Dashboard
 ```bash
 streamlit run app/main.py
 ```
@@ -977,10 +1002,13 @@ streamlit run app/main.py
 
 ```
 SSIF/
-├── .github/workflows/ci.yml      # CI/CD pipeline running 55 tests on Python 3.11 & 3.12
+├── .github/workflows/ci.yml      # CI/CD pipeline running 82 tests on Python 3.11 & 3.12
 ├── .streamlit/config.toml        # Observatory dark HSL research theme
+├── api/                          # Production FastAPI REST Microservice
+│   ├── main.py                   # REST endpoints (/v1/retention, /v1/recourse, /v1/placement, /v1/causal)
+│   └── schemas.py                # Pydantic v2 input/output payload models
 ├── app/                          # Production Streamlit Observatory
-│   ├── main.py                   # 8-view interactive research dashboard & policy lab
+│   ├── main.py                   # 9-view interactive research dashboard & policy lab
 │   └── components.py             # Custom HSL cards, Plotly themes & limitation banners
 ├── configs/                      # Pydantic v2 typed configuration manifests
 │   ├── data.yaml                 # Filepaths, schemas, and seeds
@@ -988,6 +1016,7 @@ SSIF/
 │   └── models.yaml               # Model hyperparameters & GroupKFold settings
 ├── data/                         # Two-tier reproducible research data lakehouse
 │   ├── raw/                      # Original raw academic datasets
+│   ├── kaggle_dataset_bundle/    # 1-click Kaggle CLI distribution bundle
 │   ├── interim/                  # Cleaned, validated, normalized Parquet & CSV datasets
 │   │   ├── retention_interim.parquet / .csv
 │   │   ├── placement_interim.parquet / .csv
@@ -1000,12 +1029,14 @@ SSIF/
 │       ├── ssif_macro_pipeline_cohorts.csv
 │       ├── ssif_higher_ed_synthesis_metrics.json / .csv
 │       └── README.md
+├── Dockerfile                    # Production multi-stage, non-root microservice container
+├── docker-compose.yml            # Multi-container orchestration (FastAPI + Streamlit)
 ├── docs/                         # Governance constitution & specifications
 │   ├── PRD.md                    # Research Requirements Document (v2.0)
 │   ├── System Architecture.md    # End-to-end architectural blueprints (v2.0)
 │   ├── Rules.md                  # 62 scientific & engineering governance rules
 │   ├── design.md                 # UI/UX design specifications
-│   ├── task.md                   # 146 tracked execution tasks across 12 phases
+│   ├── task.md                   # 166 tracked execution tasks across 14 phases
 │   ├── memory.md                 # Persistent project decision ledger
 │   ├── DEPLOYMENT_GUIDE.md       # Streamlit Cloud deployment runbook
 │   └── DLSM_CROSSLINK_DOCUMENTATION.md # Cross-study ecosystem reference
@@ -1015,27 +1046,30 @@ SSIF/
 │   ├── exp_003_fairness_audit.py               # Hiring threshold equity & QBE pool
 │   ├── exp_004_career_trajectory_forecast.py   # S1-S4 early warning AUC curve
 │   ├── exp_005_intervention_roi_optimizer.py   # HiGHS LP budget allocation
-│   ├── run_all_experiments.py                  # Master experiment orchestrator
-│   └── README.md                               # Experiments directory guide
+│   └── run_all_experiments.py                  # Master experiment orchestrator
 ├── notebooks/                    # 7 Laboratory & Kaggle Research Notebooks
 │   ├── 01_retention_audit.ipynb through 07_dlsm_effectiveness.ipynb
-│   └── kaggle_ssif_student_success_study.ipynb # All-in-one publication notebook
+│   ├── kaggle_ssif_student_success_study.ipynb # Standalone publication notebook
+│   └── kaggle_kernel/            # Kaggle code kernel upload metadata bundle
 ├── papers/                       # Camera-ready publication manuscripts
 │   ├── ssif_academic_retention_study.tex # IEEEtran LaTeX source
 │   ├── ssif_academic_retention_study.pdf # Compiled 2-page publication PDF
 │   └── ssif_research_preprint.md         # Full markdown research paper
 ├── reports/                      # Empirical research findings & audit logs
+│   ├── causal/                   # Double ML policy evaluations & E-values
 │   ├── DEEP_DATASET_DISCOVERY_REPORT.md  # Landmark Non-Linear EDA & Synthesis Treatise
 │   ├── KAGGLE_PUBLICATION_ARTICLE.md     # Ready-to-publish Kaggle article
-│   ├── FINAL_RESEARCH_SUMMARY.md         # Comprehensive scientific findings
+│   └── FINAL_RESEARCH_SUMMARY.md         # Comprehensive scientific findings
 │   └── experiments/                      # Experiment logs, metrics & Pareto frontiers
 │       ├── EXP-001/ through EXP-005/     # Individual experiment artifacts
 │       ├── master_results.json           # Consolidated machine-readable metrics
 │       └── MASTER_EXPERIMENT_SUMMARY.md  # Master markdown synthesis report
 ├── scripts/                      # Automation & generation utilities
 │   ├── compile_paper.py          # Standalone Tectonic LaTeX-to-PDF compiler
-│   └── generate_notebooks.py     # Automated Jupyter notebook suite generator
+│   ├── generate_notebooks.py     # Automated Jupyter notebook suite generator
+│   └── publish_to_kaggle.py      # 1-click Kaggle CLI dataset & kernel packager
 ├── src/                          # Modular production source code
+│   ├── causal/                   # Double ML (PLR, AIPW, CATE, E-value sensitivity)
 │   ├── config.py                 # Pydantic configuration loader
 │   ├── data_loader.py            # Clean loaders with Gender canonicalization
 │   ├── logger.py                 # Leveled structured logging
@@ -1045,7 +1079,11 @@ SSIF/
 │   ├── dlsm/                     # Compatibility gate & 5-fold feature ablation
 │   ├── explainability/           # SHAP TreeExplainer & algorithmic recourse engine
 │   └── cross_dataset/            # Synthesis analytics & Wasserstein representation bridge
-├── tests/unit/                   # 55 Automated unit & integration tests
+├── tests/unit/                   # 82 Automated unit & integration tests across 16 test modules
+│   ├── test_causal_ml.py         # Double ML PLR, AIPW, CATE, and E-value tests
+│   ├── test_api.py               # FastAPI TestClient endpoint verification tests
+│   ├── test_kaggle_release.py    # Kaggle manifest and metadata bundle tests
+│   ├── test_security_privacy.py  # FERPA, quasi-identifier & CORS security regression tests
 │   ├── test_experiments.py       # Validation suite for EXP-001 through EXP-005
 │   ├── test_synthesis_analytics.py # Non-linear tipping points & labor paradox tests
 │   ├── test_feasibility_auditor.py # 5 Cold-scan quality gate tests
