@@ -67,6 +67,27 @@ SSIF unifies three distinct analytical domains across 79,239 longitudinal studen
 3. **Employability Intelligence:** Decouples placement probability (AUROC = 0.9370) from starting compensation ($R^2 \approx 0.00$), proving that work experience creates an immediate **+26.9% placement lift**.
 4. **Cross-Study Governance Gate (DLSM Bridge):** Establishes an objective **NO-GO gate** for row-level merges with Digital Lifestyle Spillover Modeling ([DLSM](https://github.com/HarshkumarG007/DLSM)), backed by an empirical 5-fold feature ablation study ($\Delta\text{AUROC} = -0.00005, p=0.932$) and grounded in large-scale specification-curve literature.
 
+### 🏆 Executive Scorecard: Quantified Research Achievements
+
+| Research Pillar | Primary Metric | Baseline / Benchmark | SSIF Achievement | Statistical Rigor & Impact |
+|:---|:---|:---|:---|:---|
+| **Academic Retention** | **AUROC** | 0.4945 (Majority Class) | **0.8014** (Tier 1 Logistic Regression) | GroupKFold ($k=5$, groups=`Student_ID`), zero future leakage (`RULE-062`) |
+| **Early Departure Detection** | **PR-AUC** | 0.0860 (Prevalence Floor) | **0.3643** (+323.6% precision gain) | Brier Score = 0.0669; detects risk 2 semesters before physical departure |
+| **Survival & Hazard Modeling** | **Harrell's C-Index** | 0.5000 (Random Guess) | **0.7498** ($p < 0.001$) | Log-rank test $p < 10^{-15}$; 20,000 students right-censored at semester 8 |
+| **Socioeconomic Vulnerability** | **Hazard Ratio ($\text{HR}$)** | 1.00× (Parity) | **1.98×** (95% CI: $[1.89, 2.08]$) | First-generation students face nearly double instantaneous departure hazard |
+| **Institutional Shielding** | **Hazard Ratio ($\text{HR}$)** | 1.00× (Parity) | **0.52×** (95% CI: $[0.49, 0.55]$) | Scholarship cuts departure hazard in half, neutralizing the first-gen penalty |
+| **Advising Rebound Effect** | **Odds Ratio ($\text{OR}$)** | 1.00× (Parity) | **1.731×** ($p < 0.001$) | **+73.1% rebound odds** per counseling session after acute GPA collapse |
+| **Trajectory Phenotypes** | **Bootstrap ARI** | 0.7000 (Minimum Valid) | **0.9703** ($B=15$ iterations) | $K$-Means ($k=3$) isolates 3 rock-solid academic trajectory phenotypes |
+| **Employability Prediction** | **AUROC / PR-AUC** | 0.5000 / 0.6880 | **0.9370 / 0.9650** | Stratified 5-Fold CV ($N=215$ candidates, EPV = 3.2 guarded) |
+| **Work Experience Value** | **Placement Rate** | 59.6% (No Experience) | **86.5%** (With Experience) | **+26.9% absolute placement lift**; outweighs a +15% college exam score gain |
+| **Starting Salary Determinants**| **Regressor $R^2$** | Hypothetical high $R^2$ | **$\approx 0.00$** ($N=148$ placed) | Proves starting salary follows fixed corporate bands rather than marginal GPA |
+| **Cross-Study Governance** | **Compatibility Score**| $\ge 0.70$ (Merge Threshold)| **0.154** (**STRICT NO-GO**) | Blocked false row-level join; validated parallel construct bridge |
+| **Digital Lifestyle Ablation**| **Incremental $\Delta\text{AUC}$** | $\ge +0.0100$ (Significance) | **$-0.00005$** ($p = 0.932$) | Confirmed digital telemetry adds 0 predictive signal over pure academic metrics |
+| **Code Reliability & Testing** | **Automated Tests** | Standard smoke tests | **46/46 Passed** (100% pass rate) | Continuous CI execution in 35.5 seconds across all validation layers |
+
+![SSIF Executive Research Observatory](docs/screenshots/01_executive_overview.png)
+*Figure 1: The SSIF Research Observatory Executive Dashboard (ssif-research.streamlit.app). Features dimensional elevation cards, glassmorphic research context panels, and live framework KPIs across 79,239 longitudinal student-semester records.*
+
 ---
 
 ## 🏛️ Ecosystem & System Architecture
@@ -252,7 +273,11 @@ flowchart TD
 - **Solution:** Implemented regex canonicalization in `src/data_loader.py`. This restored true demographic parity: base rates of 0.09 vs. 0.09, model selection rates of 0.09 vs. 0.09, and true positive rates of 0.38 vs. 0.37.
 
 #### What the Data Reveals in Layman's Context
-If a university survey records "USA", "U.S.A.", "united states", and "US", a computer might think they are four completely different countries and accuse the university of bias. By fixing the spelling and capitalization, we showed that the university's retention models treat male and female students with equal fairness.
+- **Typo-Induced Discrimination:** If a university survey records "USA", "U.S.A.", "united states", and "US", a computer might think they are four completely different countries and accuse the university of bias. By fixing the spelling and capitalization, we proved that the university's retention models treat male and female students with equal fairness.
+- **The Attendance & Login Connection:** Missing data is almost never random. Students who stop logging into the campus portal aren't experiencing internet bugs—they are the exact students who are already disengaging from classes. By proving this mathematically (Missing At Random), our system avoids making naive assumptions.
+
+![Data Audit & Missingness Observatory](docs/screenshots/02_data_audit.png)
+*Figure 2: Data Audit & Missingness Observatory view. Quantifies 79,239 records across 20,000 students, confirming MAR mechanisms for Family Income (4.55%) and LMS Logins (1.09%) via Welch's t-tests and Chi-square statistics.*
 
 ---
 
@@ -321,7 +346,17 @@ stateDiagram-v2
 #### What the Data Reveals in Layman's Context
 - **The "Dropping A" vs "Steady C" Student:** A high-achieving student whose GPA quietly slides from 3.8 to 3.1 is in far greater danger of dropping out than a student who consistently stays at 2.5. Momentum and velocity matter more than the absolute number.
 - **The Advising Miracle:** When a student has a terrible semester, meeting with an academic advisor boosts their chances of bouncing back by **+73.1%**. It is the single most potent intervention on campus.
-- **The Scholarship Armor:** First-generation students face double the dropout hazard, but giving them an institutional scholarship cuts their departure risk in half, completely leveling the playing field.
+- **The Scholarship Armor:** First-generation students face double the dropout hazard ($\text{HR} = 1.98\times$), but giving them an institutional scholarship cuts their departure risk in half ($\text{HR} = 0.52\times$), completely leveling the playing field.
+- **The 3D Risk "Danger Cliff":** Grade drops and attendance decay don't just add together—they multiply. When an advisor rotates the 3D risk surface, they can see that a slight slide in attendance (from 85% to 70%) combined with a modest GPA dip causes risk to spike exponentially past the 80% danger threshold.
+
+![Interactive Early Warning Risk Simulator & Algorithmic Recourse](docs/screenshots/03a_retention_simulator.png)
+*Figure 3: Interactive Early Warning Risk Simulator and Prescribed Algorithmic Recourse. Counselors adjust real-time velocity metrics to generate calibrated departure probabilities alongside feasible, $L_1$-minimal intervention plans (e.g. tuition grants and reduced course loads reducing risk from 81.1% to 40.5%).*
+
+![WebGL 3D Predicted Risk Surface](docs/screenshots/03b_retention_3d_surface.png)
+*Figure 4: WebGL 3D Predicted Risk Interaction Surface ($\text{Recent GPA} \times \text{Attendance} \rightarrow P(\text{Dropout})$). Features projected floor contours and 1-click accessibility flattening to a 2D contour heatmap.*
+
+![Kaplan-Meier Survival Curves & Cox Hazards Observatory](docs/screenshots/04_survival_analysis.png)
+*Figure 5: Longitudinal Survival Analysis Observatory. Displays empirical Kaplan-Meier persistence curves stratified by generational status ($N=20,000$ students, Harrell's $C=0.7498$, $p < 0.001$) and Cox Proportional Hazards forest plots isolating independent hazard multipliers.*
 
 ---
 
@@ -377,8 +412,12 @@ flowchart TD
 - **Solution:** Formally isolated `salary` to Stage 2 conditional regression. Unplaced candidates are evaluated exclusively through Stage 1 classification and algorithmic recourse.
 
 #### What the Data Reveals in Layman's Context
-- **The Internship Trump Card:** Having an internship or previous work experience is worth more than a 15% boost in exam scores when it comes to getting hired.
-- **The Fixed Salary Reality Check:** Studying 80 hours a week to raise your MBA grades from 70% to 85% will not increase your starting paycheck. Once hired, companies pay fixed standard rates for entry-level roles.
+- **The Internship Trump Card:** Having an internship or previous work experience is worth more than a 15% boost in exam scores when it comes to getting hired. Work experience catapults placement likelihood from **59.6% to 86.5%** (+26.9% absolute lift).
+- **The Fixed Salary Reality Check:** Studying 80 hours a week to raise your MBA grades from 70% to 85% will not increase your starting paycheck ($R^2 \approx 0.00$). Once hired, companies pay fixed standard rates for entry-level roles. Academic excellence opens the door to an interview, but corporate pay bands determine the salary.
+- **The Salary Boxplot Insights:** In the diagnostic boxplots, starting salaries cluster tightly within standard ranges (200k–400k INR) across Marketing & Finance vs Marketing & HR, with small gender gaps that reflect corporate compensation schedules rather than classroom performance.
+
+![Career Placement Diagnostics & Starting Salary Boxplots](docs/screenshots/05_career_placement.png)
+*Figure 6: Career Placement & Salary Diagnostics Observatory. Displays subgroup employability rates ($N=215$, AUROC = 0.9370, Work Experience Lift = +26.9%) and conditional salary distributions across specializations ($N=148$ placed candidates).*
 
 ---
 
@@ -498,7 +537,11 @@ flowchart TD
 - **Solution:** Codified `RULE-061` and enforced an automated feature ablation test proving that without real-time biometric sleep telemetry on the exact same individuals, external screen time variables add negative value.
 
 #### What the Data Reveals in Layman's Context
-- **The "Potato Paradox":** Blaming smartphone use or social media for a student dropping out is statistically equivalent to blaming their potato consumption. Without tracking real-time sleep monitors on the exact same students over time, mixing general screen-time numbers into academic records adds zero value. Real student retention is governed by academic velocity, advising, and financial aid.
+- **The "Potato Paradox":** Blaming smartphone use or social media for a student dropping out is statistically equivalent to blaming their potato consumption. Without tracking real-time sleep monitors on the exact same students over time, mixing general screen-time numbers into academic records adds zero predictive value ($\Delta\text{AUROC} = -0.00005, p=0.932$). Real student retention is governed by academic velocity, advising, and financial aid.
+- **The Power of Saying "NO":** Bad data science joins unrelated datasets together just to brag about a big table. Good science tests whether the bridge is real. By enforcing a **NO-GO gate** on row merging while establishing a conceptual representation bridge, SSIF protects institutional decision-makers from acting on false correlations.
+
+![DLSM Compatibility Gate & Construct Bridge](docs/screenshots/07_dlsm_construct_bridge.png)
+*Figure 7: DLSM Compatibility Gate & Scientific Construct Bridge. Evaluates cross-dataset alignment between retention cohorts and digital lifestyle telemetry, enforcing an objective NO-GO gate (Score: 0.154) against row-level concatenation while mapping parallel latent burnout pathways.*
 
 ---
 
@@ -555,7 +598,15 @@ graph TD
 - **Solution:** Added explicit non-negative lower bounds ($x_j^* \ge x_j$ for counseling sessions, $x_j^* \le x_j$ for off-campus work hours).
 
 #### What the Data Reveals in Layman's Context
-Instead of just handing an advisor a red alarm saying "this student is doomed," the system acts like a GPS: *"If this student attends 2 academic counseling sessions and reduces their off-campus job from 28 to 18 hours a week, their dropout risk plummets from 68% down to 14%."*
+- **Prescriptive GPS vs Passive Smoke Alarm:** Instead of just handing an advisor a red alarm saying "this student is doomed," the system acts like an intervention GPS: *"If this student attends 2 academic counseling sessions and reduces their off-campus job from 28 to 18 hours a week, their departure risk plummets from 68% down to 14%."*
+- **What Really Drives Risk:** The SHAP attribution bar chart shows that dynamic, engineered features (`gpa_recent_mean`, `cumulative_failed_courses`, `gpa_slope`) carry far more predictive weight than immutable background factors. What students *do* matters more than where they *came from*.
+- **The 3D Feature Space Separation:** In the 3D WebGL coordinate space ($\text{GPA} \times \text{Attendance} \times \text{Failed Courses}$), persisting students (green) and dropouts (red) cluster into distinct geometric clouds. Rotating the volume visually highlights how multiple failed courses combined with attendance below 70% pulls students into an inescapable departure vortex.
+
+![SHAP Predictive Drivers of Departure Risk](docs/screenshots/06a_explainability_shap.png)
+*Figure 8: Explainable AI & SHAP Risk Drivers Observatory. Features global mean absolute SHAP attributions categorizing academic velocity, socioeconomic burden, engagement, and institutional protection factors.*
+
+![WebGL 3D Multivariate Risk Feature Space](docs/screenshots/06b_multivariate_3d_scatter.png)
+*Figure 9: WebGL 3D Multivariate Feature Space Scatter ($\text{GPA} \times \text{Attendance} \times \text{Failed Courses}$). Interactive 3D visualization showing cluster separation between persisting students (green) and departed students (red), complete with 2D projection toggles.*
 
 ---
 
@@ -614,7 +665,12 @@ flowchart TD
 - **Solution:** Pinned `pyarrow>=14.0.0,<25.0.0` in `requirements.txt` and engineered `show_chart()` / `show_dataframe()` wrappers. Cloud build times dropped by 6 seconds with zero warnings.
 
 #### What the Data Reveals in Layman's Context
-A flight simulator for university deans, provosts, and counselors—allowing them to visually test retention policies, explore survival curves, and inspect student risk without writing a single line of code.
+- **A Flight Simulator for Education:** A flight simulator for university deans, provosts, and counselors—allowing them to visually test retention policies, explore survival curves, and inspect student risk without writing a single line of code.
+- **The Honest Leaderboard:** Look closely at the model leaderboard. The simplest, most interpretable model (Tier 1: Logistic Regression, AUROC = 0.8014) actually outperforms complex ensembles when trajectory features are properly engineered. Transparent science means displaying Brier calibration scores and PR-AUC side by side, not just cherry-picking the highest single number.
+- **Dimensional Research Lab Aesthetics:** Built with a custom HSL dark theme, glassmorphic floating panels, and genuine WebGL 3D surfaces that earn their third dimension through continuous multi-variable physics rather than gimmick perspective distortion.
+
+![Model Performance Leaderboard & Core Empirical Pillars](docs/screenshots/01b_leaderboard_pillars.png)
+*Figure 10: Model Performance Leaderboard & Core Empirical Pillars view. Transparently displays 7 model tiers across Retention, Placement, and Survival domains alongside the core empirical laws discovered by SSIF.*
 
 ---
 
@@ -751,6 +807,8 @@ The research is packaged so that anyone can read and verify it in whatever forma
 | **5. The Internship Advantage** | Selection Lift: $59.6\% \to 86.5\%$ | In business school, having an internship or previous work experience is worth more than a 15% boost in exam scores when it comes to getting hired. |
 | **6. The Fixed Salary Reality** | Salary Regressor $R^2 \approx 0.00$ | Once you get hired, your starting salary is fixed by corporate hiring bands. Studying 80 hours a week to raise your GPA from 70% to 85% will not increase your starting paycheck. |
 | **7. The Potato Paradox** | $\Delta\text{AUROC} = -0.00005$ ($p = 0.932$) | Blaming TikTok or screen time for a student dropping out is statistically equivalent to blaming potatoes. Real retention drivers are financial stress, course overload, and lack of advising. |
+| **8. The 3D Risk Cliff** | 3D Interaction Surface ($Z \ge 0.80$) | Attendance and grades don't act in isolation. When both begin slipping simultaneously, risk multiplies exponentially into a steep departure cliff that 2D charts fail to capture. |
+| **9. Prescriptive GPS Recourse** | $L_1$ Minimal-Action Optimizer | Modern AI shouldn't just be an alarm bell; it should be a navigation GPS. SSIF computes the exact feasible recipe (e.g. 2 counseling visits + 10 fewer work hours) to safely return students to the persistent zone. |
 
 ---
 
