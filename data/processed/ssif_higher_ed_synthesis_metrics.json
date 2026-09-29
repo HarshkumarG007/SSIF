@@ -1,0 +1,44 @@
+{
+  "pipeline_metadata": {
+    "title": "Student Success Intelligence Framework (SSIF) \u2014 Cross-Pipeline Synthesis",
+    "version": "1.0.0",
+    "generated_date": "2026-09-29",
+    "governance_rules": [
+      "RULE-002: Zero Fabricated IDs",
+      "RULE-003: No Row Merging",
+      "RULE-009: Zero Leakage"
+    ]
+  },
+  "student_labor_paradox": {
+    "phase_1_in_college_labor": {
+      "dataset": "SSIF-A: Retention (N=79,239 student-semesters)",
+      "metric": "Odds Ratio per Work Hour/Week",
+      "value": 1.007,
+      "p_value": 5.562102209090302e-07,
+      "impact_20_hours": 1.15,
+      "interpretation": "Working 20 hours/week in unstructured survival labor multiplies dropout risk by 1.15x."
+    },
+    "phase_2_post_degree_credential": {
+      "dataset": "SSIF-B: Placement (N=215 candidates)",
+      "metric": "Odds Ratio for Prior Work Experience",
+      "value": 4.9776,
+      "p_value": 0.00027112734831138843,
+      "placement_rate_lift": "+26.92%",
+      "low_gpa_rescue_rate": "72.7% vs 31.1%",
+      "interpretation": "Verified professional work experience multiplies placement odds by 4.98x, rescuing weak GPA students."
+    }
+  },
+  "threshold_bridge": {
+    "retention_safe_zone_gpa_p75": 2.96,
+    "retention_probation_tipping_point": 2.0,
+    "placement_hiring_threshold_degree_pct": 65.0,
+    "placement_hiring_rate_above_threshold": "90.00%",
+    "placement_hiring_rate_below_threshold": "44.60%"
+  },
+  "socioeconomic_equity_multipliers": {
+    "scholarship_q1_risk_reduction_pct": 9.73,
+    "early_advising_risk_reduction_pct": -6.3,
+    "gender_salary_gap_p_value": 0.0027358284996621034,
+    "school_board_bias_p_value": 0.6897729431530739
+  }
+}

@@ -1,0 +1,7 @@
+Pipeline Stage,Metric,Value,Significance
+Phase 1: In-College Labor (Retention),Odds Ratio / Work Hour,1.007,p=5.56e-07
+Phase 2: Post-Degree Workex (Placement),Odds Ratio / Prior Experience,4.9776,p=2.71e-04
+Academic Persistence Gate,Safe GPA (75th Percentile),2.96,Dropout < 2.3%
+Corporate Recruitment Gate,Undergrad Degree % Cutoff,65%,Placement jumps to 90.0%
+Equity Intervention Multiplier,Q1 Scholarship Risk Drop,-9.7%,55% Relative Risk Cut
+Early Advising Critical Window,Sem 1-2 Advising Risk Drop,--6.3%,2x Potency vs Late Visits
