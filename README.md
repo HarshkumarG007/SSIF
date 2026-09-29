@@ -70,6 +70,23 @@ SSIF unifies three distinct analytical domains across 79,239 longitudinal studen
 3. **Employability Intelligence:** Decouples placement probability (AUROC = 0.9370) from starting compensation ($R^2 \approx 0.00$), *finding* that work experience is associated with an observed **+26.9% absolute placement lift** (N=215, EPV=3.2 — interpret with appropriate sample-size caution).
 4. **Cross-Study Governance Gate (DLSM Bridge):** Establishes an objective **NO-GO gate** for row-level merges with Digital Lifestyle Spillover Modeling ([DLSM](https://github.com/HarshkumarG007/DLSM)), backed by an empirical 5-fold feature ablation study ($\Delta\text{AUROC} = -0.00005, p=0.932$) and grounded in large-scale specification-curve literature.
 
+### 🎯 Unified Research Question
+
+> **When is a student-success intervention supported by evidence strongly enough to justify operational use?**
+
+Every SSIF component addresses a different part of that question:
+
+| Component | Operational Question Answered |
+|-----------|------------------------------|
+| **Retention Prediction** | *Who is at risk, and how early can we know?* |
+| **Survival & Hazard** | *When does departure risk become critical?* |
+| **Trajectory Phenotypes** | *What structural trajectory pattern does this student follow?* |
+| **Causal DML** | *What might change the outcome under stated identification assumptions?* |
+| **Algorithmic Recourse** | *What model inputs are actionable for this student profile?* |
+| **Policy Simulation** | *What happens at the system level if institutional resources shift?* |
+| **Compatibility Gate** | *Can we trust the data bridge between these two study populations?* |
+| **Governance Rules** | *Are these conclusions structurally protected from common research failures?* |
+
 ### 🏆 Executive Scorecard: Quantified Research Achievements
 
 | Research Pillar | Primary Metric | Baseline / Benchmark | SSIF Achievement | Statistical Rigor & Impact |
@@ -132,11 +149,11 @@ flowchart TD
         G4["Feature Ablation Leaderboard<br/>ΔAUROC = -0.00005 (p=0.932)"]
     end
 
-    subgraph Delivery_Layer ["Production Delivery Interfaces"]
+    subgraph Delivery_Layer ["Research Delivery Interfaces"]
         D1["Streamlit Cloud Live Observatory<br/>(7 Interactive Views)"]
         D2["Camera-Ready IEEE Paper PDF<br/>(Automated Tectonic Engine)"]
         D3["Master Kaggle Publication Suite<br/>(Standalone Notebook & Article)"]
-        D4["Continuous Integration (CI)<br/>(46/46 Pytest Automated Tests)"]
+        D4["Continuous Integration (CI)<br/>(82/82 Pytest Automated Tests)"]
     end
 
     A1 --> V1 & V2 & V3
@@ -180,7 +197,7 @@ flowchart TD
 
 ```
   PHASE 0 ──► PHASE 1 ──► PHASE 2 ──► PHASE 3 ──► PHASE 4 ──► PHASE 5 ──► PHASES 6-7 ──► PHASE 8 ──► PHASE 9 ──► PHASE 10 ──► PHASE 11
-  Governance   Scaffold    Auditing   Retention   Placement    Bridge     DLSM Gate     Recourse   Dashboard    46 Tests     Paper/PDF
+  Governance   Scaffold    Auditing   Retention   Placement    Bridge     DLSM Gate     Recourse   Dashboard    82 Tests     Paper/PDF
 ```
 
 ---
@@ -749,7 +766,7 @@ flowchart TD
   5. *Structural Group/Temporal Drift:* Tests performance differences between random and grouped cross-validation splits.
   6. *Demographic Fairness Screen:* Checks four-fifths rule adverse impact ratios across sensitive cohorts.
   7. *Literature Plausibility Benchmark:* Verifies that reported performance aligns with published behavioral science caps.
-- **Automated Pytest Suite ([`tests/unit/`](file:///c:/Users/Lenovo/Downloads/SSIF/tests/unit/)):** Full test suite expanded to **49/49 unit and integration tests** executing in 33 seconds on GitHub Actions CI.
+- **Automated Pytest Suite ([`tests/unit/`](file:///c:/Users/Lenovo/Downloads/SSIF/tests/unit/)):** Full test suite at **82/82 unit and integration tests** (16 test modules) executing in 34 seconds on GitHub Actions CI.
 
 #### Engineering Decisions & Scientific Rationale
 - **Zero-Dependency Architecture:** Built with pure Python, standard NumPy, and scikit-learn so it can be copied into any research environment and executed immediately on raw CSVs.
@@ -857,9 +874,9 @@ flowchart TD
 
 | ID | Title & Domain | Core Methodology | Key Findings & Quantitative Outputs | Output Artifacts |
 |---|---|---|---|---|
-| **EXP-001** | **Labor-Policy Intervention Simulation**<br/>*Labor Economics & Policy* | OLS multivariate regression with demographic controls + N=200 row-level parametric Monte Carlo bootstrap | Converting students from >15 hrs/week survival labor to structured on-campus work-study yields a **+0.077 GPA lift** and a **2.97 pp dropout risk reduction** (95% CI: [2.64, 3.29] pp). Proves the Student Labor Paradox. | `reports/experiments/EXP-001/`<br/>• `labor_policy_ols_results.csv`<br/>• `monte_carlo_ci.json`<br/>• `policy_roi_summary.json` |
+| **EXP-001** | **Labor-Policy Intervention Simulation**<br/>*Labor Economics & Policy* | OLS multivariate regression with demographic controls + N=200 row-level parametric Monte Carlo bootstrap | ⚠️ **Model-based scenario estimate:** Converting students from >15 hrs/week survival labor to structured work-study is *associated with* a **+0.077 GPA lift** and a **2.97 pp dropout risk reduction** (95% CI: [2.64, 3.29] pp) under the tested OLS specification. Not an RCT estimate. | `reports/experiments/EXP-001/`<br/>• `labor_policy_ols_results.csv`<br/>• `monte_carlo_ci.json`<br/>• `policy_roi_summary.json` |
 | **EXP-002** | **Pipeline Resilience Stress Test**<br/>*Systems & Operations Research* | 18-scenario attrition cascade perturbing stage failure rates across early (S1-2), mid (S3-4), and late (S5-8) college | Identifies Stage 1 Early as the **highest systemic multiplier** (+81.6 graduates per 1,000 students under early intervention vs +62.6 for late stage). Preventing early attrition compounds across all subsequent semesters. | `reports/experiments/EXP-002/`<br/>• `point_of_no_return.json`<br/>• `intervention_sensitivity_grid.csv`<br/>• `lifecycle_attrition_baseline.csv` |
-| **EXP-003** | **Socio-Economic Fairness Audit**<br/>*Algorithmic Fairness & Equity* | Demographic parity analysis, Fisher's exact test, and trajectory-anchored Qualified-But-Excluded profiling | The 65% degree-GPA hiring threshold disproportionately excludes Q1 low-income and first-generation students. Discovered **N=992 "Qualified-But-Excluded"** students who maintain positive GPA velocity (`gpa_slope > 0`) despite initial adversity. | `reports/experiments/EXP-003/`<br/>• `threshold_achievability_by_demographics.csv`<br/>• `qualified_excluded_profiles.csv`<br/>• `workex_rescue_differential.json` |
+| **EXP-003** | **Socio-Economic Fairness Audit**<br/>*Algorithmic Fairness & Equity* | Demographic parity analysis, Fisher's exact test, and trajectory-anchored Qualified-But-Excluded profiling | The 65% degree-GPA hiring threshold disproportionately excludes Q1 low-income and first-generation students. Identified **N=992 "Qualified-But-Excluded" students** defined as: below the 65% GPA gate **AND** positive GPA velocity (`gpa_slope > 0`) — students adversely excluded despite demonstrating upward academic momentum. Results are observational; institutional hiring criteria may have other rationale. | `reports/experiments/EXP-003/`<br/>• `threshold_achievability_by_demographics.csv`<br/>• `qualified_excluded_profiles.csv`<br/>• `workex_rescue_differential.json` |
 | **EXP-004** | **Career Trajectory Forecasting**<br/>*Predictive Analytics* | GroupKFold cross-validation across expanding observation windows (S1 through S1-4) with SHAP attribution | Semesters 1–2 academic signals predict 4-year success with **AUC = 0.7469** (XGBoost). As observation widens, predictive discrimination expands monotonically to **AUC = 0.8387** by Semester 4. Computes normalized Career Readiness Scores (CRS 0–100). | `reports/experiments/EXP-004/`<br/>• `early_window_model_performance.csv`<br/>• `early_warning_window_auc_curve.csv`<br/>• `career_readiness_score_distribution.csv` |
 | **EXP-005** | **Intervention ROI Optimizer**<br/>*Operations Research & Budgeting* | HiGHS Linear Programming (LP) optimization over multi-tiered institutional budgets ($10K–$500K) | **Advising Boost delivers the highest entry ROI** (0.0533 reductions/dollar) up to $100K budgets; larger budgets optimally blend Advising with Emergency Micro-Scholarships and Work-Study conversions. | `reports/experiments/EXP-005/`<br/>• `optimal_allocation_by_budget.csv`<br/>• `subgroup_prioritization.csv`<br/>• `sensitivity_analysis.csv` |
 
@@ -867,10 +884,23 @@ flowchart TD
 *Figure 12: Research Experiments Lab Master Suite (Page 9). Features the multi-disciplinary experiment orchestrator displaying 5/5 passed experiments, zero runtime failures (60.9s execution), and EXP-001 Labor Economics policy simulation evaluating the institutional ROI of replacing off-campus survival labor (>15 hrs/wk) with structured on-campus work-study.*
 
 ![EXP-002 Lifecycle Sensitivity Heatmap & EXP-003 Demographic Fairness Disparity](docs/screenshots/09b_intervention_sensitivity_heatmap.png)
-*Figure 13: EXP-002 Lifecycle Intervention Sensitivity Heatmap & EXP-003 Socio-Economic Hiring Equity Audit. Top: 2D simulation grid mapping intervention timing (Early S1-2 vs Mid S3-4 vs Late S5-8) across policy efficacies (0.0 to 1.0), proving that early intervention compounds into +81.6 graduates per 1,000 students. Bottom: Disparity audit illustrating how the 65% degree-GPA recruitment gate disproportionately excludes Q1 low-income students despite positive academic momentum. Sidebar confirms regulatory governance under EU AI Act Art. 14, FERPA, and India DPDPA.*
+*Figure 13: EXP-002 Lifecycle Intervention Sensitivity Heatmap & EXP-003 Socio-Economic Hiring Equity Audit. Top: 2D simulation grid (model-based scenario) mapping intervention timing (Early S1-2 vs Mid S3-4 vs Late S5-8) across policy efficacies (0.0 to 1.0), indicating that early-stage intervention yields the largest modeled system multiplier (+81.6 graduates per 1,000 students). Bottom: Disparity audit illustrating how the 65% degree-GPA recruitment gate disproportionately excludes Q1 low-income students despite positive academic momentum. Sidebar confirms regulatory governance under EU AI Act Art. 14, FERPA, and India DPDPA.*
 
 ![EXP-004 Early Warning Window AUC Stabilization & Empirical Provenance Governance](docs/screenshots/09c_early_warning_auc_curve.png)
 *Figure 14: EXP-004 Early Warning Window AUC Stabilization Curve & Data Provenance Hall. Plots the monotonic expansion of predictive power from Freshman Semester 1 (AUC = 0.684) to Sophomore Semester 4 (AUC = 0.8387), demonstrating that early-warning models achieve strong discriminative power within the first year of college. Accompanied by mandatory scientific limitation callouts and full provenance citations honoring original dataset curators.*
+
+#### 🔭 Early Warning Intervention Horizon (EXP-004 Supplementary)
+
+The key operational question is not simply *"does AUC rise?"* but rather **"how early can we intervene while maintaining actionable precision?"**
+
+| Semester Available | AUROC | Primary Predictor | Operational Implication |
+|---|---|---|---|
+| **S1 (Freshman)** | 0.6840 | `cumulative_failed_courses`, `attendance_ratio` | Early screening possible; high false-positive rate expected. Suitable for light-touch outreach (information, advising awareness). |
+| **S1–S2** | 0.7469 | + `gpa_slope` | Meaningfully better discrimination. GPA velocity becomes readable. Priority advising trigger point. |
+| **S1–S3** | 0.7943 | + `gpa_recent_mean` | Strong discrimination across most archetypes. Mid-year intervention design viable. |
+| **S1–S4 (Sophomore)** | 0.8387 | + `decline_index` | Maximum early-warning discrimination in this dataset. Full trajectory phenotype assignable. |
+
+> **Design note:** Earlier intervention horizons provide more actionable lead time but at the cost of precision. Institutions should calibrate the intervention budget and false-positive tolerance against the horizon column that best fits their operational context.
 
 ---
 
