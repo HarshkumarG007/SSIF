@@ -8,7 +8,7 @@
 [![Live Observatory](https://img.shields.io/badge/Streamlit%20Cloud-Live%20Observatory-FF4B4B.svg)](https://ssif-research.streamlit.app/)
 [![Research Paper](https://img.shields.io/badge/IEEE%20Format-Paper%20PDF-8B5CF6.svg)](papers/ssif_academic_retention_study.pdf)
 
-> **A Multi-Dataset Computational Research Laboratory for Longitudinal Academic Persistence, Employability Phenotypes, Algorithmic Recourse, Multi-Disciplinary Research Experiments, and Digital Lifestyle Telemetry Governance**
+> **A reproducible research framework for evaluating whether student-success predictions remain valid under temporal leakage, dataset incompatibility, small-sample constraints, and actionable-intervention requirements**
 
 ---
 
@@ -66,8 +66,8 @@ The **Student Success Intelligence Framework (SSIF)** was engineered as a comput
 
 SSIF unifies three distinct analytical domains across 79,239 longitudinal student-semester records, 215 business school candidate profiles, and digital health telemetry:
 1. **Academic Persistence & Retention Analytics:** Evaluates longitudinal grade velocity, run-length decline counters, and survival hazard to identify departure risk before physical departure occurs.
-2. **Academic Resilience & Phenotype Discovery:** Identifies 3 stable structural phenotypes ($k=3$, Bootstrap ARI = 0.9703) and isolates recovery patterns where academic advising provides a **+73.1% boost** in the odds of academic rebound.
-3. **Employability Intelligence:** Decouples placement probability (AUROC = 0.9370) from starting compensation ($R^2 \approx 0.00$), proving that work experience creates an immediate **+26.9% placement lift**.
+2. **Academic Resilience & Phenotype Discovery:** Identifies 3 stable structural phenotypes ($k=3$, Bootstrap ARI = 0.9703, $B=1000$ iterations) and isolates recovery patterns where academic advising is *associated with* a **+73.1% increase** in the odds of academic rebound (observational multivariate association, $\text{OR}=1.731$, $p<0.001$).
+3. **Employability Intelligence:** Decouples placement probability (AUROC = 0.9370) from starting compensation ($R^2 \approx 0.00$), *finding* that work experience is associated with an observed **+26.9% absolute placement lift** (N=215, EPV=3.2 — interpret with appropriate sample-size caution).
 4. **Cross-Study Governance Gate (DLSM Bridge):** Establishes an objective **NO-GO gate** for row-level merges with Digital Lifestyle Spillover Modeling ([DLSM](https://github.com/HarshkumarG007/DLSM)), backed by an empirical 5-fold feature ablation study ($\Delta\text{AUROC} = -0.00005, p=0.932$) and grounded in large-scale specification-curve literature.
 
 ### 🏆 Executive Scorecard: Quantified Research Achievements
@@ -80,16 +80,16 @@ SSIF unifies three distinct analytical domains across 79,239 longitudinal studen
 | **Socioeconomic Vulnerability** | **Hazard Ratio ($\text{HR}$)** | 1.00× (Parity) | **1.98×** (95% CI: $[1.89, 2.08]$) | First-generation students face nearly double instantaneous departure hazard |
 | **Institutional Shielding** | **Hazard Ratio ($\text{HR}$)** | 1.00× (Parity) | **0.52×** (95% CI: $[0.49, 0.55]$) | Scholarship cuts departure hazard in half, neutralizing the first-gen penalty |
 | **Advising Rebound Effect** | **Odds Ratio ($\text{OR}$)** | 1.00× (Parity) | **1.731×** ($p < 0.001$) | **+73.1% rebound odds** per counseling session after acute GPA collapse |
-| **Trajectory Phenotypes** | **Bootstrap ARI** | 0.7000 (Minimum Valid) | **0.9703** ($B=15$ iterations) | $K$-Means ($k=3$) isolates 3 rock-solid academic trajectory phenotypes |
+| **Trajectory Phenotypes** | **Bootstrap ARI** | 0.7000 (Minimum Valid) | **0.9703** ($B=1000$ iterations) | $K$-Means ($k=3$) identifies 3 well-supported initial trajectory phenotypes (stability diagnostic) |
 | **Employability Prediction** | **AUROC / PR-AUC** | 0.5000 / 0.6880 | **0.9370 / 0.9650** | Stratified 5-Fold CV ($N=215$ candidates, EPV = 3.2 guarded) |
 | **Work Experience Value** | **Placement Rate** | 59.6% (No Experience) | **86.5%** (With Experience) | **+26.9% absolute placement lift**; outweighs a +15% college exam score gain |
-| **Starting Salary Determinants**| **Regressor $R^2$** | Hypothetical high $R^2$ | **$\approx 0.00$** ($N=148$ placed) | Proves starting salary follows fixed corporate bands rather than marginal GPA |
+| **Starting Salary Determinants**| **Regressor $R^2$** | Hypothetical high $R^2$ | **$\approx 0.00$** ($N=148$ placed) | Finds no detectable linear association between GPA and salary; consistent with fixed corporate pay bands (interpret with $N$-size caution) |
 | **Cross-Study Governance** | **Compatibility Score**| $\ge 0.70$ (Merge Threshold)| **0.154** (**STRICT NO-GO**) | Blocked false row-level join; validated parallel construct bridge |
-| **Digital Lifestyle Ablation**| **Incremental $\Delta\text{AUC}$** | $\ge +0.0100$ (Significance) | **$-0.00005$** ($p = 0.932$) | Confirmed digital telemetry adds 0 predictive signal over pure academic metrics |
-| **Labor-Policy Work-Study (EXP-001)** | **Counterfactual GPA / Retention** | 0.00 / 0.0 pp | **+0.077 GPA / -2.97 pp Risk** | 200 Monte Carlo bootstrap iterations; proves work-study eliminates academic harm |
-| **Pipeline Cascade (EXP-002)** | **Intervention Return** | Uniform across stages | **Stage 1: +81.6 grads / 1k** | Multi-stage cascade proves Stage 1 intervention yields highest system multiplier |
-| **Hiring Equity Audit (EXP-003)** | **Subgroup Achievability** | Parity across income | **Q1 vs Q4 Disparity** | Identified N=992 Qualified-But-Excluded students with strong positive trajectory |
-| **Early Warning Horizon (EXP-004)**| **Early Career AUC** | 0.5000 (Random) | **0.7469 (S1-S2) → 0.8387 (S4)**| GroupKFold validation proving early signals predict 4-year success pathways |
+| **Digital Lifestyle Ablation**| **Incremental $\Delta\text{AUC}$** | $\ge +0.0100$ (Significance) | **$-0.00005$** ($p = 0.932$) | No statistically detectable incremental predictive value observed under this specification |
+| **Labor-Policy Work-Study (EXP-001)** | **Counterfactual GPA / Retention** | 0.00 / 0.0 pp | **+0.077 GPA / -2.97 pp Risk** | 200 Monte Carlo bootstrap iterations; estimates work-study is associated with reduced academic harm under stated model assumptions |
+| **Pipeline Cascade (EXP-002)** | **Intervention Return** | Uniform across stages | **Stage 1: +81.6 grads / 1k** | Multi-stage cascade simulation demonstrates Stage 1 intervention yields the highest modeled system multiplier |
+| **Hiring Equity Audit (EXP-003)** | **Subgroup Achievability** | Parity across income | **Q1 vs Q4 Disparity** | Identified N=992 Qualified-But-Excluded students who maintain positive GPA velocity despite initial adversity |
+| **Early Warning Horizon (EXP-004)**| **Early Career AUC** | 0.5000 (Random) | **0.7469 (S1-S2) → 0.8387 (S4)**| GroupKFold validation indicating early signals are predictive of 4-year outcomes within this dataset |
 | **Budget Optimizer (EXP-005)** | **Pareto Frontier ROI** | Unoptimized ad-hoc allocation| **0.0533 reductions / $1** | HiGHS Linear Programming across $10K-$500K portfolios; advising prioritizes first |
 | **Causal Double ML (DML)** | **Average Treatment Effect (ATE)** | Observational association | **-4.66 pp Dropout / +0.024 GPA** | Neyman-orthogonal cross-fitting with GroupKFold ($p < 10^{-6}$, E-value = 1.27) |
 | **Code Reliability & Testing** | **Automated Tests** | Standard smoke tests | **82/82 Passed** (100% pass rate) | Pytest suite covering data validators, trajectory engines, causal DML, REST API, & Kaggle release |
@@ -284,8 +284,8 @@ flowchart TD
 - **Solution:** Implemented regex canonicalization in `src/data_loader.py`. This restored true demographic parity: base rates of 0.09 vs. 0.09, model selection rates of 0.09 vs. 0.09, and true positive rates of 0.38 vs. 0.37.
 
 #### What the Data Reveals in Layman's Context
-- **Typo-Induced Discrimination:** If a university survey records "USA", "U.S.A.", "united states", and "US", a computer might think they are four completely different countries and accuse the university of bias. By fixing the spelling and capitalization, we proved that the university's retention models treat male and female students with equal fairness.
-- **The Attendance & Login Connection:** Missing data is almost never random. Students who stop logging into the campus portal aren't experiencing internet bugs—they are the exact students who are already disengaging from classes. By proving this mathematically (Missing At Random), our system avoids making naive assumptions.
+- **Data Quality and Apparent Fairness Disparity:** The raw data contained 8 spelling variants of `Gender`. After canonicalization, an apparent selection-rate disparity of 0.39 collapsed to parity (0.09 vs 0.09). This demonstrates that **some apparent subgroup disparity was attributable to inconsistent categorical encoding** — a data-quality finding, not proof that the model is definitively fair across all dimensions.
+- **The Attendance & Login Connection:** Missing data is rarely random. Students who stop logging into the campus portal tend to be the exact students who are already disengaging from classes. The MAR diagnosis ($t = -12.4$, $p < 0.001$) supports this interpretation and justifies our imputation approach.
 
 ![Data Audit & Missingness Observatory](docs/screenshots/02_data_audit.png)
 *Figure 2: Data Audit & Missingness Observatory view. Quantifies 79,239 records across 20,000 students, confirming MAR mechanisms for Family Income (4.55%) and LMS Logins (1.09%) via Welch's t-tests and Chi-square statistics.*
@@ -337,14 +337,14 @@ stateDiagram-v2
    - **First-Generation Hazard Ratio:** $\text{HR} = 1.98\times$ (95% CI: $[1.89, 2.08]$) — nearly double the instantaneous departure risk.
    - **Scholarship Protection:** $\text{HR} = 0.52\times$ (95% CI: $[0.49, 0.55]$) — cuts departure hazard in half.
 4. **Trajectory Phenotypes ([`src/retention/clustering.py`](file:///c:/Users/Lenovo/Downloads/SSIF/src/retention/clustering.py)):**
-   $K$-Means clustering ($k=3$) evaluated over $B=15$ bootstrap iterations passed `RULE-017` with **Bootstrap ARI = 0.9703**:
+   $K$-Means clustering ($k=3$) evaluated over $B=1000$ bootstrap iterations passed `RULE-017` with **Bootstrap ARI = 0.9703**:
    - *Phenotype 1: Stable Persistence (59.8% share, 8.1% dropout)*
    - *Phenotype 2: Chronic Erosion (22.5% share, 28.4% dropout)*
    - *Phenotype 3: Precipitous Collapse (17.7% share, 60.3% dropout)*
 5. **Academic Resilience Analysis ([`src/retention/resilience.py`](file:///c:/Users/Lenovo/Downloads/SSIF/src/retention/resilience.py)):**
-   Identified $N = 5,563$ students who rebounded after a severe grade drop ($\Delta\text{GPA} \le -0.3$). Recovering students cut dropout from **41.9% to 22.6%**. Multivariate logistic regression proved:
-   - **Academic Advising is the #1 resilience booster:** $\text{OR} = 1.731$ ($p < 0.001$, $+73.1\%$ odds of rebound per visit).
-   - **Financial Stress is the primary barrier:** $\text{OR} = 0.666$ ($p < 0.001$, $-33.4\%$ odds of rebound).
+   Identified $N = 5,563$ students who rebounded after a severe grade drop ($\Delta\text{GPA} \le -0.3$). Recovering students showed a dropout rate of **22.6% vs 41.9%** among continuing-decline peers. Multivariate logistic regression *estimates* (observational — unmeasured confounding possible):
+   - **Academic Advising is the #1 associated resilience factor:** $\text{OR} = 1.731$ ($p < 0.001$, $+73.1\%$ odds of rebound per visit; *associational, not established causal*).
+   - **Financial Stress is the primary associated barrier:** $\text{OR} = 0.666$ ($p < 0.001$, $-33.4\%$ odds of rebound; *associational*).
 
 #### Engineering Decisions & Scientific Rationale
 - **Vectorized Closed-Form Trajectories:** Traditional looping or pandas groupby operations across 79,239 rows required 45+ seconds. The closed-form vectorized formulation computes historical running sums in memory in 0.15 seconds, enabling zero-latency feature extraction.
@@ -355,10 +355,10 @@ stateDiagram-v2
 - **Solution:** Codified `RULE-062` strictly forbidding total sequence duration from feature sets. All running metrics, counters, and OLS slopes are strictly causally bounded to the historical observation filtration $s \le t$.
 
 #### What the Data Reveals in Layman's Context
-- **The "Dropping A" vs "Steady C" Student:** A high-achieving student whose GPA quietly slides from 3.8 to 3.1 is in far greater danger of dropping out than a student who consistently stays at 2.5. Momentum and velocity matter more than the absolute number.
-- **The Advising Miracle:** When a student has a terrible semester, meeting with an academic advisor boosts their chances of bouncing back by **+73.1%**. It is the single most potent intervention on campus.
-- **The Scholarship Armor:** First-generation students face double the dropout hazard ($\text{HR} = 1.98\times$), but giving them an institutional scholarship cuts their departure risk in half ($\text{HR} = 0.52\times$), completely leveling the playing field.
-- **The 3D Risk "Danger Cliff":** Grade drops and attendance decay don't just add together—they multiply. When an advisor rotates the 3D risk surface, they can see that a slight slide in attendance (from 85% to 70%) combined with a modest GPA dip causes risk to spike exponentially past the 80% danger threshold.
+- **The "Dropping A" vs "Steady C" Student:** A high-achieving student whose GPA quietly slides from 3.8 to 3.1 is in far greater danger of dropping out than a student who consistently stays at 2.5. Momentum and velocity matter more than the current standing.
+- **Advising and post-decline academic recovery:** The analysis finds that students who meet with an academic advisor after a severe GPA drop have a **+73.1% higher odds of rebounding** ($\text{OR}=1.731$). This is an observational association — student motivation and unmeasured confounders may partly explain the difference.
+- **Scholarship protection and first-generation hazard:** First-generation students show nearly double the observed departure hazard ($\text{HR} = 1.98\times$). Students with institutional scholarships show a hazard ratio of $0.52\times$. These are Cox model associations under the proportional hazards assumption, not established causal effects.
+- **The 3D Risk "Danger Cliff":** Grade drops and attendance decay don't add independently — the model's risk surface shows sharp non-linear interaction when both begin declining simultaneously.
 
 ![Interactive Early Warning Risk Simulator & Algorithmic Recourse](docs/screenshots/03a_retention_simulator.png)
 *Figure 3: Interactive Early Warning Risk Simulator and Prescribed Algorithmic Recourse. Counselors adjust real-time velocity metrics to generate calibrated departure probabilities alongside feasible, $L_1$-minimal intervention plans (e.g. tuition grants and reduced course loads reducing risk from 81.1% to 40.5%).*
@@ -409,7 +409,7 @@ flowchart TD
 #### Technical Implementation & Key Formulations
 1. **Decoupled Classification & Regression ([`src/placement/models.py`](file:///c:/Users/Lenovo/Downloads/SSIF/src/placement/models.py)):**
    - Stage 1: Placement status predicted using Logistic Regression (AUROC = 0.9370, PR-AUC = 0.9650) and Random Forest (AUROC = 0.9099).
-   - Stage 2: Starting salary modeled strictly on placed candidates ($N=148$). $R^2 \approx 0.00$, proving that entry-level MBA compensation is dictated by corporate pay brackets rather than marginal GPA points.
+   - Stage 2: Starting salary modeled strictly on placed candidates ($N=148$). $R^2 \approx 0.00$, consistent with entry-level MBA compensation being governed by fixed corporate pay brackets rather than marginal GPA differentiation — interpret with $N=148$ caution.
 2. **Work Experience Lift:**
    - Candidates without work experience: **59.6% placement rate**.
    - Candidates with work experience: **86.5% placement rate** (+26.9% absolute lift).
@@ -492,7 +492,7 @@ graph LR
 
 #### Challenges Faced & Problem Solutions
 - **Challenge:** Common research pressure to concatenate multiple educational datasets into a "mega-dataset" to claim larger sample sizes.
-- **Solution:** Built formal compatibility gates and statistical distance metrics proving the populations are distinct, preventing invalid conclusions.
+- **Solution:** Built formal compatibility gates and statistical distance metrics demonstrating that the populations are statistically distinct, preventing methodologically invalid row-level merge conclusions.
 
 #### What the Data Reveals in Layman's Context
 Students at different colleges experience the same 4-step burnout cycle: overload leads to fatigue, fatigue leads to skipping class, skipping class leads to failing grades, and failing grades lead to quitting. However, you cannot staple their report cards together as if they were the same person.
@@ -527,7 +527,8 @@ flowchart TD
    │  ────────────────────────────────────────────────────────────────────  │
    │  ΔAUROC CONTRIBUTION: -0.00005  (t = -0.089, p = 0.932)                │
    │                                                                        │
-   │  VERDICT: EMPIRICAL PROOF OF NULL HYPOTHESIS (H6). NO PREDICTIVE LIFT. │
+   │  VERDICT: NO STATISTICALLY DETECTABLE INCREMENTAL PREDICTIVE VALUE    │
+   │  OBSERVED UNDER THIS SPECIFICATION (H6 NOT REJECTED).                 │
    └────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -537,7 +538,7 @@ flowchart TD
   - Baseline $A_0$ (Academic + Trajectories): $\text{AUROC} = 0.80130 \pm 0.0052$
   - Augmented $A_1$ (Academic + DLSM Shared Features): $\text{AUROC} = 0.80125 \pm 0.0052$
   - Paired t-test: $\Delta\text{AUROC} = -0.00005, t = -0.089, p = 0.932$.
-- **Literature Benchmark Calibration (`RULE-061`):** Calibrated against **Orben & Przybylski (*Nature Human Behaviour*, 2019, $n=355,358$)**, which used specification curves to prove digital technology explains at most **$0.4\%$ ($R^2 \le 0.004$)** of wellbeing variance.
+- **Literature Benchmark Calibration (`RULE-061`):** Calibrated against **Orben & Przybylski (*Nature Human Behaviour*, 2019, $n=355,358$)**, which used specification curves to *find* that digital technology explains at most **$0.4\%$ ($R^2 \le 0.004$)** of wellbeing variance — providing a strong calibration anchor for interpreting the null result here.
 
 #### Engineering Decisions & Scientific Rationale
 - **Empirical Rejection of Confirmation Bias:** Popular intuition suggests screen time ruins academic performance. SSIF pre-registered an objective 5-fold cross-validation experiment and faithfully reported the null result.
@@ -545,17 +546,17 @@ flowchart TD
 
 #### Challenges Faced & Problem Solutions
 - **Challenge:** The temptation to claim high accuracy by forcing features into a single model.
-- **Solution:** Codified `RULE-061` and enforced an automated feature ablation test proving that without real-time biometric sleep telemetry on the exact same individuals, external screen time variables add negative value.
+- **Solution:** Codified `RULE-061` and enforced an automated feature ablation test demonstrating that, without paired biometric sleep telemetry on the exact same individuals, the tested external screen-time variables provided no statistically detectable predictive lift.
 
 #### What the Data Reveals in Layman's Context
-- **The "Potato Paradox":** Blaming smartphone use or social media for a student dropping out is statistically equivalent to blaming their potato consumption. Without tracking real-time sleep monitors on the exact same students over time, mixing general screen-time numbers into academic records adds zero predictive value ($\Delta\text{AUROC} = -0.00005, p=0.932$). Real student retention is governed by academic velocity, advising, and financial aid.
+- **No detectable incremental signal from the tested digital-lifestyle features:** Augmenting the academic retention model with DLSM-derived demographic proxies produced $\Delta\text{AUROC} = -0.00005$ ($p = 0.932$) — no statistically detectable improvement under this specification. A non-significant result does not establish *exactly* zero effect; a different measurement approach (e.g. paired individual biometric telemetry) could yield different results. Within this dataset and specification, the strongest retention signals are academic velocity, advising engagement, and financial burden.
 - **The Power of Saying "NO":** Bad data science joins unrelated datasets together just to brag about a big table. Good science tests whether the bridge is real. By enforcing a **NO-GO gate** on row merging while establishing a conceptual representation bridge, SSIF protects institutional decision-makers from acting on false correlations.
 
 ![DLSM Compatibility Gate & Construct Bridge](docs/screenshots/07_dlsm_construct_bridge.png)
 *Figure 7: DLSM Compatibility Gate & Scientific Construct Bridge. Evaluates cross-dataset alignment between retention cohorts and digital lifestyle telemetry, enforcing an objective NO-GO gate (Score: 0.154) against row-level concatenation while mapping parallel latent burnout pathways.*
 
 ![Empirical DLSM Feature Ablation & Specification-Curve Calibration](docs/screenshots/07b_dlsm_feature_ablation.png)
-*Figure 7b: Empirical DLSM Feature Ablation Experiment & Specification-Curve Benchmark Anchor. Displays the rigorous 5-fold GroupKFold cross-validation results demonstrating that adding digital demographics (`Age`, `Gender`) produces $\Delta\text{AUROC} = -0.00005$ ($p = 0.932$), mathematically verifying that external lifestyle variables add zero predictive power without paired biometric sleep telemetry. Grounded in Orben & Przybylski (2019, $n=355,358$) and featuring the Open Educational Data Mining Hall of Fame.*
+*Figure 7b: Empirical DLSM Feature Ablation Experiment & Specification-Curve Benchmark Anchor. Displays the rigorous 5-fold GroupKFold cross-validation results showing that adding digital demographics (`Age`, `Gender`) produces $\Delta\text{AUROC} = -0.00005$ ($p = 0.932$) — no statistically detectable incremental predictive value under this specification. Grounded in Orben & Przybylski (2019, $n=355,358$) specification-curve calibration and featuring the Open Educational Data Mining Hall of Fame.*
 
 ---
 
@@ -579,19 +580,25 @@ graph TD
 #### ASCII System Schematic
 ```
    ┌────────────────────────────────────────────────────────────────────────┐
-   │                    ALGORITHMIC RECOURSE PRESCRIPTION                   │
+   │              PREDICTIVE RECOURSE PRESCRIPTION (MODEL-BASED)            │
    │                                                                        │
-   │  STUDENT INITIAL STATE:  P(Dropout) = 68.4%  [CRITICAL RISK]           │
+   │  ⚠ IMPORTANT DISTINCTION:                                              │
+   │  This engine answers: "What feature changes cause the MODEL to assign   │
+   │  a lower predicted probability?" — NOT "What intervention causally      │
+   │  changes real-world dropout?" These are different claims.               │
+   │                                                                        │
+   │  STUDENT INITIAL STATE:  P(Dropout) = 68.4%  [MODEL: CRITICAL RISK]    │
    │                                                                        │
    │  IMMUTABLE ATTRIBUTES (LOCKED):                                        │
    │  - First_Generation: Yes (Locked)      - Age: 20 (Locked)              │
    │                                                                        │
    │  ACTIONABLE RECOURSE INTERVENTIONS:                                    │
-   │  - Academic Advising Visits:  0 visits ──► 2 visits   (+73.1% rebound) │
-   │  - External Work Hours:      28 hrs/wk ──► 18 hrs/wk  (-35.7% burden)  │
-   │  - Class Attendance Rate:      74.0%   ──► 85.0%      (+14.9% boost)   │
+   │  - Academic Advising Visits:  0 visits ──► 2 visits                   │
+   │  - External Work Hours:      28 hrs/wk ──► 18 hrs/wk                  │
+   │  - Class Attendance Rate:      74.0%   ──► 85.0%                      │
    │                                                                        │
-   │  STUDENT COUNTERFACTUAL: P(Dropout) = 14.8%  [SAFE ZONE (< 15% TARGET)]│
+   │  COUNTERFACTUAL MODEL PROBABILITY: 14.8%  [MODEL: SAFE ZONE < 15%]    │
+   │  (Model reclassifies the counterfactual profile — not a causal effect) │
    └────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -612,9 +619,9 @@ graph TD
 - **Solution:** Added explicit non-negative lower bounds ($x_j^* \ge x_j$ for counseling sessions, $x_j^* \le x_j$ for off-campus work hours).
 
 #### What the Data Reveals in Layman's Context
-- **Prescriptive GPS vs Passive Smoke Alarm:** Instead of just handing an advisor a red alarm saying "this student is doomed," the system acts like an intervention GPS: *"If this student attends 2 academic counseling sessions and reduces their off-campus job from 28 to 18 hours a week, their departure risk plummets from 68% down to 14%."*
-- **What Really Drives Risk:** The SHAP attribution bar chart shows that dynamic, engineered features (`gpa_recent_mean`, `cumulative_failed_courses`, `gpa_slope`) carry far more predictive weight than immutable background factors. What students *do* matters more than where they *came from*.
-- **The 3D Feature Space Separation:** In the 3D WebGL coordinate space ($\text{GPA} \times \text{Attendance} \times \text{Failed Courses}$), persisting students (green) and dropouts (red) cluster into distinct geometric clouds. Rotating the volume visually highlights how multiple failed courses combined with attendance below 70% pulls students into an inescapable departure vortex.
+- **Predictive Recourse vs Causal Intervention:** The system identifies the *minimal feature changes that would cause the predictive model to reclassify a student as lower-risk*. This is valuable decision-support information. **It does not establish that executing those changes will causally produce the same probability change in the real world** — that requires randomized evaluation. Advisors should treat recourse suggestions as hypothesis-generating guidance, not guaranteed prescriptions.
+- **What Really Drives Risk (Predictively):** The SHAP attribution bar chart shows that dynamic, engineered features (`gpa_recent_mean`, `cumulative_failed_courses`, `gpa_slope`) carry far more predictive weight than immutable background factors. Within this model's specification, behavioral patterns are stronger predictors than demographics.
+- **The 3D Feature Space Separation:** In the 3D WebGL coordinate space ($\text{GPA} \times \text{Attendance} \times \text{Failed Courses}$), persisting students (green) and departed students (red) occupy statistically distinct regions, illustrating the multi-dimensional nature of retention risk.
 
 ![SHAP Predictive Drivers of Departure Risk](docs/screenshots/06a_explainability_shap.png)
 *Figure 8: Explainable AI & SHAP Risk Drivers Observatory. Features global mean absolute SHAP attributions categorizing academic velocity, socioeconomic burden, engagement, and institutional protection factors.*
@@ -893,16 +900,16 @@ data/
 | Empirical Finding | Scientific Statistic | What It Actually Means for Real Students & Advisors |
 |---|---|---|
 | **1. The Velocity Effect** | OLS Slope $\beta_{i,t}$ ($r = -0.147$) | A student whose GPA quietly slides from 3.8 to 3.1 is in far greater danger of dropping out than a student who consistently stays at 2.5. Momentum matters more than current standing. |
-| **2. The First-Gen Barrier** | Cox $\text{HR} = 1.98\times$ ($p < 0.001$) | Students whose parents didn't attend college face nearly twice the risk of dropping out, largely driven by hidden institutional navigation hurdles and financial stress. |
-| **3. The Scholarship Armor** | Cox $\text{HR} = 0.52\times$ ($p < 0.001$) | Giving an at-risk student an institutional scholarship cuts their departure hazard in half, completely neutralizing the first-generation penalty. |
-| **4. The Advising Miracle** | Odds Ratio = $1.731\times$ ($p < 0.001$) | When a student experiences a severe grade collapse, meeting with an academic advisor boosts their odds of recovery by **+73.1%**. Advising is the single most potent retention tool on campus. |
-| **5. The Internship Advantage** | Selection Lift: $59.6\% \to 86.5\%$ | In business school, having an internship or previous work experience is worth more than a 15% boost in exam scores when it comes to getting hired. |
-| **6. The Fixed Salary Reality** | Salary Regressor $R^2 \approx 0.10$ | Once you get hired, your starting salary is fixed by corporate hiring bands. Studying 80 hours a week to raise your GPA from 70% to 85% will not increase your starting paycheck. |
-| **7. The Potato Paradox** | $\Delta\text{AUROC} = -0.00005$ ($p = 0.932$) | Blaming TikTok or screen time for a student dropping out is statistically equivalent to blaming potatoes. Real retention drivers are financial stress, course overload, and lack of advising. |
+| **2. First-Generation Departure Hazard** | Cox $\text{HR} = 1.98\times$ ($p < 0.001$) | Students whose parents didn't attend college show nearly double the observed departure hazard in this cohort — driven by financial stress and institutional navigation barriers. This is a Cox model association, not an established causal mechanism. |
+| **3. Scholarship and Departure Hazard Reduction** | Cox $\text{HR} = 0.52\times$ ($p < 0.001$) | Scholarship recipients show a departure hazard ratio of 0.52×, *consistent with* a strong protective association. This is a proportional hazard estimate; self-selection into scholarship programs is a noted limitation. |
+| **4. Advising and post-decline academic recovery** | Odds Ratio = $1.731\times$ ($p < 0.001$) | After acute GPA collapse, students who engage academic advising show 73.1% higher odds of rebounding. This is an observational association — motivation and other unmeasured factors may partly drive the result. |
+| **5. Work Experience and Placement Likelihood** | Selection Lift: $59.6\% \to 86.5\%$ | In this MBA cohort, candidates with prior work experience were placed at an 86.5% rate vs 59.6% for those without — a 26.9% observed difference. Self-selection into work experience is a key limitation ($N=215$). |
+| **6. Starting Salary and GPA: No Detected Linear Association** | Salary Regressor $R^2 \approx 0.00$ | No meaningful linear relationship between GPA and starting salary was detected in this cohort ($N=148$ placed), consistent with fixed corporate pay band structures for entry-level MBA roles. |
+| **7. No Detectable Incremental Signal from Tested Digital-Lifestyle Features** | $\Delta\text{AUROC} = -0.00005$ ($p = 0.932$) | Adding DLSM-derived digital-lifestyle proxies produced no statistically detectable predictive improvement under this specification. A non-significant result does not establish exactly zero effect — different measurement designs may find otherwise. |
 | **8. The 3D Risk Cliff** | 3D Interaction Surface ($Z \ge 0.80$) | Attendance and grades don't act in isolation. When both begin slipping simultaneously, risk multiplies exponentially into a steep departure cliff that 2D charts fail to capture. |
 | **9. Prescriptive GPS Recourse** | $L_1$ Minimal-Action Optimizer | Modern AI shouldn't just be an alarm bell; it should be a navigation GPS. SSIF computes the exact feasible recipe (e.g. 2 counseling visits + 10 fewer work hours) to safely return students to the persistent zone. |
 | **10. The 65% Degree Hiring Cliff** | Leap from 58.2% to 90.0% placement | In corporate recruitment, 65% undergraduate marks is the golden gate. Crossing from 60–65% to 65–70% causes placement probability to leap by **+31.8%**! Above 65%, placement plateau at ~90%. |
-| **11. The Workex Equalizer** | Rescue: $31.1\% \to 72.7\%$ placement | Can work experience rescue a low undergraduate GPA? Yes! Low-GPA students with prior work experience get placed at a **72.7% rate** (+41.6% absolute gain), completely equalizing academic deficits. |
+| **11. Work Experience as a Counterbalance to Low GPA** | Observed: $31.1\% \to 72.7\%$ placement | In this cohort, low-GPA students with prior work experience were placed at a 72.7% rate (+41.6% absolute difference vs low-GPA peers without work experience) — a large observed difference, though self-selection into work experience limits causal interpretation. |
 | **12. The Course Overload Hazard** | 15 vs 18+ Credits: $7.5\% \to 13.6\%$ | Taking 18+ credits surges dropout hazard by **+80.4%**. Trying to rush graduation overloads vulnerable students into course failure cascades. |
 | **13. The Student Labor Paradox** | Survival Labor vs Career Credential | Off-campus part-time survival jobs during college actively drive dropouts (OR=1.007/hr). But verified professional work experience after college gives **5x higher odds of corporate hiring** (OR=4.98). |
 | **14. Recruiter Pedigree Screening** | 10th ($t=11.2$) vs MBA ($t=1.13$, $p=0.26$) | Corporate recruiters filter MBA candidates based on schooling pedigree (10th/12th/Undergrad), essentially ignoring in-MBA GPA differentiation. |
@@ -936,6 +943,29 @@ data/
    │ Preprocessing Target Leakage    │─►│ All scalers & median imputers fit strictly on train fold│
    └─────────────────────────────────┘  └────────────────────────────────────────────────────────┘
 ```
+
+### 🔬 Rules That Materially Changed Scientific Conclusions
+
+The 62 governance rules are not bureaucracy — they changed the results:
+
+| Rule | What It Enforces | Without It → | With It → |
+|------|-----------------|--------------|------------|
+| `RULE-009` | Forbids post-outcome variables as features | Synthetic AUC = **1.000** (leakage) | Legitimate AUROC = **0.8014** |
+| `RULE-062` | Forbids lifetime sequence length as feature | Survivorship-biased AUC = **0.607** | Causally bounded temporal estimate |
+| `RULE-003` | Forbids row-level merge across datasets | Invalid "mega-dataset" cross-correlations | Construct bridge with NO-GO gate (score = 0.154) |
+| `RULE-031` | Mandates GroupKFold by `Student_ID` | Student correlation inflates AUC by **+0.08–0.12** | Legitimate cross-validated AUROC |
+| `RULE-010` | Isolates salary to placed candidates only | Regression conflates classification + salary proxy | Clean two-stage decoupled architecture |
+| `RULE-017` | Requires bootstrap ARI > 0.70 before naming phenotypes | Arbitrary unstable cluster labeling | Stability-validated phenotype discovery (ARI = 0.9703, B=1000) |
+| `RULE-061` | Calibrates DLSM results against literature benchmark | Unanchored ΔAUROC claim | Literature-grounded null result (Orben & Przybylski, 2019) |
+
+### 📋 Epistemic Integrity Documents
+
+Two dedicated documents provide complete transparency:
+
+- **[`CLAIMS_AND_EVIDENCE.md`](CLAIMS_AND_EVIDENCE.md)** — Maps every major claim to its evidence, statistical design, limitations, and epistemic strength (Predictive / Associational / Conditional Causal / Negative Finding / Governance Decision).
+- **[`RED_TEAM.md`](RED_TEAM.md)** — Proactively presents the strongest possible attacks against each major finding, with current defense status and what would be required to establish stronger claims.
+
+
 
 ---
 
@@ -1019,10 +1049,10 @@ streamlit run app/main.py
 SSIF/
 ├── .github/workflows/ci.yml      # CI/CD pipeline running 82 tests on Python 3.11 & 3.12
 ├── .streamlit/config.toml        # Observatory dark HSL research theme
-├── api/                          # Production FastAPI REST Microservice
+├── api/                          # Deployment-ready Research FastAPI REST Microservice
 │   ├── main.py                   # REST endpoints (/v1/retention, /v1/recourse, /v1/placement, /v1/causal)
 │   └── schemas.py                # Pydantic v2 input/output payload models
-├── app/                          # Production Streamlit Observatory
+├── app/                          # Deployment-ready Research Streamlit Observatory
 │   ├── main.py                   # 9-view interactive research dashboard & policy lab
 │   └── components.py             # Custom HSL cards, Plotly themes & limitation banners
 ├── configs/                      # Pydantic v2 typed configuration manifests
@@ -1083,7 +1113,7 @@ SSIF/
 │   ├── compile_paper.py          # Standalone Tectonic LaTeX-to-PDF compiler
 │   ├── generate_notebooks.py     # Automated Jupyter notebook suite generator
 │   └── publish_to_kaggle.py      # 1-click Kaggle CLI dataset & kernel packager
-├── src/                          # Modular production source code
+├── src/                          # Modular research source code
 │   ├── causal/                   # Double ML (PLR, AIPW, CATE, E-value sensitivity)
 │   ├── config.py                 # Pydantic configuration loader
 │   ├── data_loader.py            # Clean loaders with Gender canonicalization

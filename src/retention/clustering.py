@@ -5,7 +5,7 @@ Student Success Intelligence Framework (SSIF)
 Performs unsupervised phenotype discovery on student academic trajectories:
   - Feature space: GPA slope, volatility, attendance slope, LMS slope, decline index
   - Evaluates k=2..5 using Silhouette Score
-  - Evaluates bootstrap stability via Adjusted Rand Index (ARI) over B=20 resamples
+  - Evaluates bootstrap stability via Adjusted Rand Index (ARI) over B=1000 resamples
   - If ARI > 0.70: assign phenotypical profiles and profile attrition risk (RULE-017)
   - If ARI <= 0.70: report instability without naming clusters (RULE-019)
 
@@ -59,7 +59,7 @@ class TrajectoryClusteringResult:
 
 def run_trajectory_clustering(
     n_clusters: int = 3,
-    n_bootstrap: int = 15,
+    n_bootstrap: int = 1000,
     random_state: int = 42,
 ) -> TrajectoryClusteringResult:
     """
