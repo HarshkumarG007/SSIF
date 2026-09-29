@@ -118,8 +118,8 @@ flowchart TD
     E1 --> E5
 
     A1 & A3 --> G1
-    G1 -->|Score < 0.70| G2
-    G1 -->|Shared Latent Space| G3
+    G1 -->|"Score < 0.70"| G2
+    G1 -->|"Shared Latent Space"| G3
     G3 --> G4
 
     E1 & E2 & E3 & E4 & E5 & G4 --> D1
@@ -211,8 +211,8 @@ flowchart TD
     A["Raw Retention Panel<br/>(79,239 rows, 20,000 students)"] --> B["Schema Validator<br/>(src/validation/schema_validator.py)"]
     B --> C["Missingness Diagnostics<br/>(Little's MCAR & Welch's t-test)"]
     C --> D{"Missingness Mechanism"}
-    D -->|LMS Logins: 1.09% missing| E["MAR: Dependent on Attendance (p < 0.001)"]
-    D -->|Family Income: 4.55% missing| F["MAR: Dependent on First_Gen (p < 0.001)"]
+    D -->|"LMS Logins: 1.09% missing"| E["MAR: Dependent on Attendance (p < 0.001)"]
+    D -->|"Family Income: 4.55% missing"| F["MAR: Dependent on First_Gen (p < 0.001)"]
     B --> G["Data Hygiene Engine<br/>(src/data_loader.py)"]
     G --> H["Gender Canonicalizer<br/>(8 raw typo variants -> 4 canonical cohorts)"]
     H --> I["Demographic Selection Parity Restored<br/>(Selection Ratio: 0.09 vs 0.09)"]
@@ -292,23 +292,23 @@ stateDiagram-v2
 
 #### Technical Implementation & Key Formulations
 1. **Vectorized OLS Trajectory Engine ([`src/retention/features.py`](file:///c:/Users/Lenovo/Downloads/SSIF/src/retention/features.py)):**
-   Computes closed-form cumulative ordinary least squares slopes $eta_{i,t}$ on historical filtrations strictly bounded to $s \le t$ across 79,239 rows in **0.15 seconds**:
-   $$eta_{i,t} = rac{n \sum_{s=1}^t s \cdot Y_{i,s} - \left(\sum_{s=1}^t sight)\left(\sum_{s=1}^t Y_{i,s}ight)}{n \sum_{s=1}^t s^2 - \left(\sum_{s=1}^t sight)^2}$$
+   Computes closed-form cumulative ordinary least squares slopes $\beta_{i,t}$ on historical filtrations strictly bounded to $s \le t$ across 79,239 rows in **0.15 seconds**:
+   $$\beta_{i,t} = \frac{n \sum_{s=1}^t s \cdot Y_{i,s} - \left(\sum_{s=1}^t s\right)\left(\sum_{s=1}^t Y_{i,s}\right)}{n \sum_{s=1}^t s^2 - \left(\sum_{s=1}^t s\right)^2}$$
 2. **Multi-Tier GroupKFold Benchmark ([`src/retention/models.py`](file:///c:/Users/Lenovo/Downloads/SSIF/src/retention/models.py)):**
    Evaluated across 5 folds grouped by `Student_ID`. Trajectory-augmented Logistic Regression achieved **AUROC = 0.8014, PR-AUC = 0.3643, Brier = 0.0669** (vastly outperforming the 0.0860 baseline prevalence).
 3. **Kaplan-Meier & Cox Proportional Hazards ([`src/retention/survival.py`](file:///c:/Users/Lenovo/Downloads/SSIF/src/retention/survival.py)):**
    Semi-parametric survival model achieved Harrell's Concordance Index $C = 0.7498$ ($p < 0.001$):
-   - **First-Generation Hazard Ratio:** $	ext{HR} = 1.98	imes$ (95% CI: $[1.89, 2.08]$) — nearly double the instantaneous departure risk.
-   - **Scholarship Protection:** $	ext{HR} = 0.52	imes$ (95% CI: $[0.49, 0.55]$) — cuts departure hazard in half.
+   - **First-Generation Hazard Ratio:** $\text{HR} = 1.98\times$ (95% CI: $[1.89, 2.08]$) — nearly double the instantaneous departure risk.
+   - **Scholarship Protection:** $\text{HR} = 0.52\times$ (95% CI: $[0.49, 0.55]$) — cuts departure hazard in half.
 4. **Trajectory Phenotypes ([`src/retention/clustering.py`](file:///c:/Users/Lenovo/Downloads/SSIF/src/retention/clustering.py)):**
    $K$-Means clustering ($k=3$) evaluated over $B=15$ bootstrap iterations passed `RULE-017` with **Bootstrap ARI = 0.9703**:
    - *Phenotype 1: Stable Persistence (59.8% share, 8.1% dropout)*
    - *Phenotype 2: Chronic Erosion (22.5% share, 28.4% dropout)*
    - *Phenotype 3: Precipitous Collapse (17.7% share, 60.3% dropout)*
 5. **Academic Resilience Analysis ([`src/retention/resilience.py`](file:///c:/Users/Lenovo/Downloads/SSIF/src/retention/resilience.py)):**
-   Identified $N = 5,563$ students who rebounded after a severe grade drop ($\Delta	ext{GPA} \le -0.3$). Recovering students cut dropout from **41.9% to 22.6%**. Multivariate logistic regression proved:
-   - **Academic Advising is the #1 resilience booster:** $	ext{OR} = 1.731$ ($p < 0.001$, $+73.1\%$ odds of rebound per visit).
-   - **Financial Stress is the primary barrier:** $	ext{OR} = 0.666$ ($p < 0.001$, $-33.4\%$ odds of rebound).
+   Identified $N = 5,563$ students who rebounded after a severe grade drop ($\Delta\text{GPA} \le -0.3$). Recovering students cut dropout from **41.9% to 22.6%**. Multivariate logistic regression proved:
+   - **Academic Advising is the #1 resilience booster:** $\text{OR} = 1.731$ ($p < 0.001$, $+73.1\%$ odds of rebound per visit).
+   - **Financial Stress is the primary barrier:** $\text{OR} = 0.666$ ($p < 0.001$, $-33.4\%$ odds of rebound).
 
 #### Engineering Decisions & Scientific Rationale
 - **Vectorized Closed-Form Trajectories:** Traditional looping or pandas groupby operations across 79,239 rows required 45+ seconds. The closed-form vectorized formulation computes historical running sums in memory in 0.15 seconds, enabling zero-latency feature extraction.
@@ -335,8 +335,8 @@ stateDiagram-v2
 flowchart TD
     A["MBA Candidate Profile<br/>(N=215, 15 variables)"] --> B["Stage 1: Placement Gate<br/>(Logistic Regression / Random Forest)"]
     B --> C{"Placement Status"}
-    C -->|Unplaced (31.2%)| D["Zero Salary Imputation<br/>Algorithmic Recourse Strategy<br/>(+26.9% Lift from Work Experience)"]
-    C -->|Placed (68.8%)| E["Stage 2: Conditional Salary Regressor<br/>(N=148 Placed Candidates Only)"]
+    C -->|"Unplaced: 31.2%"| D["Zero Salary Imputation<br/>Algorithmic Recourse Strategy<br/>(+26.9% Lift from Work Experience)"]
+    C -->|"Placed: 68.8%"| E["Stage 2: Conditional Salary Regressor<br/>(N=148 Placed Candidates Only)"]
     E --> F["Starting Salary Prediction<br/>R² ≈ 0.00 (Fixed Corporate Pay Bands)"]
 ```
 
@@ -363,14 +363,14 @@ flowchart TD
 #### Technical Implementation & Key Formulations
 1. **Decoupled Classification & Regression ([`src/placement/models.py`](file:///c:/Users/Lenovo/Downloads/SSIF/src/placement/models.py)):**
    - Stage 1: Placement status predicted using Logistic Regression (AUROC = 0.9370, PR-AUC = 0.9650) and Random Forest (AUROC = 0.9099).
-   - Stage 2: Starting salary modeled strictly on placed candidates ($N=148$). $R^2 pprox 0.00$, proving that entry-level MBA compensation is dictated by corporate pay brackets rather than marginal GPA points.
+   - Stage 2: Starting salary modeled strictly on placed candidates ($N=148$). $R^2 \approx 0.00$, proving that entry-level MBA compensation is dictated by corporate pay brackets rather than marginal GPA points.
 2. **Work Experience Lift:**
    - Candidates without work experience: **59.6% placement rate**.
    - Candidates with work experience: **86.5% placement rate** (+26.9% absolute lift).
 
 #### Engineering Decisions & Scientific Rationale
 - **Two-Stage Decoupling:** Training a single regression model on the entire cohort forces the model to predict salary = 0 for unplaced students, turning regression into an accidental classification proxy (`RULE-010`). Decoupling isolates the true economic determinants of salary.
-- **Strict Capacity Constraints:** With $N=215$ candidates and 21 encoded features, the events-per-variable ratio is low ($	ext{EPV} = 3.2$). We used $L_2$-regularized linear models and restricted tree depth to avoid severe overfitting.
+- **Strict Capacity Constraints:** With $N=215$ candidates and 21 encoded features, the events-per-variable ratio is low ($\text{EPV} = 3.2$). We used $L_2$-regularized linear models and restricted tree depth to avoid severe overfitting.
 
 #### Challenges Faced & Problem Solutions
 - **Challenge:** Severe target leakage if unplaced candidates' missing `salary` column is included or imputed prior to classification.
@@ -409,10 +409,14 @@ graph LR
         D3 --> D4["Cognitive Burnout"]
     end
 
-    R1 -.-> B1 .-.- D1
-    R2 -.-> B2 .-.- D2
-    R3 -.-> B3 .-.- D3
-    R4 -.-> B4 .-.- D4
+    R1 -.-> B1
+    B1 -.- D1
+    R2 -.-> B2
+    B2 -.- D2
+    R3 -.-> B3
+    B3 -.- D3
+    R4 -.-> B4
+    B4 -.- D4
 ```
 
 #### ASCII System Schematic
@@ -455,7 +459,7 @@ Students at different colleges experience the same 4-step burnout cycle: overloa
 flowchart TD
     A["Schema & Provenance Audit<br/>(SSIF Retention vs DLSM Health)"] --> B["Compatibility Gate Evaluator<br/>(src/dlsm/compatibility_gate.py)"]
     B --> C{"Compatibility Score >= 0.70?"}
-    C -->|Score = 0.154| D["STRICT NO-GO FOR ROW MERGE<br/>(RULE-002 / RULE-003 Enforced)"]
+    C -->|"Score = 0.154"| D["STRICT NO-GO FOR ROW MERGE<br/>(RULE-002 / RULE-003 Enforced)"]
     D --> E["5-Fold GroupKFold Ablation Experiment<br/>(src/dlsm/effectiveness_test.py)"]
     E --> F["Baseline A0 (AUROC = 0.80130)<br/>Augmented A1 (AUROC = 0.80125)"]
     F --> G["Empirical Difference: ΔAUROC = -0.00005<br/>t = -0.089, p = 0.932 (Zero Signal)"]
@@ -480,9 +484,9 @@ flowchart TD
 #### Technical Implementation & Key Formulations
 - **Automated Compatibility Gate ([`src/dlsm/compatibility_gate.py`](file:///c:/Users/Lenovo/Downloads/SSIF/src/dlsm/compatibility_gate.py)):** Evaluates schema overlap, observation granularity, and identifier alignment. Score = **0.154** (Fails 0.70 threshold; verdict: STRICT NO-GO).
 - **5-Fold GroupKFold Ablation Benchmark ([`src/dlsm/effectiveness_test.py`](file:///c:/Users/Lenovo/Downloads/SSIF/src/dlsm/effectiveness_test.py)):**
-  - Baseline $A_0$ (Academic + Trajectories): $	ext{AUROC} = 0.80130 \pm 0.0052$
-  - Augmented $A_1$ (Academic + DLSM Shared Features): $	ext{AUROC} = 0.80125 \pm 0.0052$
-  - Paired t-test: $\Delta	ext{AUROC} = -0.00005, t = -0.089, p = 0.932$.
+  - Baseline $A_0$ (Academic + Trajectories): $\text{AUROC} = 0.80130 \pm 0.0052$
+  - Augmented $A_1$ (Academic + DLSM Shared Features): $\text{AUROC} = 0.80125 \pm 0.0052$
+  - Paired t-test: $\Delta\text{AUROC} = -0.00005, t = -0.089, p = 0.932$.
 - **Literature Benchmark Calibration (`RULE-061`):** Calibrated against **Orben & Przybylski (*Nature Human Behaviour*, 2019, $n=355,358$)**, which used specification curves to prove digital technology explains at most **$0.4\%$ ($R^2 \le 0.004$)** of wellbeing variance.
 
 #### Engineering Decisions & Scientific Rationale
@@ -506,10 +510,10 @@ flowchart TD
 #### Mermaid Architectural Workflow
 ```mermaid
 graph TD
-    A["High-Risk Student Profile<br/>(P(Dropout) = 68.4%)"] --> B["Recourse Optimization Engine<br/>min Σ c_j |(x*_j - x_j) / σ_j|"]
+    A["High-Risk Student Profile<br/>(P(Dropout) = 68.4%)"] --> B["Recourse Optimization Engine<br/>min Σ c_j · normalized_cost(x*, x)"]
     B --> C{"Is Attribute Actionable?"}
-    C -->|No: First_Gen, Age, Gender| D["Hold Attribute Immutable"]
-    C -->|Yes: Advising, Work Hours, Attendance| E["Optimize Minimal Shift"]
+    C -->|"No: First_Gen, Age, Gender"| D["Hold Attribute Immutable"]
+    C -->|"Yes: Advising, Work Hours, Attendance"| E["Optimize Minimal Shift"]
     D --> F["Prescribed Action Plan"]
     E --> F
     F --> G["Low-Risk Profile<br/>(P(Dropout) = 14.8% < 15%)"]
@@ -539,8 +543,8 @@ graph TD
    Global attribution rankings revealed that engineered `gpa_recent_mean` ranks as the **#4 overall predictor** across all 22 variables, outperforming static demographic indicators.
 2. **Constrained L1-Norm Recourse Solver ([`src/explainability/recourse.py`](file:///c:/Users/Lenovo/Downloads/SSIF/src/explainability/recourse.py)):**
    Solves a constrained optimization finding the closest actionable counterfactual profile $\mathbf{x}^*$:
-   $$\min_{\mathbf{x}^*} \sum_{j \in \mathcal{A}} c_j \left|rac{x_j^* - x_j}{\sigma_j}ight| \quad 	ext{s.t.} \quad P(	ext{Dropout} \mid \mathbf{x}^*) \le 0.15$$
-   while keeping immutable demographics ($\mathcal{I} = \{	ext{First\_Generation, Age, Gender}\}$) completely frozen.
+   $$\min_{\mathbf{x}^*} \sum_{j \in \mathcal{A}} c_j \left|\frac{x_j^* - x_j}{\sigma_j}\right| \quad \text{s.t.} \quad P(\text{Dropout} \mid \mathbf{x}^*) \le 0.15$$
+   while keeping immutable demographics ($\mathcal{I} = \{\text{First\_Generation, Age, Gender}\}$) completely frozen.
 
 #### Engineering Decisions & Scientific Rationale
 - **Domain Actionability Constraints:** Standard recourse algorithms often recommend nonsensical changes (e.g. "reduce age by 3 years" or "change parental background"). Restricting optimization to an actionable subset $\mathcal{A}$ ensures every recommendation is administratively feasible.
@@ -658,9 +662,9 @@ flowchart TD
 #### Technical Implementation & Key Formulations
 - **The Tabular Feasibility Auditor ([`dataset_feasibility_audit.py`](file:///c:/Users/Lenovo/Downloads/SSIF/dataset_feasibility_audit.py)):** A standalone, 7-gate tabular validation auditor with both CLI and programmatic API `run_feasibility_audit()`.
   1. *Provenance Screen:* Fingerprints synthetic artifacts (e.g. perfectly uniform distributions, missingness anomalies).
-  2. *Single-Feature Leakage Scan:* Evaluates univariate AUC per column; flags columns with $	ext{AUC} \ge 0.98$.
+  2. *Single-Feature Leakage Scan:* Evaluates univariate AUC per column; flags columns with $\text{AUC} \ge 0.98$.
   3. *Permutation Signal-vs-Null Test:* Assesses whether model performance exceeds a 30-permutation shuffle distribution ($p_{95} = 0.521$).
-  4. *Sample Size Adequacy:* Computes events-per-variable ($	ext{EPV} \ge 10.0$), flagging small-sample fragility.
+  4. *Sample Size Adequacy:* Computes events-per-variable ($\text{EPV} \ge 10.0$), flagging small-sample fragility.
   5. *Structural Group/Temporal Drift:* Tests performance differences between random and grouped cross-validation splits.
   6. *Demographic Fairness Screen:* Checks four-fifths rule adverse impact ratios across sensitive cohorts.
   7. *Literature Plausibility Benchmark:* Verifies that reported performance aligns with published behavioral science caps.
@@ -715,7 +719,8 @@ flowchart TD
 1. **Camera-Ready IEEE Research Paper ([`papers/ssif_academic_retention_study.pdf`](file:///c:/Users/Lenovo/Downloads/SSIF/papers/ssif_academic_retention_study.pdf)):**
    - Typeset in two-column *IEEE Transactions on Learning Technologies* format.
    - Fully automated compilation script ([`scripts/compile_paper.py`](file:///c:/Users/Lenovo/Downloads/SSIF/scripts/compile_paper.py)) utilizing the self-contained Tectonic engine.
-   - Formatted with zero overflow via `esizebox{\columnwidth}{!}`.
+   - Formatted with zero overflow via `
+\resizebox{\columnwidth}{!}`.
 2. **7 Reproducible Research Notebooks ([`notebooks/`](file:///c:/Users/Lenovo/Downloads/SSIF/notebooks/)):**
    Generated via [`scripts/generate_notebooks.py`](file:///c:/Users/Lenovo/Downloads/SSIF/scripts/generate_notebooks.py), covering each phase step-by-step.
 3. **Master Kaggle Publication Package:**
@@ -728,7 +733,8 @@ flowchart TD
 
 #### Challenges Faced & Problem Solutions
 - **Challenge:** LaTeX Table 1 exceeded the right-hand column margin in 2-column IEEE format.
-- **Solution:** Wrapped the tabular environment in `esizebox{\columnwidth}{!}` in `papers/ssif_academic_retention_study.tex`, achieving pixel-perfect column alignment.
+- **Solution:** Wrapped the tabular environment in `
+\resizebox{\columnwidth}{!}` in `papers/ssif_academic_retention_study.tex`, achieving pixel-perfect column alignment.
 
 #### What the Data Reveals in Layman's Context
 The research is packaged so that anyone can read and verify it in whatever format they prefer: professors get an IEEE publication paper, developers get reproducible Jupyter notebooks, and campus counselors get a live web dashboard.
