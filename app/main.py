@@ -36,6 +36,9 @@ try:
         COLOR_WARNING,
         apply_custom_css,
         apply_plotly_theme,
+        build_risk_scatter_3d_figure,
+        build_risk_surface_figure,
+        build_trajectory_ribbons_figure,
         render_limitation_banner,
         render_research_context,
     )
@@ -51,6 +54,9 @@ except ModuleNotFoundError:
         COLOR_WARNING,
         apply_custom_css,
         apply_plotly_theme,
+        build_risk_scatter_3d_figure,
+        build_risk_surface_figure,
+        build_trajectory_ribbons_figure,
         render_limitation_banner,
         render_research_context,
     )
@@ -163,6 +169,19 @@ if selected_page == "🏛️ Executive Overview & Framework KPIs":
         dataset_info="Panel A (79,239 records, 20,000 students) • Panel B (215 candidates) • DLSM-B (16,000 students)",
         method_info="GroupKFold (k=5) • Kaplan-Meier • Cox Proportional Hazards • SHAP TreeExplainer",
         limitation_info="Observational evidence across independent cohorts — representation bridge without row-merging",
+    )
+
+    st.markdown(
+        """
+        <div class="glass-panel">
+            <h4 style="margin: 0 0 6px 0; color: #F8FAFC; font-family: 'Playfair Display', serif;">Computational Research Observatory • Design System v2.0</h4>
+            <p style="margin: 0; color: #94A3B8; font-size: 0.90rem; line-height: 1.5;">
+                Engineered with dimensional interface hierarchy (elevation shadows & glassmorphism) and genuine WebGL 3D 
+                interaction surfaces where multi-variable dynamics demand continuous volumetric exploration.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
     # KPI Top Row
@@ -429,6 +448,37 @@ elif selected_page == "📈 Academic Retention & Trajectory Intelligence":
             """
         )
 
+    st.markdown("---")
+    st.subheader("🌐 Dimensional Trajectory Intelligence (WebGL 3D Charts — docs/design.md §6.1 & §6.2)")
+    st.caption("Interactive 3D WebGL visualizations isolating multi-variable trajectory dynamics. Depth is strictly earned by real co-evolving metrics.")
+
+    tab_3d_surf, tab_3d_ribbon = st.tabs(["🌐 Risk Interaction Surface (§6.1)", "🎗️ Individual Trajectory Ribbons (§6.2)"])
+
+    with tab_3d_surf:
+        col_opt1, col_opt2 = st.columns([3, 1])
+        with col_opt2:
+            surf_flat = st.toggle("Flatten to 2D Heatmap", value=False, key="toggle_surf_flat")
+        with col_opt1:
+            st.markdown("##### Predicted Risk Surface: GPA × Attendance → P(Dropout)")
+            st.caption("Shows nonlinear risk escalation when both grade velocity and lecture attendance decay simultaneously.")
+        
+        fig_surf = build_risk_surface_figure(flatten_2d=surf_flat)
+        show_chart(fig_surf)
+        st.caption("Floor contour projection (`project_z=True`) allows immediate 2D flattened evaluation without losing interaction dynamics.")
+
+    with tab_3d_ribbon:
+        col_rib1, col_rib2 = st.columns([3, 1])
+        with col_rib2:
+            ribbon_flat = st.toggle("Flatten to 2D Multi-Series", value=False, key="toggle_ribbon_flat")
+        with col_rib1:
+            st.markdown("##### Individual Trajectory Ribbons: (Semester × GPA × Attendance)")
+            st.caption("Sample of N=40 stratified students (Green: Persisted, Red: Dropped Out). Trace individual recovery and collapse paths.")
+
+        df_ret = get_retention_data()
+        fig_ribbon = build_trajectory_ribbons_figure(df_ret, flatten_2d=ribbon_flat, n_students=40)
+        show_chart(fig_ribbon)
+        st.caption("Rotating the 3D space reveals how attendance decay often precedes GPA collapse by 1–2 semesters.")
+
 
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -596,6 +646,24 @@ elif selected_page == "🔬 Explainable AI & SHAP Risk Drivers":
         - **2. Compounding Trajectories:** While single GPA drop is manageable, repeated consecutive drops (`decline_index`) compound departure probability exponentially.
         - **3. Socioeconomic Buffers:** `Scholarship` consistently provides an opposite-signed attribution, reducing predicted risk across all student profiles.
         """
+    )
+
+    st.markdown("---")
+    st.subheader("🌐 Multivariate Risk Feature Space (WebGL 3D Scatter — docs/design.md §6.3)")
+    st.caption("Three-Feature Clustering: GPA × Attendance × Failed Courses in continuous 3D coordinate space.")
+
+    col_scat1, col_scat2 = st.columns([3, 1])
+    with col_scat2:
+        scatter_flat = st.toggle("Flatten to 2D Projection", value=False, key="toggle_scatter_flat")
+    with col_scat1:
+        st.markdown("##### Three-Dimensional Cluster Separation Space")
+        st.caption("Rotate the 3D space to inspect geometric boundary separation between persisting students (Green) and dropouts (Red).")
+
+    df_ret = get_retention_data()
+    fig_scatter3d = build_risk_scatter_3d_figure(df_ret, flatten_2d=scatter_flat, max_points=1500)
+    show_chart(fig_scatter3d)
+    st.caption(
+        "⚠️ Limitation: Visual cluster separation here is suggestive, not a substitute for the holdout AUC reported on the Modeling page — a 3D scatter can look separable and still generalize poorly."
     )
 
 
