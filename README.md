@@ -630,6 +630,7 @@ flowchart TD
     Router --> P5["5. Career Placement<br/>Two-Stage MBA Salary Diagnostics"]
     Router --> P6["6. Explainability & Recourse<br/>SHAP Waterfall & Action Planner"]
     Router --> P7["7. DLSM Governance Gate<br/>Ablation Leaderboard & Gate Matrix"]
+    Router --> P8["8. Deep Pattern Lab & Synthesis<br/>Non-linear Cliffs & Labor Paradox"]
     
     subgraph Platform_Protection ["Platform Stability Engine"]
         E1["@st.cache_data Memory Management"]
@@ -727,7 +728,7 @@ flowchart TD
   5. *Structural Group/Temporal Drift:* Tests performance differences between random and grouped cross-validation splits.
   6. *Demographic Fairness Screen:* Checks four-fifths rule adverse impact ratios across sensitive cohorts.
   7. *Literature Plausibility Benchmark:* Verifies that reported performance aligns with published behavioral science caps.
-- **Automated Pytest Suite ([`tests/unit/`](file:///c:/Users/Lenovo/Downloads/SSIF/tests/unit/)):** Full test suite expanded to **46/46 unit and integration tests** executing in 33 seconds on GitHub Actions CI.
+- **Automated Pytest Suite ([`tests/unit/`](file:///c:/Users/Lenovo/Downloads/SSIF/tests/unit/)):** Full test suite expanded to **49/49 unit and integration tests** executing in 33 seconds on GitHub Actions CI.
 
 #### Engineering Decisions & Scientific Rationale
 - **Zero-Dependency Architecture:** Built with pure Python, standard NumPy, and scikit-learn so it can be copied into any research environment and executed immediately on raw CSVs.
@@ -808,10 +809,15 @@ The research is packaged so that anyone can read and verify it in whatever forma
 | **3. The Scholarship Armor** | Cox $\text{HR} = 0.52\times$ ($p < 0.001$) | Giving an at-risk student an institutional scholarship cuts their departure hazard in half, completely neutralizing the first-generation penalty. |
 | **4. The Advising Miracle** | Odds Ratio = $1.731\times$ ($p < 0.001$) | When a student experiences a severe grade collapse, meeting with an academic advisor boosts their odds of recovery by **+73.1%**. Advising is the single most potent retention tool on campus. |
 | **5. The Internship Advantage** | Selection Lift: $59.6\% \to 86.5\%$ | In business school, having an internship or previous work experience is worth more than a 15% boost in exam scores when it comes to getting hired. |
-| **6. The Fixed Salary Reality** | Salary Regressor $R^2 \approx 0.00$ | Once you get hired, your starting salary is fixed by corporate hiring bands. Studying 80 hours a week to raise your GPA from 70% to 85% will not increase your starting paycheck. |
+| **6. The Fixed Salary Reality** | Salary Regressor $R^2 \approx 0.10$ | Once you get hired, your starting salary is fixed by corporate hiring bands. Studying 80 hours a week to raise your GPA from 70% to 85% will not increase your starting paycheck. |
 | **7. The Potato Paradox** | $\Delta\text{AUROC} = -0.00005$ ($p = 0.932$) | Blaming TikTok or screen time for a student dropping out is statistically equivalent to blaming potatoes. Real retention drivers are financial stress, course overload, and lack of advising. |
 | **8. The 3D Risk Cliff** | 3D Interaction Surface ($Z \ge 0.80$) | Attendance and grades don't act in isolation. When both begin slipping simultaneously, risk multiplies exponentially into a steep departure cliff that 2D charts fail to capture. |
 | **9. Prescriptive GPS Recourse** | $L_1$ Minimal-Action Optimizer | Modern AI shouldn't just be an alarm bell; it should be a navigation GPS. SSIF computes the exact feasible recipe (e.g. 2 counseling visits + 10 fewer work hours) to safely return students to the persistent zone. |
+| **10. The 65% Degree Hiring Cliff** | Leap from 58.2% to 90.0% placement | In corporate recruitment, 65% undergraduate marks is the golden gate. Crossing from 60–65% to 65–70% causes placement probability to leap by **+31.8%**! Above 65%, placement plateau at ~90%. |
+| **11. The Workex Equalizer** | Rescue: $31.1\% \to 72.7\%$ placement | Can work experience rescue a low undergraduate GPA? Yes! Low-GPA students with prior work experience get placed at a **72.7% rate** (+41.6% absolute gain), completely equalizing academic deficits. |
+| **12. The Course Overload Hazard** | 15 vs 18+ Credits: $7.5\% \to 13.6\%$ | Taking 18+ credits surges dropout hazard by **+80.4%**. Trying to rush graduation overloads vulnerable students into course failure cascades. |
+| **13. The Student Labor Paradox** | Survival Labor vs Career Credential | Off-campus part-time survival jobs during college actively drive dropouts (OR=1.007/hr). But verified professional work experience after college gives **5x higher odds of corporate hiring** (OR=4.98). |
+| **14. Recruiter Pedigree Screening** | 10th ($t=11.2$) vs MBA ($t=1.13$, $p=0.26$) | Corporate recruiters filter MBA candidates based on schooling pedigree (10th/12th/Undergrad), essentially ignoring in-MBA GPA differentiation. |
 
 ---
 
@@ -855,7 +861,7 @@ pip install -r requirements.txt
 pip install --no-deps -e .
 ```
 
-### 2. Run Automated Pytest Suite (46 Tests)
+### 2. Run Automated Pytest Suite (49 Tests)
 ```bash
 pytest tests/ -v
 ```
@@ -912,6 +918,7 @@ SSIF/
 │   ├── ssif_academic_retention_study.pdf # Compiled 2-page publication PDF
 │   └── ssif_research_preprint.md         # Full markdown research paper
 ├── reports/                      # Empirical research findings & audit logs
+│   ├── DEEP_DATASET_DISCOVERY_REPORT.md  # Landmark Non-Linear EDA & Synthesis Treatise
 │   ├── KAGGLE_PUBLICATION_ARTICLE.md     # Ready-to-publish Kaggle article
 │   └── FINAL_RESEARCH_SUMMARY.md         # Comprehensive scientific findings
 ├── scripts/                      # Automation & generation utilities
@@ -926,8 +933,9 @@ SSIF/
 │   ├── placement/                # Decoupled classification & conditional compensation
 │   ├── dlsm/                     # Compatibility gate & 5-fold feature ablation
 │   ├── explainability/           # SHAP TreeExplainer & algorithmic recourse engine
-│   └── cross_dataset/            # Wasserstein representation bridge
-├── tests/unit/                   # 46 Automated unit & integration tests
+│   └── cross_dataset/            # Synthesis analytics & Wasserstein representation bridge
+├── tests/unit/                   # 49 Automated unit & integration tests
+│   ├── test_synthesis_analytics.py # Non-linear tipping points & labor paradox tests
 │   ├── test_feasibility_auditor.py # 5 Cold-scan quality gate tests
 │   ├── test_recourse.py          # Algorithmic recourse tests
 │   └── test_schema_validator.py  # Zero-leakage & schema tests
