@@ -49,7 +49,10 @@ app = FastAPI(
 # Enforce secure CORS policy
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:8501",           # Local Streamlit Observatory
+        "https://observatory.ssif.edu",    # Production Observatory (hypothetical)
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -246,8 +249,9 @@ async def get_causal_inquiry(inquiry: CausalInquiryRequest) -> CausalInquiryResp
                 p_value=5.1455e-07,
                 e_value=1.27,
                 interpretation=(
-                    "Awarding an institutional scholarship causes a statistically significant -4.66 percentage point "
-                    "absolute reduction in next-semester departure probability after orthogonalizing all 10 confounders."
+                    "Awarding an institutional scholarship is associated with an estimated -4.66 percentage point "
+                    "absolute reduction in next-semester departure probability, assuming conditional exchangeability "
+                    "on the 10 included confounders."
                 ),
             )
         else:
@@ -259,8 +263,8 @@ async def get_causal_inquiry(inquiry: CausalInquiryRequest) -> CausalInquiryResp
                 p_value=3.1858e-03,
                 e_value=1.18,
                 interpretation=(
-                    "Awarding an institutional scholarship causes a modest but statistically significant +0.024 GPA lift "
-                    "per semester by alleviating emergency financial stress."
+                    "Awarding an institutional scholarship is associated with an estimated +0.024 GPA lift "
+                    "per semester, assuming the specified Double ML identification conditions hold."
                 ),
             )
     else:
@@ -271,5 +275,5 @@ async def get_causal_inquiry(inquiry: CausalInquiryRequest) -> CausalInquiryResp
             ci_95=[-0.0490, -0.0140],
             p_value=1.2e-04,
             e_value=1.22,
-            interpretation="Work-hour reduction policy significantly bolsters course attendance and retention.",
+            interpretation="Work-hour reduction policy is associated with significantly higher course attendance and retention.",
         )

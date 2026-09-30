@@ -50,7 +50,9 @@ class RecourseRecommendation:
     is_feasible: bool
     counterfactual_profile: StudentProfile
     disclaimer: str = (
-        "Decision-support instrument only. Must not be used as an automated decision-maker "
+        "PREDICTIVE COUNTERFACTUAL WARNING: This is a predictive-model counterfactual, "
+        "not a causal intervention. The model assigns a lower probability to the counterfactual feature vector. "
+        "It does not guarantee the same change in real-world outcomes. Must not be used as an automated decision-maker "
         "without human counseling review (EU AI Act Art. 14 / FERPA compliant human-in-the-loop)."
     )
 
