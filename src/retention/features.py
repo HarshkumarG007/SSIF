@@ -188,11 +188,14 @@ class RetentionFeaturePipeline(BaseEstimator, TransformerMixin):
         include_trajectories: bool = True,
         impute_trajectories_with_zero: bool = True,
         categorical_encoding: str = "onehot",
+        add_missingness_indicators: bool = False,
     ):
         self.include_trajectories = include_trajectories
         self.impute_trajectories_with_zero = impute_trajectories_with_zero
         self.categorical_encoding = categorical_encoding
+        self.add_missingness_indicators = add_missingness_indicators
         self.numeric_medians_: dict[str, float] = {}
+        self.indicator_cols_: list[str] = []
         self.feature_names_: list[str] = []
 
     def fit(self, X: pd.DataFrame, y=None):
@@ -201,6 +204,8 @@ class RetentionFeaturePipeline(BaseEstimator, TransformerMixin):
         cols_to_median = [c for c in STATIC_NUMERIC_FEATURES if c in X.columns]
         for c in cols_to_median:
             self.numeric_medians_[c] = float(X[c].median())
+        if self.add_missingness_indicators:
+            self.indicator_cols_ = [c for c in cols_to_median if X[c].isna().any()]
         return self
 
     def transform(self, X: pd.DataFrame) -> pd.DataFrame:
@@ -211,6 +216,11 @@ class RetentionFeaturePipeline(BaseEstimator, TransformerMixin):
         if self.include_trajectories:
             if "gpa_slope" not in df.columns:
                 df = compute_longitudinal_trajectories(df)
+
+        # Append missingness indicators before median imputation if enabled
+        if self.add_missingness_indicators:
+            for c in self.indicator_cols_:
+                df[f"{c}_is_missing"] = df[c].isna().astype(float)
 
         # Apply training-fold medians
         for c, med in self.numeric_medians_.items():
@@ -234,6 +244,7 @@ class RetentionFeaturePipeline(BaseEstimator, TransformerMixin):
 def prepare_retention_dataset(
     df: pd.DataFrame,
     include_trajectories: bool = True,
+    add_missingness_indicators: bool = False,
 ) -> tuple[pd.DataFrame, pd.Series, pd.Series, list[str]]:
     """
     High-level entrypoint to prepare feature matrix X, target y, and GroupKFold groups.
@@ -248,6 +259,15 @@ def prepare_retention_dataset(
         df_feats = df.copy()
         active_features = STATIC_NUMERIC_FEATURES.copy()
 
+    # Append missingness indicators if requested
+    miss_cols = []
+    if add_missingness_indicators:
+        for col in ["Family_Income", "LMS_Logins"]:
+            if col in df_feats.columns:
+                miss_col = f"{col}_is_missing"
+                df_feats[miss_col] = df_feats[col].isna().astype(float)
+                miss_cols.append(miss_col)
+
     # Encode categoricals
     cat_enc_cols = []
     for c in STATIC_CATEGORICAL_FEATURES:
@@ -255,7 +275,7 @@ def prepare_retention_dataset(
             df_feats[f"{c}_enc"] = pd.Categorical(df_feats[c]).codes.astype(float)
             cat_enc_cols.append(f"{c}_enc")
 
-    all_features = [c for c in active_features + cat_enc_cols if c in df_feats.columns]
+    all_features = [c for c in active_features + miss_cols + cat_enc_cols if c in df_feats.columns]
 
     # Verify zero leakage
     leak_report = check_retention_leakage(all_features, "Target_Dropout_Next_Sem", df_feats)

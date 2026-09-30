@@ -77,10 +77,17 @@ class PlacementEvaluationInput(BaseModel):
 
 class PlacementEvaluationResponse(BaseModel):
     placement_probability: float
+    confidence_interval_95: list[float] = Field(
+        default_factory=lambda: [0.0, 1.0],
+        description="95% confidence interval for placement probability given N=215 sample size uncertainty",
+    )
     readiness_tier: str  # "High Employability", "Moderate Employability", "Needs Development"
     expected_salary_inr_range: list[int]
     top_readiness_factors: list[str]
-    sample_size_limitation: str = "Evaluated against benchmark cohort N=215 with constrained EPV regularization."
+    sample_size_limitation: str = (
+        "Evaluated against benchmark cohort N=215 with constrained EPV regularization. "
+        "Point estimates carry uncertainty intervals reflecting sample scale."
+    )
 
 
 class CausalInquiryRequest(BaseModel):

@@ -1,0 +1,18 @@
+{
+  "dataset": "Placement_Data_Full_Class.csv",
+  "n_samples": 215,
+  "features": [
+    "degree_p",
+    "etest_p",
+    "ssc_p",
+    "workex_Yes",
+    "specialisation_Mkt&HR"
+  ],
+  "class_balance": {
+    "Placed": 148,
+    "Not_Placed": 67
+  },
+  "epv_constrained": true,
+  "model_name": "placement_model",
+  "artifact_path": "C:\\Users\\Lenovo\\Downloads\\SSIF\\artifacts\\models\\placement_model.joblib"
+}

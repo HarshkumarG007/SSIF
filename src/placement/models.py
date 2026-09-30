@@ -44,6 +44,7 @@ from sklearn.preprocessing import StandardScaler
 
 from src.data_loader import load_placement
 from src.logger import get_module_logger
+from src.models.base import compute_ece, compute_mce
 from src.placement.features import (
     prepare_placement_classification_data,
     prepare_salary_regression_data,
@@ -60,6 +61,8 @@ class PlacementClassificationSummary:
     accuracy: float
     f1: float
     brier_score: float
+    ece: float = 0.0
+    mce: float = 0.0
 
 
 @dataclass
@@ -130,12 +133,17 @@ def run_placement_classification_benchmark(
             f1 = float(f1_score(y, preds))
             brier = float(brier_score_loss(y, oof_probs))
 
+        ece = compute_ece(y.values, oof_probs)
+        mce = compute_mce(y.values, oof_probs)
+
         results.append({
             "Model": name,
             "AUROC (Mean +/- Std)": f"{auc:.4f} +/- {auc_std:.4f}",
             "Accuracy": f"{acc:.2%}",
             "F1-Score": f"{f1:.4f}",
             "Brier Score": f"{brier:.4f}",
+            "ECE": f"{ece:.4f}",
+            "MCE": f"{mce:.4f}",
         })
 
     summary_df = pd.DataFrame(results)

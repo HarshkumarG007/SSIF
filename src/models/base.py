@@ -18,6 +18,7 @@ from typing import Any, Callable
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, clone
+from sklearn.calibration import CalibratedClassifierCV
 from sklearn.metrics import (
     accuracy_score,
     average_precision_score,
@@ -51,13 +52,15 @@ class ClassificationMetrics:
     fold_aurocs: list[float] = field(default_factory=list)
     fold_pr_aucs: list[float] = field(default_factory=list)
     auroc_std: float = 0.0
+    mce: float = 0.0
+    reliability_curve: dict[str, Any] = field(default_factory=dict)
 
     def summary(self) -> str:
         return (
             f"[{self.model_name} | {self.feature_set}]\n"
             f"  AUROC:    {self.auroc:.4f} ± {self.auroc_std:.4f}  (folds: {[round(x, 3) for x in self.fold_aurocs]})\n"
             f"  PR-AUC:   {self.pr_auc:.4f} (baseline prevalence: {self.prevalence:.3f})\n"
-            f"  Brier:    {self.brier_score:.4f} | ECE: {self.ece:.4f}\n"
+            f"  Brier:    {self.brier_score:.4f} | ECE: {self.ece:.4f} | MCE: {self.mce:.4f}\n"
             f"  F1:       {self.f1:.4f} (Prec: {self.precision:.4f}, Rec: {self.recall:.4f})"
         )
 
@@ -85,6 +88,85 @@ def compute_ece(y_true: np.ndarray, y_prob: np.ndarray, n_bins: int = 10) -> flo
     return float(ece)
 
 
+def compute_mce(y_true: np.ndarray, y_prob: np.ndarray, n_bins: int = 10) -> float:
+    """
+    Compute Maximum Calibration Error (MCE).
+    Measures the maximum absolute deviation between predicted confidence and empirical accuracy across bins.
+    """
+    bin_boundaries = np.linspace(0, 1, n_bins + 1)
+    max_err = 0.0
+
+    for i in range(n_bins):
+        bin_lower = bin_boundaries[i]
+        bin_upper = bin_boundaries[i + 1]
+        in_bin = (y_prob >= bin_lower) & (y_prob < bin_upper if i < n_bins - 1 else y_prob <= bin_upper)
+        bin_size = np.sum(in_bin)
+
+        if bin_size > 0:
+            bin_acc = float(np.mean(y_true[in_bin]))
+            bin_conf = float(np.mean(y_prob[in_bin]))
+            err = abs(bin_acc - bin_conf)
+            if err > max_err:
+                max_err = err
+
+    return float(max_err)
+
+
+def compute_calibration_curve(
+    y_true: np.ndarray,
+    y_prob: np.ndarray,
+    n_bins: int = 10,
+) -> dict[str, Any]:
+    """
+    Compute reliability diagram coordinates and calibration diagnostics.
+
+    Returns:
+        Dictionary containing empirical positive proportions ('prob_true'),
+        mean predicted probabilities ('prob_pred'), bin sample counts ('bin_counts'),
+        bin boundaries ('bin_edges'), ECE, MCE, and Brier score.
+    """
+    bin_boundaries = np.linspace(0, 1, n_bins + 1)
+    prob_true = []
+    prob_pred = []
+    bin_counts = []
+
+    for i in range(n_bins):
+        bin_lower = bin_boundaries[i]
+        bin_upper = bin_boundaries[i + 1]
+        in_bin = (y_prob >= bin_lower) & (y_prob < bin_upper if i < n_bins - 1 else y_prob <= bin_upper)
+        cnt = int(np.sum(in_bin))
+        bin_counts.append(cnt)
+        if cnt > 0:
+            prob_true.append(float(np.mean(y_true[in_bin])))
+            prob_pred.append(float(np.mean(y_prob[in_bin])))
+        else:
+            mid = float((bin_lower + bin_upper) / 2.0)
+            prob_true.append(0.0)
+            prob_pred.append(mid)
+
+    return {
+        "prob_true": prob_true,
+        "prob_pred": prob_pred,
+        "bin_counts": bin_counts,
+        "bin_edges": bin_boundaries.tolist(),
+        "ece": compute_ece(y_true, y_prob, n_bins=n_bins),
+        "mce": compute_mce(y_true, y_prob, n_bins=n_bins),
+        "brier_score": float(brier_score_loss(y_true, y_prob)),
+    }
+
+
+def calibrate_classifier(
+    estimator: BaseEstimator,
+    method: str = "sigmoid",
+    cv: int | str = 3,
+) -> CalibratedClassifierCV:
+    """
+    Wrap an estimator in a CalibratedClassifierCV to perform Platt scaling (sigmoid)
+    or Isotonic Regression (isotonic).
+    """
+    return CalibratedClassifierCV(estimator=estimator, method=method, cv=cv)
+
+
 def compute_classification_metrics(
     y_true: np.ndarray,
     y_prob: np.ndarray,
@@ -103,6 +185,8 @@ def compute_classification_metrics(
     pr_auc = float(average_precision_score(y_true, y_prob)) if len(np.unique(y_true)) > 1 else prev
     brier = float(brier_score_loss(y_true, y_prob))
     ece = compute_ece(y_true, y_prob)
+    mce = compute_mce(y_true, y_prob)
+    rel_curve = compute_calibration_curve(y_true, y_prob)
 
     f1 = float(f1_score(y_true, y_pred, zero_division=0))
     prec = float(precision_score(y_true, y_pred, zero_division=0))
@@ -128,6 +212,8 @@ def compute_classification_metrics(
         fold_aurocs=aurocs,
         fold_pr_aucs=pr_aucs,
         auroc_std=auroc_std,
+        mce=mce,
+        reliability_curve=rel_curve,
     )
 
 
@@ -225,7 +311,8 @@ def evaluate_grouped_model(
     )
 
     logger.info(
-        "[Evaluation Complete] %s | %s: AUROC=%.4f (±%.4f), PR-AUC=%.4f, Brier=%.4f",
-        model_name, feature_set, metrics.auroc, metrics.auroc_std, metrics.pr_auc, metrics.brier_score
+        "[Evaluation Complete] %s | %s: AUROC=%.4f (±%.4f), PR-AUC=%.4f, Brier=%.4f, ECE=%.4f, MCE=%.4f",
+        model_name, feature_set, metrics.auroc, metrics.auroc_std, metrics.pr_auc, metrics.brier_score, metrics.ece, metrics.mce
     )
     return metrics, oof_probs
+

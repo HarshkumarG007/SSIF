@@ -33,6 +33,8 @@ from src.explainability.recourse import (
     compute_calibrated_dropout_prob,
     find_counterfactual_recourse,
 )
+from src.models.registry import evaluate_candidate_readiness
+
 
 app = FastAPI(
     title="Student Success Intelligence Framework (SSIF) API",
@@ -188,44 +190,24 @@ async def solve_counterfactual_recourse(req: RecourseRequest) -> RecourseRespons
 )
 async def evaluate_placement_readiness(candidate: PlacementEvaluationInput) -> PlacementEvaluationResponse:
     """
-    Evaluates placement probability using the constrained-EPV regularized benchmark pipeline.
+    Evaluates placement probability using the deserialized production pipeline
+    or regularized benchmark model with 95% uncertainty confidence intervals.
     """
-    # Domain scoring model derived from 5-fold cross-validated logistic coefficients
-    logit = (
-        +0.50
-        + 0.055 * (candidate.degree_p - 60.0)
-        + 0.040 * (candidate.ssc_p - 60.0)
-        + 0.035 * (candidate.etest_p - 60.0)
-        + (1.20 if candidate.workex else -0.30)
-        + (0.35 if "Fin" in candidate.specialisation else 0.0)
+    res = evaluate_candidate_readiness(
+        ssc_p=candidate.ssc_p,
+        hsc_p=candidate.hsc_p,
+        degree_p=candidate.degree_p,
+        etest_p=candidate.etest_p,
+        mba_p=candidate.mba_p,
+        workex=candidate.workex,
+        specialisation=candidate.specialisation,
     )
-    prob = float(1.0 / (1.0 + np.exp(-logit)))
-
-    if prob >= 0.75:
-        tier = "High Employability"
-        salary_range = [260000, 350000]
-    elif prob >= 0.50:
-        tier = "Moderate Employability"
-        salary_range = [220000, 280000]
-    else:
-        tier = "Needs Targeted Career Development"
-        salary_range = [0, 220000]
-
-    factors = []
-    if candidate.workex:
-        factors.append("Prior professional work experience (+26.9% empirical placement lift)")
-    if candidate.degree_p >= 65.0:
-        factors.append(f"Competitive undergraduate degree standing ({candidate.degree_p:.1f}%)")
-    if candidate.etest_p >= 75.0:
-        factors.append(f"Strong technical aptitude test evaluation ({candidate.etest_p:.1f}%)")
-    if not candidate.workex:
-        factors.append("No prior work experience (highest addressable barrier to corporate selection)")
-
     return PlacementEvaluationResponse(
-        placement_probability=round(prob, 4),
-        readiness_tier=tier,
-        expected_salary_inr_range=salary_range,
-        top_readiness_factors=factors,
+        placement_probability=res["placement_probability"],
+        confidence_interval_95=res["confidence_interval_95"],
+        readiness_tier=res["readiness_tier"],
+        expected_salary_inr_range=res["expected_salary_inr_range"],
+        top_readiness_factors=res["top_readiness_factors"],
     )
 
 

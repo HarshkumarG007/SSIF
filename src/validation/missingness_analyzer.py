@@ -19,10 +19,12 @@ from typing import Any
 import numpy as np
 import pandas as pd
 from scipy import stats
+from sklearn.base import BaseEstimator, TransformerMixin
 
 from src.logger import get_module_logger
 
 logger = get_module_logger("validation.missingness")
+
 
 
 @dataclass
@@ -192,3 +194,55 @@ def analyze_missingness(
         dataset_name, len(missing_cols), overall_pct
     )
     return report
+
+
+def add_missingness_indicators(
+    df: pd.DataFrame,
+    columns: list[str] | None = None,
+) -> tuple[pd.DataFrame, list[str]]:
+    """
+    Appends binary missingness indicators (col_is_missing) for specified columns
+    or all columns that exhibit missing values.
+    
+    Returns:
+        (df_with_indicators, list_of_new_indicator_columns)
+    """
+    res = df.copy()
+    target_cols = columns if columns is not None else [c for c in df.columns if df[c].isna().any()]
+    indicator_cols = []
+
+    for col in target_cols:
+        ind_name = f"{col}_is_missing"
+        res[ind_name] = res[col].isna().astype(float)
+        indicator_cols.append(ind_name)
+
+    return res, indicator_cols
+
+
+class MissingnessIndicatorTransformer(BaseEstimator, TransformerMixin):
+    """
+    Scikit-learn compliant transformer that learns which columns exhibit missingness
+    strictly during fit (on training fold only) and appends indicator columns during transform.
+    Follows RULE-007 (preprocessing fitted on training data only).
+    """
+
+    def __init__(self, target_columns: list[str] | None = None):
+        self.target_columns = target_columns
+        self.indicator_cols_: list[str] = []
+
+    def fit(self, X: pd.DataFrame, y: Any = None) -> "MissingnessIndicatorTransformer":
+        if self.target_columns is not None:
+            self.indicator_cols_ = [c for c in self.target_columns if c in X.columns]
+        else:
+            self.indicator_cols_ = [c for c in X.columns if X[c].isna().any()]
+        return self
+
+    def transform(self, X: pd.DataFrame) -> pd.DataFrame:
+        res = X.copy()
+        for col in self.indicator_cols_:
+            if col in res.columns:
+                res[f"{col}_is_missing"] = res[col].isna().astype(float)
+            else:
+                res[f"{col}_is_missing"] = 0.0
+        return res
+

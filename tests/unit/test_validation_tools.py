@@ -65,3 +65,24 @@ class TestMissingnessAnalyzer:
         assert col_sum.column == "salary"
         assert "Structural" in col_sum.mechanism_diagnosis
         assert "100%" in col_sum.evidence
+
+    def test_add_missingness_indicators(self):
+        from src.validation.missingness_analyzer import add_missingness_indicators
+        df = pd.DataFrame({"income": [1000.0, np.nan, 3000.0], "age": [20, 21, 22]})
+        res, ind_cols = add_missingness_indicators(df)
+        assert "income_is_missing" in res.columns
+        assert "income_is_missing" in ind_cols
+        assert res["income_is_missing"].tolist() == [0.0, 1.0, 0.0]
+
+    def test_missingness_indicator_transformer_pipeline(self):
+        from src.validation.missingness_analyzer import MissingnessIndicatorTransformer
+        train_df = pd.DataFrame({"val": [1.0, np.nan, 3.0], "static": [10, 20, 30]})
+        test_df = pd.DataFrame({"val": [np.nan, 2.0], "static": [40, 50]})
+        transformer = MissingnessIndicatorTransformer()
+        transformer.fit(train_df)
+        assert "val" in transformer.indicator_cols_
+
+        transformed_test = transformer.transform(test_df)
+        assert "val_is_missing" in transformed_test.columns
+        assert transformed_test["val_is_missing"].tolist() == [1.0, 0.0]
+

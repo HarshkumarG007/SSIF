@@ -99,6 +99,9 @@ def test_placement_evaluation_endpoint():
     assert resp.status_code == 200
     data = resp.json()
     assert 0.0 <= data["placement_probability"] <= 1.0
+    assert "confidence_interval_95" in data
+    assert len(data["confidence_interval_95"]) == 2
+    assert 0.0 <= data["confidence_interval_95"][0] <= data["confidence_interval_95"][1] <= 1.0
     assert "Employability" in data["readiness_tier"]
     assert len(data["expected_salary_inr_range"]) == 2
     assert any("work experience" in factor.lower() for factor in data["top_readiness_factors"])
